@@ -1,0 +1,50 @@
+# Logs
+logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+
+# Compiled output
+/dist
+/dist-ssr
+/out-tsc
+/tmp
+
+# Dependencies
+/node_modules
+/package-lock.json
+
+# Profiling files
+chrome-profiler-events*.json
+
+# IDEs and editors
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+.history/
+.history/*
+
+# Miscellaneous
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
