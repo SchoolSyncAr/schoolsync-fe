@@ -1,6 +1,7 @@
 import Button from "./Button"
 import { useNavigate } from "react-router-dom"
 import MockNotifications from "./MockNotifications"
+import { getAllGeneralNotifications } from "../Services/NotificationService"
 
 // const mockNotifications2 = [
 //   {
@@ -21,9 +22,10 @@ import MockNotifications from "./MockNotifications"
 
 
 
-function Notifications() {
+function NotificationsDashboard() {
 
   const navigate = useNavigate()
+  getAllGeneralNotifications()
 
   return ( 
     <>
@@ -40,4 +42,4 @@ function Notifications() {
   )
 }
  
-export default Notifications
+export default NotificationsDashboard
