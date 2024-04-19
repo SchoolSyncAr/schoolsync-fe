@@ -3,41 +3,41 @@
 function MockNotifications() {
 
   const mockNotifications2 = [
-  {
-    nId: 1,
-    nTitle: "1 dia de la bandera",
-    nContenido: "Acto en el salon de actos a las 12.hs"
-  },
-  {
-    nId: 2,
-    nTitle: "2 9 de julio",
-    nContenido: "Se festejara con empanadas"
-},{
-    nId: 3,
-    nTitle: "3 Jornada Docente",
-    nContenido: "El colegio permanecera cerrado"
-}
-]
+    {
+      nId: 1,
+      nTitle: "Día de la bandera",
+      nContenido: "Acto en el salón de actos a las 12.hs"
+    },
+    {
+      nId: 2,
+      nTitle: "9 de julio",
+      nContenido: "Se festejará con empanadas"
+    },{
+      nId: 3,
+      nTitle: "Jornada Docente",
+      nContenido: "El colegio permanecerá cerrado"
+    }
+  ]
 
   
   return (<>
-    <div>
-        <ul>
-        {
-          mockNotifications2.map((notification) => {
-            return <div>
-             {notification.nTitle}
-             {/* <div></div> */}
-             <br /><br />
-              {notification.nContenido}
-              <br /><br /><br /><br />
-          </div>
-          })
-        }
-
+    <div className="container">
+      <div className="row mt-5">
+        <ul className="list-group shadow">
+          {
+            mockNotifications2.map((notification) => {
+              return (
+                <><div className="col-12 bg-light h3 text-center">
+                  {notification.nTitle} </div>
+                <div className="col-12 bg-light mt-2 mb-5 h5">
+                  {notification.nContenido}
+                </div></>)
+            })
+          }
         </ul>
+      </div>
     </div>
-  </>);
+  </>)
 }
 
-export default MockNotifications;
+export default MockNotifications

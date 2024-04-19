@@ -1,6 +1,6 @@
-import Button from "./Button";
-import { useNavigate } from "react-router-dom";
-import MockNotifications from "./MockNotifications";
+import Button from "./Button"
+import { useNavigate } from "react-router-dom"
+import MockNotifications from "./MockNotifications"
 
 // const mockNotifications2 = [
 //   {
@@ -30,16 +30,14 @@ function Notifications() {
     
       <MockNotifications></MockNotifications>
 
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+
+      <br></br>
       <br></br>
       <div className="buttonsToRightEnd">
-    <Button className='forAllButtons buttonReturn' height={60} actionOnClick={()=>navigate('/parentDashboard')}>Volver</Button>
-   </div>
-      </>
-      );
+        <Button className='forAllButtons buttonReturn' height={60} actionOnClick={()=>navigate('/parentDashboard')}>Volver</Button>
+      </div>
+    </>
+  )
 }
  
-export default Notifications;
+export default Notifications
