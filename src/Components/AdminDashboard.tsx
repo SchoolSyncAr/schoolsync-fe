@@ -1,22 +1,22 @@
-import { useState } from "react"
+import { SetStateAction, useState } from "react"
 import { createNotification } from "../Services/NotificationService"
 
 
 
 function AdminDashboard() {
 
-  let [title, setTitle] = useState('')
-  let [content, setContent] = useState('')
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
 
-  function titleInputHandler(event) {
+  function titleInputHandler(event: { target: { value: SetStateAction<string> } }) {
     setTitle(event.target.value)
   }
 
-  function contentInputHandler(event) {
+  function contentInputHandler(event: { target: { value: SetStateAction<string> } }) {
     setContent(event.target.value)
   }
 
-  function createNewNotificationEventHandler(event) {
+  function createNewNotificationEventHandler(event: { preventDefault: () => void }) {
     event.preventDefault()
     const newNotification = {
       title: title,

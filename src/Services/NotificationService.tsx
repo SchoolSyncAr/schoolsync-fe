@@ -7,7 +7,7 @@ export const getAllGeneralNotifications = async () => {
   return allNotificationsJson.data.map((allNotificationsJson: { id: number; title: string; content: string }) => Notification.fromJson(allNotificationsJson))
 }
 
-export const createNotification = async (notification) =>
+export const createNotification = async (notification: { title: string; content: string }) =>
 {
   const response = await fetch(`${REST_SERVER_URL}/createNotifications`, {
     method: "POST",
@@ -15,4 +15,4 @@ export const createNotification = async (notification) =>
   })
   const result = await response.json()
   return result
-  }
+}
