@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes, Navigate, Link } from 'react-router-dom'
 import ParentDashboard from './Components/ParentDashboard'
 import NotificationsDashboard from './Components/NotificationsDashboard'
 import Children from './Components/Children'
 import AdminDashboard from './Components/AdminDashboard'
 
 
-export const MyRoutes = () =>
+export const MyRoutes = () => (
   <Router>
     <Routes>
       <Route path="/login" element={<ParentDashboard />} />
@@ -15,4 +15,7 @@ export const MyRoutes = () =>
       <Route path='/adminDashboard' element={<AdminDashboard />} />
       <Route path='*' element={<Navigate to='/login' />} /> 
     </Routes>
+
+    <Link to="/login">Iniciar sesión</Link>
   </Router>
+)
