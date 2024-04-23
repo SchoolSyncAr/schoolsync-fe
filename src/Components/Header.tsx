@@ -1,13 +1,13 @@
 import './Header.css'
 
 function Header() {
-  return ( 
+  return (
     <>
       <header className='header'>
         <h4>Este es el Header</h4>
-    </header>
+      </header>
     </>
-   );
+  )
 }
 
-export default Header;
+export default Header

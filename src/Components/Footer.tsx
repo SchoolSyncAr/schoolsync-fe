@@ -1,13 +1,13 @@
 import './Footer.css'
 
 function Footer() {
-  return ( 
+  return (
     <>
       <footer className='footer'>
         <h4>Este es el Header</h4>
-    </footer>
+      </footer>
     </>
-   );
+  )
 }
 
-export default Footer;
+export default Footer

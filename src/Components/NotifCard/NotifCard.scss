@@ -1,0 +1,43 @@
+.notif-card {
+  display: flex;
+  flex-direction: column;
+  height: 15em;
+  border-radius: 1em;
+  overflow: hidden;
+  background-color: rgb(240, 242, 255);
+  box-shadow: 0rem 0.4rem 0.7rem rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  gap: 0.3em;
+  padding: 0.5em 1em 1em 1em;
+
+  &__title {
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+
+  &__body {
+    font-size: 0.8em;
+    white-space: pre-line;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__button {
+    border-radius: 1em;
+    background-color: rgb(240, 242, 255);
+  }
+}
+
+.notif-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 30em;
+  width: 40em;
+}
+
+.scollable {
+  overflow-y: auto;
+  max-height: 100%;
+}
