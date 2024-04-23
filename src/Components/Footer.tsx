@@ -4,7 +4,7 @@ function Footer() {
   return (
     <>
       <footer className='footer'>
-        <h4>Este es el Header</h4>
+        <h4>Este es el Footer</h4>
       </footer>
     </>
   )
