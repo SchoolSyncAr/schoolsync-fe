@@ -8,4 +8,4 @@ export function handleError(error: { response: { data: { message: any } }; reque
   }
 }
 
-export const REST_SERVER_URL = 'http://localhost:8080'
+export const { REACT_APP_REST_SERVER_URL, REACT_APP_USER_KEY_STORAGE } = process.env

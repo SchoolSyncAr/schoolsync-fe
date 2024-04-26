@@ -1,21 +1,15 @@
-import { BrowserRouter as Router, Route, Routes, Navigate, Link } from 'react-router-dom'
-import ParentDashboard from './Components/ParentDashboard'
-import NotificationsDashboard from './Components/NotificationsDashboard'
-import Children from './Components/Children'
-import AdminDashboard from './Components/AdminDashboard'
+import { Navigate, RouteObject } from 'react-router-dom'
+import ParentDashboard from './components/ParentDashboard'
+import NotificationsDashboard from './components/NotificationsDashboard'
+import Children from './components/Children'
+import AdminDashboard from './components/AdminDashboard'
+import { Auth } from './pages/Auth/Auth'
 
-
-export const MyRoutes = () => (
-  <Router>
-    <Routes>
-      <Route path="/login" element={<ParentDashboard />} />
-      <Route path="/parentDashboard" element={<ParentDashboard />} />
-      <Route path="/notificationsDashboard" element={<NotificationsDashboard />} />
-      <Route path='/children' element={<Children />} />
-      <Route path='/adminDashboard' element={<AdminDashboard />} />
-      <Route path='*' element={<Navigate to='/login' />} /> 
-    </Routes>
-
-    <Link to="/login">Iniciar sesión</Link>
-  </Router>
-)
+export const routerConfig: RouteObject[] = [
+  { path: '/login', element: <Auth /> },
+  { path: '/parent', element: <ParentDashboard /> },
+  { path: '/notifications', element: <NotificationsDashboard /> },
+  { path: '/children', element: <Children /> },
+  { path: '/admin', element: <AdminDashboard /> },
+  { path: '*', element: <Navigate to="/login" /> },
+]

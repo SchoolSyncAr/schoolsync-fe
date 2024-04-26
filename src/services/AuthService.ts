@@ -1,12 +1,17 @@
-import { REST_SERVER_URL } from './config'
 import axios from 'axios'
+import { REACT_APP_REST_SERVER_URL, REACT_APP_USER_KEY_STORAGE } from './config'
+import { LoginArgs } from '../model/interfaces/types'
 
-class AuthService {
-  async validarUsuario(username: string, password: string) {
-    const usuarioId = await axios.post(`${REST_SERVER_URL}/login`, { username: username, password: password })
-    return usuarioId.data
+const AuthService = () => {
+  const login = async (credentials: LoginArgs) => {
+    const response$ = await axios.post(`${REACT_APP_REST_SERVER_URL}/api/user/login`, credentials)
+    sessionStorage.setItem(REACT_APP_USER_KEY_STORAGE!!, response$.data.userId)
+    return response$.data.userId
+  }
+
+  return {
+    login,
   }
 }
 
-const authService = new AuthService()
-export default authService
+export const authService = AuthService()

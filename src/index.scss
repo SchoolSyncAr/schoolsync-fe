@@ -1,68 +1,108 @@
-// :root {
-//   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-//   line-height: 1.5;
-//   font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;700;800;900&family=Roboto:wght@300;400;500;600;700;900&display=swap');
+@import url('./styles/typography.scss');
+@import url('./styles/shadow.scss');
+@import url('./styles/button.scss');
+@import url('./styles/field.scss');
+@import url('./styles/centered.scss');
+@import url('./styles/animations.scss');
 
-//   color-scheme: light dark;
-//   color: rgba(255, 255, 255, 0.87);
-//   background-color: #242424;
+:root {
+  /* Default Heights*/
+  --header-height: 8rem;
+  --search-height: 5rem;
+  --footer-height: 5rem;
+  --element-height: 2.8rem;
 
-//   font-synthesis: none;
-//   text-rendering: optimizeLegibility;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-// }
+  /* Colors */
+  --color-primary-background: hsla(205, 100%, 97%, 1);
+  --color-primary-lighter: hsla(205, 100%, 50%, 1);
+  --color-primary: hsla(205, 100%, 37%, 1);
+  --color-primary-darker: hsla(205, 100%, 20%, 1);
+  --color-secondary-lighter: hsla(224, 72%, 45%, 1);
+  --color-secondary: hsla(224, 72%, 33%, 1);
+  --color-secondary-darker: hsla(224, 72%, 16%, 1);
 
-// a {
-//   font-weight: 500;
-//   color: #646cff;
-//   text-decoration: inherit;
-// }
-// a:hover {
-//   color: #535bf2;
-// }
+  /* Poin of Interest Color */
+  --color-focus: rgb(255, 166, 0);
+  --color-hot: hsla(0, 80%, 50%, 1);
 
-// body {
-//   margin: 0;
-//   display: flex;
-//   place-items: center;
-//   min-width: 320px;
-//   min-height: 100vh;
-// }
+  /* Brigth Colors */
+  --color-white: hsla(0, 0%, 99%, 1);
+  --color-white-variant: hsla(0, 0%, 96%, 1);
 
-// h1 {
-//   font-size: 3.2em;
-//   line-height: 1.1;
-// }
+  /* Dark Colors */
+  --color-dark: hsla(0, 0%, 0%, 1);
+  --color-dark-variant: hsla(224, 60%, 5%, 1);
 
-// button {
-//   border-radius: 8px;
-//   border: 1px solid transparent;
-//   padding: 0.6em 1.2em;
-//   font-size: 1em;
-//   font-weight: 500;
-//   font-family: inherit;
-//   background-color: #1a1a1a;
-//   cursor: pointer;
-//   transition: border-color 0.25s;
-// }
-// button:hover {
-//   border-color: #646cff;
-// }
-// button:focus,
-// button:focus-visible {
-//   outline: 4px auto -webkit-focus-ring-color;
-// }
+  /* Text & Typeface */
+  --typeface-color-lighter: hsla(321, 40%, 32%, 1);
+  --typeface-color: hsla(321, 90%, 10%, 1);
+  --typeface-color-medium: hsla(321, 80%, 15%, 1);
 
-// @media (prefers-color-scheme: light) {
-//   :root {
-//     color: #213547;
-//     background-color: #ffffff;
-//   }
-//   a:hover {
-//     color: #747bff;
-//   }
-//   button {
-//     background-color: #f9f9f9;
-//   }
-// }
+  /* Card Background Color */
+  --gradient-primary: linear-gradient(to right, var(--color-primary) 20%, var(--color-secondary-darker) 80%);
+  --gradient-grey-vertical: linear-gradient(to bottom, var(--color-white) 70%, rgba(0, 0, 0, 0.08));
+  --user-info-background: linear-gradient(to bottom, var(--color-clear-medium), var(--color-white));
+  /* Fonts */
+  --typeface-primary: 'Mulish', 'Open Sans', 'Verdana', 'sans-serif';
+  --typeface-secondary: 'Roboto', 'Open Sans', 'Verdana', 'sans-serif';
+
+  /* Border Radius */
+  --border-radius-sm: 0.3rem;
+  --border-radius: 0.5rem;
+  --border-radius-md: 1rem;
+  --border-radius-xl: 1.5rem;
+
+  /* Padding */
+  --padding-xs: 0.8rem;
+  --padding: 1.6rem;
+
+  /* Animations */
+  --transition-fast: 0.5s;
+  --transition-slow: 1s;
+  --translateY: -8%;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--typeface-primary);
+  font-style: normal;
+  font-size: 10px;
+  color: var(--text-color);
+}
+
+/* Font Awesome special css */
+.fa--lp {
+  padding-left: 0.3em;
+}
+
+.fa--rp {
+  padding-right: 0.3em;
+}
+
+.fa--hot {
+  color: var(--color-hot);
+}
+
+.fa--up {
+  color: var(--color-focus);
+}
+
+.fa--medium {
+  color: var(--color-focus);
+  opacity: 0.7;
+}
+
+.fa--low {
+  color: var(--color-focus);
+  opacity: 0.4;
+}
+
+.fas--highlighted {
+  color: var(--color-focus);
+}

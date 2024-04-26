@@ -1,0 +1,13 @@
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--spaced {
+    gap: var(--padding-xs);
+  }
+
+  &--column {
+    flex-direction: column;
+  }
+}

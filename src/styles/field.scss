@@ -1,0 +1,45 @@
+.field {
+  height: var(--element-height);
+  width: 100%;
+  padding: var(--padding-xs);
+
+  font-family: var(--typeface-primary);
+
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-white);
+  outline: none;
+
+  &__label {
+    margin-top: 0.8em;
+  }
+
+  &--rounded {
+    border-radius: var(--border-radius-sm);
+  }
+
+  &--large {
+    max-width: 20vw;
+  }
+
+  &--tall {
+    height: 4.2rem;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  &.animated:hover {
+    border: 1px solid var(--color-primary-lighter);
+  }
+
+  &:focus {
+    border: 1px solid var(--color-primary-lighter);
+  }
+
+  &::placeholder {
+    color: var(--typeface-color-lighter);
+  }
+}
