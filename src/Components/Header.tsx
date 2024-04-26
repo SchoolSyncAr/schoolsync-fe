@@ -3,6 +3,8 @@ import './Header.css'
 import { notificationService } from '../Services/NotificationService'
 import { useState } from 'react'
 import { useOnInit } from '../Utils/useOnInit'
+import { Badge } from '@mui/material'
+import NotificationsIcon from '@mui/icons-material/Notifications'
 
 function Header() {
   const [data, setData] = useState(0)
@@ -34,8 +36,9 @@ function Header() {
         </a> */}
 
         <Link to={'/notificationsDashboard'} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <i className="fa fa-regular fa-bell" />
-          <span className="notification__badge">{data}</span>
+          <Badge badgeContent={data} color="error">
+            <NotificationsIcon color="action" />
+          </Badge>
         </Link>
       </div>
     </nav>
