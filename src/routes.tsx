@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate, Link } from 'react-router-dom'
 import ParentDashboard from './Components/ParentDashboard'
-import NotificationsDashboard from './Components/NotificationsDashboard'
+import NotificationsDashboard from './Components/NotifDashboard/NotificationsDashboard'
 import Children from './Components/Children'
 import AdminDashboard from './Components/AdminDashboard'
 
