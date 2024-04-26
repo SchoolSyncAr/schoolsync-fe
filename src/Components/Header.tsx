@@ -1,19 +1,42 @@
+import { Link } from 'react-router-dom'
 import './Header.css'
+import { notificationService } from '../Services/NotificationService'
+import { useState } from 'react'
+import { useOnInit } from '../Utils/useOnInit'
 
 function Header() {
-  return ( 
+  const [data, setData] = useState(0)
+  const [errorMessage, setErrorMessage] = useState('')
 
-    <nav className='nav'>
-      <h2><a href="/parentDashboard" className='nav-title'>SchoolSyncAr</a></h2>
+  useOnInit(async () => {
+    try {
+      const notificationCount = await notificationService.getNotificationsCount()
+      setData(notificationCount)
+    } catch {
+      setErrorMessage('No se pudo obtener info notifications')
+    }
+  })
+  return (
+    <nav className="nav">
+      <h2>
+        <a href="/parentDashboard" className="nav-title">
+          SchoolSyncAr
+        </a>
+      </h2>
       <div className="nav-links">
-        <a href="">Link 1</a>
+        {/* <a href="">Link 1</a>
         <a href="">Link 2</a>
         <a href="">Link 3</a>
-        <a href="">Link 4</a>
-        <a href="/notificationsDashboard" className="notification">
+        <a href="">Link 4</a> */}
+        {/* <a href="/notificationsDashboard" className="notification">
           <i className="fa fa-regular fa-bell" />
           <span className="notification__badge">2</span>
-        </a>
+        </a> */}
+
+        <Link to={'/notificationsDashboard'} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <i className="fa fa-regular fa-bell" />
+          <span className="notification__badge">{data}</span>
+        </Link>
       </div>
     </nav>
   )
