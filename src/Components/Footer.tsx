@@ -1,7 +1,7 @@
 import './Footer.css'
 
 function Footer() {
-  return ( 
+  return (
     <>
       <footer className='footer'>
         <h4>Este es el Footer</h4>
