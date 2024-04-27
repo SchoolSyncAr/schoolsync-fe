@@ -10,13 +10,12 @@ class NotificationService {
     )
   }
 
-  createNotification = async (notification: { title: string; content: string }) => {
-    const response = await fetch(`${REST_SERVER_URL}/createNotifications`, {
-      method: 'POST',
-      body: JSON.stringify(notification),
-    })
-    const result = await response.json()
-    return result
+  createNotification = async (notification: {
+      title: string
+      content: string
+    }) => {
+    const response = await axios.post(`${REST_SERVER_URL}/createNotifications`, notification)
+    return response.data
   }
 
   getNotificationsCount = async () => {
