@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { REST_SERVER_URL } from './Constants'
-import { Notification } from '../models/Notification'
+import { Notification } from 'models/Notification'
 
 class NotificationService {
   getAllGeneralNotifications = async () => {

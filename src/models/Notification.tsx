@@ -1,4 +1,4 @@
-import { NotifProps } from "../interfaces/Notification"
+import { NotifProps } from "interfaces/Notification"
 
 export class Notification {
   id: number  //ver si es necesario

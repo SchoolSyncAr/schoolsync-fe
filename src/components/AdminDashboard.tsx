@@ -1,5 +1,5 @@
 import { SetStateAction, useState } from 'react'
-import { notificationService } from '../services/NotificationService'
+import { notificationService } from 'services/NotificationService'
 
 function AdminDashboard() {
   const [title, setTitle] = useState('')

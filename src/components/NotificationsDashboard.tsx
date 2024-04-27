@@ -1,7 +1,7 @@
-import Button from './Button'
+import Button from 'components/Button'
 import { useNavigate } from 'react-router-dom'
-import MockNotifications from './MockNotifications'
-/* import { notificationService } from '../Services/NotificationService' */
+import MockNotifications from 'components/MockNotifications'
+/* import { notificationService } from 'services/NotificationService' */
 
 // const mockNotifications2 = [
 //   {

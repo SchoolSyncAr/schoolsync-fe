@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { notificationService } from '../services/NotificationService'
-import { useOnInit } from '../Utils/useOnInit'
+import { notificationService } from 'services/NotificationService'
+import { useOnInit } from 'utils/useOnInit'
 
 function MockNotifications() {
   const [generalNotificationsInfoBackend, setGeneralNotificationsInfoBackend] = useState([])
