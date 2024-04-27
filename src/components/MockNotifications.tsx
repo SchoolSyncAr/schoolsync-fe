@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { notificationService } from '../Services/NotificationService'
+import { notificationService } from '../services/NotificationService'
 import { useOnInit } from '../Utils/useOnInit'
 
 function MockNotifications() {

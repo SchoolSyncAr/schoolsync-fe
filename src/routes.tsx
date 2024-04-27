@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
-import ParentDashboard from './Components/ParentDashboard'
-import NotificationsDashboard from './Components/NotifDashboard/NotificationsDashboard'
-import Children from './Components/Children'
-import AdminDashboard from './Components/AdminDashboard'
-import { LayoutWrap } from './Components/LayoutWrap'
+import ParentDashboard from './components/ParentDashboard'
+import NotificationsDashboard from './components/NotifDashboard/NotificationsDashboard'
+import Children from './components/Children'
+import AdminDashboard from './components/AdminDashboard'
+import { LayoutWrap } from './components/LayoutWrap'
 
 export const MyRoutes = () => (
   <Routes>
