@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import { notificationService } from 'services/NotificationService'
+import { notificationService } from 'Services/NotificationService'
 import { useOnInit } from 'utils/useOnInit'
+import DeleteIcon from '@mui/icons-material/Delete'
+import { deleteNotificationById2 } from '../Services/prueba'
 
 function MockNotifications() {
   const [generalNotificationsInfoBackend, setGeneralNotificationsInfoBackend] = useState([])
@@ -17,6 +19,23 @@ function MockNotifications() {
       setErrorMessage('No se pudo obtener info notifications')
     }
   })
+
+  // const isAdministrator = true
+
+  const handleDeleteNotification = async (notificationId: any) => {
+    console.log(notificationId)
+    try {
+      console.log(notificationId)
+      const newNotificationList = await deleteNotificationById2(notificationId)
+      console.log(newNotificationList)
+      setGeneralNotificationsInfoBackend(newNotificationList)
+    }
+    catch {
+      setErrorMessage("error")
+    }
+  }
+
+
 
   const mockNotifications2 = [
     {
@@ -45,6 +64,10 @@ function MockNotifications() {
               return (
                 <>
                   <div className="col-12 bg-light h3 text-center">{notification.title} </div>
+                  {/* {isAdministrator && (<button>delete</button>)} */}
+                  <div className="buttonsToRightEnd">
+                    <DeleteIcon onClick={() => handleDeleteNotification(notification.id)}></DeleteIcon>
+                  </div>
                   <div className="col-12 bg-light mt-2 mb-5 h5">{notification.content}</div>
                 </>
               )
@@ -68,5 +91,6 @@ function MockNotifications() {
     </>
   )
 }
+// import { deleteNotificationById } from '../Services/prueba'
 
 export default MockNotifications
