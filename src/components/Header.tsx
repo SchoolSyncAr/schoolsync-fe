@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import './Header.css'
-import { notificationService } from '../services/NotificationService'
+import { notificationService } from 'services/NotificationService'
 import { useState } from 'react'
-import { useOnInit } from '../utils/useOnInit'
+import { useOnInit } from 'utils/useOnInit'
 import { Badge } from '@mui/material'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 

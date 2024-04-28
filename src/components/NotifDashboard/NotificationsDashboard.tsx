@@ -1,11 +1,11 @@
-import Button from '../Button'
+import Button from 'components/Button'
 import { useNavigate } from 'react-router-dom'
-import { NotifCard } from '../NotifCard/NotifCard'
+import { NotifCard } from 'components/NotifCard/NotifCard'
 import { useState } from 'react'
-import { useOnInit } from '../../utils/useOnInit'
+import { useOnInit } from 'utils/useOnInit'
 import './NotificationDashboard.css'
-import { NotifProps } from '../../interfaces/Notification'
-import { notificationService } from '../../services/NotificationService'
+import { NotifProps } from 'interfaces/Notification'
+import { notificationService } from 'services/NotificationService'
 
 function NotificationsDashboard() {
   const [notifications, setNotifications] = useState<NotifProps[]>([])
