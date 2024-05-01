@@ -1,7 +1,7 @@
-import Button from "./Button"
-import { useNavigate } from "react-router-dom"
-import MockNotifications from "./MockNotifications"
-import { getAllGeneralNotifications } from "../Services/NotificationService"
+import Button from 'components/Button'
+import { useNavigate } from 'react-router-dom'
+import MockNotifications from 'components/MockNotifications'
+/* import { notificationService } from 'services/NotificationService' */
 
 // const mockNotifications2 = [
 //   {
@@ -20,26 +20,23 @@ import { getAllGeneralNotifications } from "../Services/NotificationService"
 // }
 // ]
 
-
-
 function NotificationsDashboard() {
-
   const navigate = useNavigate()
-  getAllGeneralNotifications()
+  /* notificationService.getAllGeneralNotifications() */
 
-  return ( 
+  return (
     <>
-    
       <MockNotifications></MockNotifications>
-
 
       <br></br>
       <br></br>
       <div className="buttonsToRightEnd">
-        <Button className='forAllButtons buttonReturn' height={60} actionOnClick={()=>navigate('/parentDashboard')}>Volver</Button>
+        <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
+          Volver
+        </Button>
       </div>
     </>
   )
 }
- 
+
 export default NotificationsDashboard

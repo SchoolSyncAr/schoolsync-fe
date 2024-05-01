@@ -1,25 +1,64 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
+  /* Configuración del compilador */
+  
+  "compilerOptions": {    
+    "target": "ES2020", // Configuración del objetivo de compilación    
+    "module": "ES2020", // Formato de módulo
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Librerías utilizadas en la compilación    
+    "useDefineForClassFields": true, // Utiliza "define" para los campos de clase    
+    "skipLibCheck": true, // Evita la comprobación de librerías
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
+    
+    /* Resolución de Módulos */
+    
+    "baseUrl": ".",
+    "moduleResolution": "bundler", // Resolución de módulos para empaquetadores
+    "outDir": "./dist/out-tsc",    
 
+    
+    /* Modo de empaquetado */      
+    
+    "allowImportingTsExtensions": true, // Permite la importación de extensiones .ts
+    "resolveJsonModule": true, // Habilita la importación de módulos JSON        
+    "isolatedModules": true, // Trata cada archivo como un módulo independiente    
+    "noEmit": true, // No emite ningún archivo JS
+    "jsx": "react-jsx", // Tipo de JSX
+    "downlevelIteration": true, // indica a TypeScript que genere código que sea compatible con iteraciones de ECMAScript en versiones anteriores a ES2015
+    
+    
     /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    
+    "strict": true, // Habilita modo estricto
+    "noUnusedLocals": true, // Advierte sobre variables locales no utilizadas
+    "noUnusedParameters": true, // Advierte sobre parámetros no utilizados
+    "noImplicitReturns": true, // Avierte en casos donde un camino no retorna un valor
+    "noImplicitOverride": true, // Advierte de colocar override en metodos sobrescritos
+    "noFallthroughCasesInSwitch": true, // Advierte sobre casos de caída a través en "switch"
+    "forceConsistentCasingInFileNames": true, // Advierte cuando no coinciden mayus y minus en un inport
+    "noPropertyAccessFromIndexSignature": true, // Evita acceder con el formato algo.prop cuando es parte de un index ej.: algo['prop']
+
+
+    /* Debugging */
+    
+    "sourceMap": true,
+
+
+    /* Aliases */
+
+    "paths": {
+      "*": ["./src/*"],
+      "@/assets": ["./src/components/*"],
+      "@/components": ["./src/components/*"],
+      "@/services": ["src/services/*"],
+      "@/models": ["src/models/*"],
+      "@/interfaces": ["src/interfaces/*"],
+      "@/utils": ["src/utils/*"]
+    }
   },
-  "include": ["src"],
+  
+  // Directorios incluidos en la compilación
+  "include": ["src","setupTest.ts"],
+  
+  // Referencias a otros archivos de configuración
   "references": [{ "path": "./tsconfig.node.json" }]
 }
