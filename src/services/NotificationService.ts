@@ -12,9 +12,9 @@ class NotificationService {
   }
 
   createNotification = async (notification: {
-      title: string
-      content: string
-    }) => {
+    title: string
+    content: string
+  }) => {
     const response = await axios.post(`${REACT_APP_REST_SERVER_URL}/createNotifications`, notification)
     return response.data
   }
@@ -25,13 +25,16 @@ class NotificationService {
     return notificationsCountJson.data
   }
 
-  // export const deleteNotificationById = async (notificationId: any) => {
+  //   deleteNotificationById = async (notificationId: any) => {
   //   console.log("sevide")
   //   console.log(notificationId)
   //   const notificationJson = await axios.delete(`${REST_SERVER_URL}/deleteNotification/${notificationId}`)
   //   return notificationJson.data.map((notificationJson: NotifProps)=>{Notification.fromJson(notificationJson)})
   // }
 
+  deleteNotificationById = async (notificationId: number) => {
+    const notificationJson = await axios.delete(`${REACT_APP_REST_SERVER_URL}/deleteNotification/${notificationId}`)
+    return notificationJson.data.map((notificationJson: any) => { Notification.fromJson(notificationJson) })
+  }
 }
-
 export const notificationService = new NotificationService()

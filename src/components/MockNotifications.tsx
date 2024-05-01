@@ -33,8 +33,35 @@ function MockNotifications() {
     catch {
       setErrorMessage("error")
     }
+    finally {
+      console.log("recharging")
+      rechargeNotification()
+      updateNotificationCount()
+    }
   }
 
+  const rechargeNotification = async () => {
+    try {
+      const generalNotificationData = await notificationService.getAllGeneralNotifications()
+      console.log('desde recharge')
+      console.log(generalNotificationData)
+      setGeneralNotificationsInfoBackend(generalNotificationData)
+      console.log('desde recharge longitud segundo  ' + generalNotificationsInfoBackend.length)
+    } catch {
+      setErrorMessage('No se pudo obtener info notifications')
+    }
+  }
+  //ver para usar para actualizar el header
+  const updateNotificationCount = async () => {
+    try {
+      const notificationCount = await notificationService.getNotificationsCount()
+      const newNotificationCount = notificationCount
+      console.log("new notification count " + newNotificationCount)
+      return newNotificationCount
+    } catch {
+      setErrorMessage('No se pudo obtener info notifications')
+    }
+  }
 
 
   const mockNotifications2 = [
@@ -91,6 +118,5 @@ function MockNotifications() {
     </>
   )
 }
-// import { deleteNotificationById } from '../Services/prueba'
 
 export default MockNotifications
