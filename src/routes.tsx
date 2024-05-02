@@ -4,6 +4,7 @@ import NotificationsDashboard from 'components/NotifDashboard/NotificationsDashb
 import Children from 'components/Children'
 import AdminDashboard from 'components/AdminDashboard'
 import { LayoutWrap } from 'components/LayoutWrap'
+import NotFound from 'components/NotFound'
 import DeleteNotification from 'components/DeleteNotification'
 import SeeAllStudents from 'components/SeeAllStudents'
 
@@ -21,7 +22,7 @@ export const MyRoutes = () => (
       <Route path='seeAllStudents' element={<SeeAllStudents/>}/>
     </Route>
 
-    <Route path="*" element={<Navigate to="" />} />
+    <Route path="*" element={<NotFound />} />
     {/* <Link to="/login">Iniciar sesión</Link> */}
   </Routes>
 )
