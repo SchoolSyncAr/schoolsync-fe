@@ -5,6 +5,7 @@ import Children from 'components/Children'
 import AdminDashboard from 'components/AdminDashboard'
 import { LayoutWrap } from 'components/LayoutWrap'
 import DeleteNotification from 'components/DeleteNotification'
+import SeeAllStudents from 'components/SeeAllStudents'
 
 export const MyRoutes = () => (
   <Routes>
@@ -16,7 +17,8 @@ export const MyRoutes = () => (
       <Route path="notificationsDashboard" element={<NotificationsDashboard />} />
       <Route path="children" element={<Children />} />
       <Route path="adminDashboard" element={<AdminDashboard />} />
-      <Route path="deleteNotification" element={<DeleteNotification/>} />
+      <Route path="deleteNotification" element={<DeleteNotification />} />
+      <Route path='seeAllStudents' element={<SeeAllStudents/>}/>
     </Route>
 
     <Route path="*" element={<Navigate to="" />} />
