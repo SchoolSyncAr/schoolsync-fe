@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { notificationService } from 'Services/NotificationService'
+import { notificationService } from 'services/NotificationService'
 import { useOnInit } from 'utils/useOnInit'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { deleteNotificationById2 } from '../Services/prueba'
+import { deleteNotificationById2 } from '../services/prueba'
 
 function MockNotifications() {
   const [generalNotificationsInfoBackend, setGeneralNotificationsInfoBackend] = useState([])

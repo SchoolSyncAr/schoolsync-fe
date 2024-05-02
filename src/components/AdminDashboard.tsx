@@ -1,5 +1,5 @@
 import { SetStateAction, useState } from 'react'
-import { notificationService } from 'Services/NotificationService'
+import { notificationService } from 'services/NotificationService'
 import Button from './Button'
 import { useNavigate } from 'react-router-dom'
 

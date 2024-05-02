@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import Button from "./Button"
 import { useOnInit } from "utils/useOnInit"
-import { getAllChildrenForAParent} from '../Services/ParentService'
+import { getAllChildrenForAParent} from '../services/ParentService'
 
 function Children() {
 

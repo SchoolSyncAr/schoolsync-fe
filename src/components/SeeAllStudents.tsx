@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import Button from "./Button"
 import { useState } from "react"
 import { useOnInit } from "utils/useOnInit"
-import { getAllStudents } from '../Services/StudentsService'
+import { getAllStudents } from '../services/StudentsService'
 import { Student } from '../models/Student'
 
 function SeeAllStudents() {
