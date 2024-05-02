@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ParentDashboard from 'components/ParentDashboard'
 import NotificationsDashboard from 'components/NotifDashboard/NotificationsDashboard'
 import Children from 'components/Children'
