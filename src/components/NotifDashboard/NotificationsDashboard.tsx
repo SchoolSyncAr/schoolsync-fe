@@ -6,10 +6,12 @@ import { useOnInit } from 'utils/useOnInit'
 import './NotificationDashboard.css'
 import { NotifProps } from 'interfaces/Notification'
 import { notificationService } from 'services/NotificationService'
+import SearchBar from 'components/Searchbar/Searchbar'
 
 function NotificationsDashboard() {
   const [notifications, setNotifications] = useState<NotifProps[]>([])
   const [errorMessage, setErrorMessage] = useState('')
+  const [searchField, setSearchField] = useState('')
 
   useOnInit(async () => {
     try {
@@ -23,6 +25,21 @@ function NotificationsDashboard() {
     }
   })
 
+  const handleSearchInit = () => {
+    useOnInit(async () => {
+      try {
+        const notifs = await notificationService.getAllGeneralNotifications()
+        setNotifications(notifs)
+      } catch {
+        setErrorMessage('No se pudo obtener info notifications')
+      }
+    })
+  }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchField(event.target.value)
+  }
+
   const notifList = () => {
     return notifications.map((data) => <NotifCard id={data.id} title={data.title} content={data.content} />)
   }
@@ -31,8 +48,8 @@ function NotificationsDashboard() {
 
   return (
     <>
+      <SearchBar handleSearchInit={handleSearchInit} handleChange={handleChange} searchField={searchField} />
       <div className="notif-grid">{notifList()}</div>
-
       <br></br>
       <br></br>
       <div className="buttonsToRightEnd">
