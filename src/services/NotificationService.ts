@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { REACT_APP_REST_SERVER_URL } from 'constants/constants'
 import { Notification } from 'models/Notification'
+// import { NotifProps } from '../interfaces/Notification'
 
 class NotificationService {
   getAllGeneralNotifications = async () => {
@@ -11,9 +12,9 @@ class NotificationService {
   }
 
   createNotification = async (notification: {
-      title: string
-      content: string
-    }) => {
+    title: string
+    content: string
+  }) => {
     const response = await axios.post(`${REACT_APP_REST_SERVER_URL}/createNotifications`, notification)
     return response.data
   }
@@ -23,6 +24,17 @@ class NotificationService {
     console.log(notificationsCountJson.data + 'del service')
     return notificationsCountJson.data
   }
-}
 
+  //   deleteNotificationById = async (notificationId: any) => {
+  //   console.log("sevide")
+  //   console.log(notificationId)
+  //   const notificationJson = await axios.delete(`${REST_SERVER_URL}/deleteNotification/${notificationId}`)
+  //   return notificationJson.data.map((notificationJson: NotifProps)=>{Notification.fromJson(notificationJson)})
+  // }
+
+  deleteNotificationById = async (notificationId: number) => {
+    const notificationJson = await axios.delete(`${REACT_APP_REST_SERVER_URL}/deleteNotification/${notificationId}`)
+    return notificationJson.data.map((notificationJson: any) => { Notification.fromJson(notificationJson) })
+  }
+}
 export const notificationService = new NotificationService()

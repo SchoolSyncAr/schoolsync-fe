@@ -1,9 +1,13 @@
 import { SetStateAction, useState } from 'react'
 import { notificationService } from 'services/NotificationService'
+import Button from './Button'
+import { useNavigate } from 'react-router-dom'
 
 function AdminDashboard() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+
+  const navigate = useNavigate()
 
   function titleInputHandler(event: { target: { value: SetStateAction<string> } }) {
     setTitle(event.target.value)
@@ -27,6 +31,8 @@ function AdminDashboard() {
       .catch((error) => {
         console.log(error)
       })
+    setTitle('')
+    setContent('')
     console.log(newNotification)
   }
 
@@ -38,10 +44,11 @@ function AdminDashboard() {
         <div className="container">
           <div className="row mt-5">
             <ul className="list-group shadow"></ul>
-            <input type="text" onChange={titleInputHandler} placeholder="Titulo de la Notificacion" />
+            <input type="text" onChange={titleInputHandler} placeholder="Titulo de la Notificacion" value={title} />
             <textarea
               onChange={contentInputHandler}
               name="notificationContent"
+              value={content}
               placeholder="Contenido"
               cols={30}
               rows={10}
@@ -49,6 +56,9 @@ function AdminDashboard() {
             <button className="btn btn-primary" type="submit">
               Guardar
             </button>
+            <div className="buttonsToRightEnd">
+              <Button className='forAllButtons buttonReturn' height={60} actionOnClick={() => navigate('/parentDashboard')}>Volver</Button>
+            </div>
           </div>
         </div>
       </form>

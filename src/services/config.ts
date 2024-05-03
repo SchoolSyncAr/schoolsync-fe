@@ -7,3 +7,5 @@ export function handleError(error: { response: { data: { message: any } }; reque
     return 'se produjo un error inesperado'
   }
 }
+
+export const REST_SERVER_URL = 'http://localhost:8080'

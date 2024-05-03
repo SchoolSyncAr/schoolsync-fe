@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { notificationService } from 'services/NotificationService'
 import { useOnInit } from 'utils/useOnInit'
+import DeleteIcon from '@mui/icons-material/Delete'
+import { deleteNotificationById2 } from '../services/prueba'
 
 function MockNotifications() {
   const [generalNotificationsInfoBackend, setGeneralNotificationsInfoBackend] = useState([])
@@ -17,6 +19,50 @@ function MockNotifications() {
       setErrorMessage('No se pudo obtener info notifications')
     }
   })
+
+  // const isAdministrator = true
+
+  const handleDeleteNotification = async (notificationId: any) => {
+    console.log(notificationId)
+    try {
+      console.log(notificationId)
+      const newNotificationList = await deleteNotificationById2(notificationId)
+      console.log(newNotificationList)
+      setGeneralNotificationsInfoBackend(newNotificationList)
+    }
+    catch {
+      setErrorMessage("error")
+    }
+    finally {
+      console.log("recharging")
+      rechargeNotification()
+      updateNotificationCount()
+    }
+  }
+
+  const rechargeNotification = async () => {
+    try {
+      const generalNotificationData = await notificationService.getAllGeneralNotifications()
+      console.log('desde recharge')
+      console.log(generalNotificationData)
+      setGeneralNotificationsInfoBackend(generalNotificationData)
+      console.log('desde recharge longitud segundo  ' + generalNotificationsInfoBackend.length)
+    } catch {
+      setErrorMessage('No se pudo obtener info notifications')
+    }
+  }
+  //ver para usar para actualizar el header
+  const updateNotificationCount = async () => {
+    try {
+      const notificationCount = await notificationService.getNotificationsCount()
+      const newNotificationCount = notificationCount
+      console.log("new notification count " + newNotificationCount)
+      return newNotificationCount
+    } catch {
+      setErrorMessage('No se pudo obtener info notifications')
+    }
+  }
+
 
   const mockNotifications2 = [
     {
@@ -45,6 +91,10 @@ function MockNotifications() {
               return (
                 <>
                   <div className="col-12 bg-light h3 text-center">{notification.title} </div>
+                  {/* {isAdministrator && (<button>delete</button>)} */}
+                  <div className="buttonsToRightEnd">
+                    <DeleteIcon onClick={() => handleDeleteNotification(notification.id)}></DeleteIcon>
+                  </div>
                   <div className="col-12 bg-light mt-2 mb-5 h5">{notification.content}</div>
                 </>
               )
