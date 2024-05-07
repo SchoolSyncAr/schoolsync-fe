@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useOnInit } from 'utils/useOnInit'
 import { Badge } from '@mui/material'
 import NotificationsIcon from '@mui/icons-material/Notifications'
-import { notificationService } from 'services/NotificationService'
+import notificationService from 'services/NotificationService'
 
 function Header() {
   const [data, setData] = useState(0)

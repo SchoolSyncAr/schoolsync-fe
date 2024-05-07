@@ -37,4 +37,6 @@ class NotificationService {
     return notificationJson.data.map((notificationJson: any) => { Notification.fromJson(notificationJson) })
   }
 }
-export const notificationService = new NotificationService()
+
+const notificationService = new NotificationService()
+export default notificationService
