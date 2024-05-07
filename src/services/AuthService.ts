@@ -1,12 +1,24 @@
 import axios from 'axios'
-import { REACT_APP_REST_SERVER_URL } from 'constants/constants'
+import { REACT_APP_REST_SERVER_URL, REACT_APP_USER_KEY_STORAGE } from 'constants/constants'
+import { LoginArgs } from 'models/interfaces/types'
 
-class AuthService {
-  async validarUsuario(username: string, password: string) {
-    const usuarioId = await axios.post(`${REACT_APP_REST_SERVER_URL}/login`, { username: username, password: password })
-    return usuarioId.data
+const AuthService = () => {
+  const login = async (credentials: LoginArgs ) => {
+    try {
+      const response = await axios.post(`${REACT_APP_REST_SERVER_URL}/api/auth`, credentials)
+      
+      const token = response.data.token 
+      sessionStorage.setItem(REACT_APP_USER_KEY_STORAGE!, token) 
+      
+      return token
+    } catch (error) {
+      throw new Error('Error en la autenticación. Por favor, verifica tus credenciales.')
+    }
+  }
+
+  return {
+    login
   }
 }
 
-const authService = new AuthService()
-export default authService
+export const authService = AuthService()

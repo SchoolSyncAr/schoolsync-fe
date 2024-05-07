@@ -8,7 +8,7 @@ import { Student } from '../models/Student'
 function SeeAllStudents() {
 
   const [studentInfoBackend, setStudentInfoBackend] = useState<Array<Student>>([])  //Esto es porque me marca error de type NEVER -- property-id-does-not-exist-on-type-never-on-map-function
-  const [errorMessage, setErrorMessage] = useState('')
+  const [, setErrorMessage] = useState('')
 
 
   useOnInit(async () => {
