@@ -1,11 +1,11 @@
-import axios from 'api/axios'
+import api from 'api/axios'
 import { LoginArgs } from 'models/interfaces/types'
 
 
 const AuthService = () => {
   const login = async (credentials: LoginArgs ) => {
     try {
-      const response = await axios.post('/api/auth', credentials)
+      const response = await api.post('/api/auth', credentials)
       const token = response.data.token
       const role = response.data.role
       const user_id = response.data.id_logged_user
@@ -27,7 +27,7 @@ const AuthService = () => {
     return sessionStorage.getItem("auth")
   }
 
-  function getUserId() {
+  const getUserId = () => {
     return sessionStorage.getItem("id_logged_user")
   }
 

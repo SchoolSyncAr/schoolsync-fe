@@ -1,11 +1,11 @@
-import axios from 'axios'
+import api from 'api/axios'
 import { REACT_APP_REST_SERVER_URL } from 'constants/constants'
 import { Notification } from 'models/Notification'
 // import { NotifProps } from '../interfaces/Notification'
 
 class NotificationService {
   getAllGeneralNotifications = async () => {
-    const allNotificationsJson = await axios.get(`${REACT_APP_REST_SERVER_URL}/notifications/all`) //array de objetos
+    const allNotificationsJson = await api.get(`${REACT_APP_REST_SERVER_URL}/notifications/all`) //array de objetos
     return allNotificationsJson.data.map((allNotificationsJson: { id: number; title: string; content: string }) =>
       Notification.fromJson(allNotificationsJson),
     )
@@ -15,12 +15,12 @@ class NotificationService {
     title: string
     content: string
   }) => {
-    const response = await axios.post(`${REACT_APP_REST_SERVER_URL}/createNotifications`, notification)
+    const response = await api.post(`${REACT_APP_REST_SERVER_URL}/createNotifications`, notification)
     return response.data
   }
 
   getNotificationsCount = async () => {
-    const notificationsCountJson = await axios.get(`${REACT_APP_REST_SERVER_URL}/notifications/count`) //array de objetos
+    const notificationsCountJson = await api.get(`${REACT_APP_REST_SERVER_URL}/notifications/count`) //array de objetos
     console.log(notificationsCountJson.data + 'del service')
     return notificationsCountJson.data
   }
@@ -33,8 +33,8 @@ class NotificationService {
   // }
 
   deleteNotificationById = async (notificationId: number) => {
-    const notificationJson = await axios.delete(`${REACT_APP_REST_SERVER_URL}/deleteNotification/${notificationId}`)
-    return notificationJson.data.map((notificationJson: any) => { Notification.fromJson(notificationJson) })
+    const notificationJson = await api.delete(`${REACT_APP_REST_SERVER_URL}/deleteNotification/${notificationId}`)
+    return notificationJson.data.map((notificationJson: string) => { Notification.fromJson(notificationJson) })
   }
 }
 
