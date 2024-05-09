@@ -1,7 +1,7 @@
 import './login.scss'
 import { LoginArgs } from 'models/interfaces/types'
 import { AxiosError } from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { authService } from 'services/AuthService'
@@ -30,6 +30,11 @@ export const Login = () => {
       setErrorMsg(errorHandler(error as AxiosError))
     }
   }
+
+
+  useEffect(() => {
+    authService.clearUser()
+  }, [])
 
   return (
     <article className="login shadow shadow--big">

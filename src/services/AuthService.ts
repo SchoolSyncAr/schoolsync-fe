@@ -32,7 +32,11 @@ const AuthService = () => {
   }
 
   return {
-    login, getUserToken, getUserId
+    login, getUserToken, getUserId, clearUser
+  }
+
+  function clearUser() {
+    sessionStorage.removeItem("auth")
   }
 }
 
