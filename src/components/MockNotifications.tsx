@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { notificationService } from 'services/NotificationService'
+import notificationService  from 'services/NotificationService'
 import { useOnInit } from 'utils/useOnInit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { deleteNotificationById2 } from '../services/prueba'
@@ -22,7 +22,7 @@ function MockNotifications() {
 
   // const isAdministrator = true
 
-  const handleDeleteNotification = async (notificationId: any) => {
+  const handleDeleteNotification = async (notificationId: number) => {
     console.log(notificationId)
     try {
       console.log(notificationId)

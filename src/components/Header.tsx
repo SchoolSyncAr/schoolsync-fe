@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { useOnInit } from 'utils/useOnInit'
 import { Badge } from '@mui/material'
 import NotificationsIcon from '@mui/icons-material/Notifications'
-import { notificationService } from 'services/NotificationService'
+import notificationService from 'services/NotificationService'
+import { Logout } from '@mui/icons-material'
 
 function Header() {
   const [data, setData] = useState(0)
@@ -34,11 +35,13 @@ function Header() {
           <i className="fa fa-regular fa-bell" />
           <span className="notification__badge">2</span>
         </a> */}
-
         <Link to={'/notificationsDashboard'} style={{ textDecoration: 'none', color: 'inherit' }}>
           <Badge badgeContent={data} color="error">
             <NotificationsIcon color="action" />
           </Badge>
+        </Link>
+        <Link to={'/login'} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Logout color="action" />
         </Link>
       </div>
     </nav>

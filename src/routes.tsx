@@ -7,13 +7,13 @@ import { LayoutWrap } from 'components/LayoutWrap'
 import NotFound from 'components/NotFound'
 import DeleteNotification from 'components/DeleteNotification'
 import SeeAllStudents from 'components/SeeAllStudents'
+import { Login } from 'components/Login/login'
 
 export const MyRoutes = () => (
   <Routes>
-    {/* Aca iría login */}
     <Route path="" element={<ParentDashboard />} />
+    <Route path='/login' element={<Login />}/>
     <Route path="/" element={<LayoutWrap />}>
-      {/* <Route path="/login" element={<ParentDashboard />} /> */}
       <Route path="parentDashboard" element={<ParentDashboard />} />
       <Route path="notificationsDashboard" element={<NotificationsDashboard />} />
       <Route path="children" element={<Children />} />

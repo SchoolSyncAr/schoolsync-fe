@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useOnInit } from 'utils/useOnInit'
 import './NotificationDashboard.css'
 import { NotifProps } from 'interfaces/Notification'
-import { notificationService } from 'services/NotificationService'
+import notificationService  from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
 
 function NotificationsDashboard() {

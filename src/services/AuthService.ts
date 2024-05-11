@@ -1,12 +1,43 @@
-import axios from 'axios'
-import { REACT_APP_REST_SERVER_URL } from 'constants/constants'
+import api from 'api/axios'
+import { LoginArgs } from 'models/interfaces/types'
 
-class AuthService {
-  async validarUsuario(username: string, password: string) {
-    const usuarioId = await axios.post(`${REACT_APP_REST_SERVER_URL}/login`, { username: username, password: password })
-    return usuarioId.data
+
+const AuthService = () => {
+  const login = async (credentials: LoginArgs ) => {
+    try {
+      const response = await api.post('/api/auth', credentials)
+      const token = response.data.token
+      const role = response.data.role
+      const user_id = response.data.id_logged_user
+
+      console.log(JSON.stringify(response?.data))
+      sessionStorage.setItem("auth", token)
+      sessionStorage.setItem("role", role)
+      sessionStorage.setItem("user_id", user_id)
+
+      return token
+      
+
+    } catch (error) {
+      throw new Error('Error en la autenticación. Por favor, verifica tus credenciales.')
+    }
+  }
+
+  const getUserToken = () => {
+    return sessionStorage.getItem("auth")
+  }
+
+  const getUserId = () => {
+    return sessionStorage.getItem("id_logged_user")
+  }
+
+  return {
+    login, getUserToken, getUserId, clearUser
+  }
+
+  function clearUser() {
+    sessionStorage.removeItem("auth")
   }
 }
 
-const authService = new AuthService()
-export default authService
+export const authService = AuthService()
