@@ -1,7 +1,8 @@
+@import '../App.scss';
 .footer {
-  background-color: #a4c991;
+  background-color: var(--color-primary);/* #a4c991;*/
   padding: 10px 20 px;
-  color: white;
+  color: var(--color-on-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;

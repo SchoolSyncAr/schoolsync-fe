@@ -1,7 +1,9 @@
+@import '../App.scss';
+
 .nav {
-  background-color: #a4c991;
+  background-color: var(--color-primary);  /*  #a4c991; */
   padding: 1.2em;
-  color: white;
+  color: var(--color-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;

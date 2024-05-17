@@ -33,7 +33,7 @@ function Children() {
       <div>
         {cuatrohijos.map((hijo) => {
           return (
-            <Button className='forAllButtons buttonReturn' height={60}>{hijo}</Button>
+            <Button className='forAllButtons button1' height={60}>{hijo}</Button>
           )
         })}
       </div>

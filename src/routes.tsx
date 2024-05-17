@@ -11,7 +11,7 @@ import { Login } from 'components/Login/login'
 
 export const MyRoutes = () => (
   <Routes>
-    <Route path="" element={<ParentDashboard />} />
+    <Route path="" element={<Login />} />
     <Route path='/login' element={<Login />}/>
     <Route path="/" element={<LayoutWrap />}>
       <Route path="parentDashboard" element={<ParentDashboard />} />
