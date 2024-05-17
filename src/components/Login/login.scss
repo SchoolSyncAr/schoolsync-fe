@@ -47,3 +47,32 @@
   display: flex;
   justify-content: center;
 }
+.inputBox {
+  position: relative;
+  width: 200px;
+}
+.inputBox input {
+  width: 100%;
+  padding: 1px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--border-large);
+  outline: none;
+  color: var(--color-primary);
+  font-size: var(--font-small);
+}
+.inputBox label {
+  position: absolute;
+  left: 0;
+  padding: 1px;
+  pointer-events: none;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  // transform: translateX(10px) translateY(-19px);
+  transition: 0.5s;
+}
+
+// .inputBox input:focus ~ label {
+//   color: var(--color-primary);
+//   transform: translateX(10px) translateY(-19px);
+//   font-size: 0.8rem;
+// }

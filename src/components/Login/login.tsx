@@ -44,31 +44,38 @@ export const Login = () => {
         <form className="login__form" onSubmit={handleSubmit(onSubmit)} noValidate data-testid="login-form">
           {/* <label className="text text--light inputTitle">Usuario</label> */}
           <div className="login__input centerInputs">
-            <input
-              className="field field--rounded shadow animated"
-              autoFocus={true}
-              {...register('email', { required: 'Ingrese un nombre de usuario.' })}
-              data-testid="login-username"
-              placeholder="Usuario"
-            />
+            <div className='inputBox'>
+              <input
+                className="field field--rounded shadow animated"
+                autoFocus={true}
+                {...register('email', { required: 'Ingrese un nombre de usuario.' })}
+                data-testid="login-username"
+                placeholder='Usuario'
+              />
+              {/* <label>Usuario</label> */}
+            </div>
             {errors.email && <span className="login__error">{errors.email.message}</span>}
           </div>
 {/* <label className="text text--light inputTitle">Contraseña</label> */}
+          
           <div className="login__input centerInputs">
-            <input
-              className="field field--rounded shadow animated"
-              {...register('password', { required: 'Ingrese El password.' })}
-              type="password" 
-              placeholder="contraseña"
-              data-testid="login-password"
-            />
-            {errors.password && <span className="login__error">{errors.password.message}</span>}
+            <div className='inputBox'>
+              <input
+                className="field field--rounded shadow animated"
+                {...register('password', { required: 'Ingrese El password.' })}
+                type="password" 
+                data-testid="login-password"
+                placeholder='Contraseña'
+              />
+              {/* <label>Contraseña</label> */}
+              {errors.password && <span className="login__error">{errors.password.message}</span>}
+            </div>
+            {errorMsg && (
+              <span className="login__error" data-testid="login-error">
+                {errorMsg}
+              </span>
+            )}
           </div>
-          {errorMsg && (
-            <span className="login__error" data-testid="login-error">
-              {errorMsg}
-            </span>
-          )}
 
           <button
             className="button button--primary button--tall button--rounded text--md text--strong text--spaced animated shadow--box"
