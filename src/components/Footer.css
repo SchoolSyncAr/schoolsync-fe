@@ -1,9 +1,43 @@
 @import '../App.scss';
+
 .footer {
-  background-color: var(--color-primary);/* #a4c991;*/
-  padding: 10px 20 px;
+  background-color: var(--color-primary);
+  padding: 16px 20px;
   color: var(--color-on-primary);
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+}
+
+.left-section, .center-section, .right-section {
+  display: flex;
   align-items: center;
+}
+
+.left-section {
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.center-section {
+  flex: 1;
+  justify-content: center;
+}
+
+.right-section {
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.facebook_icon {
+  color: #1877f2;
+}
+
+.objects {
+  justify-content: space-evenly;
+  align-items: flex-end;
+  font-size: xx-small;
+}
+
+.separate {
+  margin-left: 20px;
 }

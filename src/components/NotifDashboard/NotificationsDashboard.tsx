@@ -55,12 +55,12 @@ function NotificationsDashboard() {
       <br></br>
       <div>
         <MockNotifications></MockNotifications>
-      <div className="buttonsToRightEnd">
-        <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
+        <div className="buttonsToRightEnd">
+          <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
           Volver
-        </Button>
+          </Button>
         </div>
-        </div>
+      </div>
     </>
   )
 }

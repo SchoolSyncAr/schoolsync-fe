@@ -14,7 +14,9 @@
 
 .nav-title {
   padding-left: 1em;
+  padding-top: 1em;
   margin: 0;
+  color: var(--color-on-primary);
 }
 
 .nav-links a {
@@ -43,9 +45,14 @@
   background-color: #fa3e3e;
   border-radius: 2px;
   color: white;
-
   padding: 1px;
   font-size: 10px;
-
   position: absolute;
+}
+.left_logo {
+  max-width: 100px;
+  height: auto;
+}
+.left-group-container{
+   display: flex;
 }

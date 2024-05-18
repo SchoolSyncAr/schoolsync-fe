@@ -38,6 +38,11 @@
   align-items: center;
   height: 100vh;
 }
+.backColor {
+  background-color: #d3d3d3;
+  height: 70vh;
+  border-radius: var(--border-xlarge);
+}
 .centerInputs {
   display: flex;
   justify-content: center;
@@ -67,7 +72,6 @@
   pointer-events: none;
   color: var(--color-primary);
   text-transform: uppercase;
-  // transform: translateX(10px) translateY(-19px);
   transition: 0.5s;
 }
 
@@ -76,4 +80,20 @@
   color: var(--color-primary);
   transform: translateX(10px) translateY(-19px);
   font-size: 0.8rem;
+}
+
+.ishadow {
+  box-shadow: 2px 2px 2px 2px #1b2631;
+}
+.send-button {
+  width: 25%;
+}
+a:link {
+  text-decoration: none;
+}
+.logoName {
+  font-size: 32px;
+  color: var(--color-primary);
+  padding-bottom: 30px;
+  text-shadow: 2px 2px var(--color-secondary);
 }

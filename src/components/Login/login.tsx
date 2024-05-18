@@ -39,14 +39,17 @@ export const Login = () => {
 
   return (
     <div className="container">
-      <article className="login shadow shadow--big">
+      <article className="login shadow shadow--big backColor">
+        <div className='logoName inputTitle'>
+        SchoolSyncAr
+        </div>
         <img className="login__logo" src="/images/logo.png" alt="SchoolSync" />
         <form className="login__form" onSubmit={handleSubmit(onSubmit)} noValidate data-testid="login-form">
           {/* <label className="text text--light itle">Usuario</label> */}
           <div className="login__input centerInputs">
             <div className='inputBox'>
               <input
-                className="field field--rounded shadow animated"
+                className="field field--rounded animated ishadow"
                 autoFocus={true}
                 {...register('email', { required: 'Ingrese un nombre de usuario.' })}
                 data-testid="login-username"
@@ -61,7 +64,7 @@ export const Login = () => {
           <div className="login__input centerInputs">
             <div className='inputBox'>
               <input
-                className="field field--rounded shadow animated"
+                className="field field--rounded ishadow animated"
                 {...register('password', { required: 'Ingrese El password.' })}
                 type="password" 
                 data-testid="login-password"
@@ -76,15 +79,16 @@ export const Login = () => {
               </span>
             )}
           </div>
-
-          <button
-            className="button button--primary button--tall button--rounded text--md text--strong text--spaced animated shadow--box"
-            disabled={!isDirty || !isValid || isSubmitting}
-            type="submit"
-            data-testid="login-submit"
-          >
-            <Link to="parentDashboard">Enviar</Link>
-          </button>
+          <div className='inputTitle'>
+            <button
+              className="button button--primary button--tall button--rounded text--md text--strong text--spaced animated shadow--box button1 send-button"
+              disabled={!isDirty || !isValid || isSubmitting}
+              type="submit"
+              data-testid="login-submit"
+            >
+              <Link to="parentDashboard">Enviar</Link>
+            </button>
+          </div>
         </form>
       </article>
     </div>
