@@ -42,7 +42,7 @@ export const Login = () => {
       <article className="login shadow shadow--big">
         <img className="login__logo" src="/images/logo.png" alt="SchoolSync" />
         <form className="login__form" onSubmit={handleSubmit(onSubmit)} noValidate data-testid="login-form">
-          {/* <label className="text text--light inputTitle">Usuario</label> */}
+          {/* <label className="text text--light itle">Usuario</label> */}
           <div className="login__input centerInputs">
             <div className='inputBox'>
               <input
@@ -50,9 +50,9 @@ export const Login = () => {
                 autoFocus={true}
                 {...register('email', { required: 'Ingrese un nombre de usuario.' })}
                 data-testid="login-username"
-                placeholder='Usuario'
+                required
               />
-              {/* <label>Usuario</label> */}
+              <label>Usuario</label>
             </div>
             {errors.email && <span className="login__error">{errors.email.message}</span>}
           </div>
@@ -65,9 +65,9 @@ export const Login = () => {
                 {...register('password', { required: 'Ingrese El password.' })}
                 type="password" 
                 data-testid="login-password"
-                placeholder='Contraseña'
+                required
               />
-              {/* <label>Contraseña</label> */}
+              <label>Contraseña</label>
               {errors.password && <span className="login__error">{errors.password.message}</span>}
             </div>
             {errorMsg && (

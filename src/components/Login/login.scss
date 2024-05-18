@@ -71,8 +71,9 @@
   transition: 0.5s;
 }
 
-// .inputBox input:focus ~ label {
-//   color: var(--color-primary);
-//   transform: translateX(10px) translateY(-19px);
-//   font-size: 0.8rem;
-// }
+.inputBox input:focus ~ label,
+.inputBox input:valid ~ label {
+  color: var(--color-primary);
+  transform: translateX(10px) translateY(-19px);
+  font-size: 0.8rem;
+}
