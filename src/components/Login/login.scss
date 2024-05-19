@@ -97,3 +97,10 @@ a:link {
   padding-bottom: 30px;
   text-shadow: 2px 2px var(--color-secondary);
 }
+.password-toggle-icon {
+  position: absolute;
+  top: 3px;
+  right: 10px;
+  z-index: 1000;
+  cursor: pointer;
+}

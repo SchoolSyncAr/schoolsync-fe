@@ -7,10 +7,12 @@ import { useNavigate } from 'react-router-dom'
 import { authService } from 'services/AuthService'
 import { errorHandler } from 'models/errors/ErrorHandler'
 import { Link } from 'react-router-dom'
+import UsePasswordToggle from 'components/hooks/usePasswordToggle'
 
 export const Login = () => {
   const navigate = useNavigate()
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const [PasswordInputType, ToggleIcon] = UsePasswordToggle()
 
   const {
     register,
@@ -66,11 +68,12 @@ export const Login = () => {
               <input
                 className="field field--rounded ishadow animated"
                 {...register('password', { required: 'Ingrese El password.' })}
-                type="password" 
+                type={PasswordInputType as string}
                 data-testid="login-password"
                 required
               />
               <label>Contraseña</label>
+              <span className='password-toggle-icon'>{ ToggleIcon}</span>
               {errors.password && <span className="login__error">{errors.password.message}</span>}
             </div>
             {errorMsg && (
