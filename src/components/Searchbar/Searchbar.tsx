@@ -30,31 +30,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearchInit, handleChange, f
 
   const handleOrderChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     const value = event.target.value as string
-    let orderParam = ''
-    let sortDirection = ''
 
-    switch (value) {
-      case 'datedesc':
-        orderParam = 'date'
-        sortDirection = 'desc'
-        break
-      case 'dateasc':
-        orderParam = 'date'
-        sortDirection = 'asc'
-        break
-      case 'weightdesc':
-        orderParam = 'weight'
-        sortDirection = 'desc'
-        break
-      case 'weightasc':
-        orderParam = 'weight'
-        sortDirection = 'asc'
-        break
-      default:
-        orderParam = ''
-        sortDirection = ''
-        break
+    const mapping: { [key: string]: { orderParam: string; sortDirection: string } } = {
+      datedesc: { orderParam: 'date', sortDirection: 'desc' },
+      dateasc: { orderParam: 'date', sortDirection: 'asc' },
+      weightdesc: { orderParam: 'weight', sortDirection: 'desc' },
+      weightasc: { orderParam: 'weight', sortDirection: 'asc' },
     }
+
+    const { orderParam, sortDirection } = mapping[value] || { orderParam: '', sortDirection: '' }
 
     handleFilterChange('orderParam', orderParam)
     handleFilterChange('sortDirection', sortDirection)
