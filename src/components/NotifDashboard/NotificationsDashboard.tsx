@@ -7,6 +7,7 @@ import './NotificationDashboard.css'
 import { NotifProps } from 'interfaces/Notification'
 import notificationService from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
+import MockNotifications from 'components/MockNotifications'
 
 function NotificationsDashboard() {
   const [notifications, setNotifications] = useState<NotifProps[]>([])
@@ -81,10 +82,13 @@ function NotificationsDashboard() {
       <div className="notif-grid">{notifList()}</div>
       <br></br>
       <br></br>
-      <div className="buttonsToRightEnd">
-        <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
+      <div>
+        <MockNotifications></MockNotifications>
+        <div className="buttonsToRightEnd">
+          <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
           Volver
-        </Button>
+          </Button>
+        </div>
       </div>
     </>
   )

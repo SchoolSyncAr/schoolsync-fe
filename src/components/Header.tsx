@@ -21,11 +21,14 @@ function Header() {
   })
   return (
     <nav className="nav">
-      <h2>
-        <a href="/parentDashboard" className="nav-title">
+      <div className='left-group-container'>
+        <img className="left_logo" src="/images/logo.png" alt="SchoolSync" />
+        <h2 className='nav-title'>
+          {/* <a href="/parentDashboard" className="nav-title"> */}
           SchoolSyncAr
-        </a>
-      </h2>
+          {/* </a> */}
+        </h2>
+      </div>
       <div className="nav-links">
         {/* <a href="">Link 1</a>
         <a href="">Link 2</a>

@@ -1,4 +1,5 @@
 /* creo que aca puedo poner nombres de clases para despues usar en los componentes padre */
+@import '../App.scss';
 
 .button {
   border-radius: 4px;
@@ -18,44 +19,15 @@
   display: flex;
   justify-content: end;
 }
-/* .cali {
-  color: white;
-  background-color: black;
-  outline: saddlebrown, solid;
-} */
-/* .secondary {
-  color: white;
-  background-color: #9177d0;
-  border: solid;
-  border-color: #481db1;
- }   */
-
-/* .buttonsInNewPage{
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  justify-content: space-evenly;
-} */
 
 .button1{
-  background-color: yellow;
-}
-
-.button2{
-  background-color: lightgreen;
-}
-
-.button3{
-  background-color: violet;
-}
-
-.button4{
-  background-color: aqua;
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
 .buttonReturn{
-  background-color: cadetblue;
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
   align-content: flex-end;
 }
 
@@ -65,35 +37,16 @@
 }
 
 .button1:hover{
-box-shadow: 0 0 5px yellow,
-            0 0 25px yellow,
-            0 0 25px yellow,
-            0 0 50px yellow;
+box-shadow: 0 0 5px var(--color-on-secondary) ,
+            0 0 25px var(--color-on-secondary),
+            0 0 25px var(--color-on-secondary),
+            0 0 50px var(--color-on-secondary);
   
 }
 
-.button2:hover{
-  box-shadow: 0 0 5px lightgreen,
-              0 0 25px lightgreen,
-              0 0 50px lightgreen,
-              0 0 200px lightgreen;    
-}
-
-.button3:hover{
-  box-shadow: 0 0 5px violet,
-              0 0 25px violet,
-              0 0 25px violet,
-              0 0 50px violet;
-}
-.button4:hover{
-  box-shadow: 0 0 5px aqua,
-              0 0 25px aqua,
-              0 0 25px  aqua,
-              0 0 50px  aqua;
-}
 .buttonReturn:hover{
-  box-shadow: 0 0 5px cadetblue,
-              0 0 25px cadetblue,
-              0 0 25px  cadetblue,
-              0 0 50px  cadetblue;
+  box-shadow: 0 0 5px var(--color-on-background),
+              0 0 25px var(--color-on-background),
+              0 0 25px var(--color-on-background),
+              0 0 50px var(--color-on-background);
             }

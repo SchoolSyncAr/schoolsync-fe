@@ -53,7 +53,7 @@ function AdminDashboard() {
               cols={30}
               rows={10}
             ></textarea>
-            <button className="btn btn-primary" type="submit">
+            <button className="button button1" type="submit">
               Guardar
             </button>
             <div className="buttonsToRightEnd">

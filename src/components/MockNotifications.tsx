@@ -66,19 +66,20 @@ function MockNotifications() {
 
   const mockNotifications2 = [
     {
-      nId: 1,
-      nTitle: 'Día de la bandera',
-      nContenido: 'Acto en el salón de actos a las 12.hs',
+      id: 1,
+      title: 'Día de la bandera',
+      content: ' "Estimados Padres y Encargados:" Este acto reviste una gran importancia para nuestra comunidad educativa, ya que nos brinda la oportunidad de reflexionar y celebrar juntos los valores de nuestra patria. Será una ocasión especial donde nuestros estudiantes demostrarán sus habilidades artísticas y compartirán con ustedes momentos de orgullo y emoción. El programa del acto incluirá presentaciones de danzas folclóricas, declamaciones patrióticas, y otras actividades preparadas con esmero por nuestros alumnos y docentes. Esperamos contar con su presencia en este evento, que fortalece los lazos entre la escuela y las familias, y enriquece la experiencia educativa de nuestros queridos estudiantes.¡Los esperamos con entusiasmo! Atentamente,\n Directora Silvana y el Complejo Educativo" '
     },
     {
-      nId: 2,
-      nTitle: '9 de julio',
-      nContenido: 'Se festejará con empanadas',
+      id: 2,
+      title: 'Reunión de Padres y Maestros - Recordatorio',
+      content: '"Estimados Padres y Encargados: Queremos recordarles amablemente sobre nuestra próxima Reunión de Padres y Maestros, que se llevará a cabo el [fecha] a las [hora] en nuestras instalaciones escolares. Esta reunión es una oportunidad invaluable para discutir el progreso académico y el desarrollo de sus hijos con sus maestros. Agradecemos de antemano su participación y compromiso con la educación de sus hijos. Esperamos verlos a todos allí y trabajar juntos en beneficio de nuestros estudiantes."¡Muchas gracias! Atentamente, Directora Silvana y el Complejo Educativo"',
     },
     {
-      nId: 3,
-      nTitle: 'Jornada Docente',
-      nContenido: 'El colegio permanecerá cerrado',
+      id: 3,
+      title: 'Cambio de Horario Salida - Nivel Primario',
+      content: '"Estimada Comunidad Educativa: Queremos informarles que a partir del próximo Lunes 16 de Agosto, habrá un cambio en el horario escolar. Este cambio se implementa con el objetivo de mejorar la distribución de salida para el Nivel Primario. El nuevo horario será el siguiente: Grados 1 y 2: 15:00hs.   Grados 3 y 4: 15:20hs.  Grados 5 y 6: 15:40hs.  Agradecemos su comprensión y cooperación durante este ajuste. Por favor, asegúrense de que sus hijos estén informados sobre el nuevo horario y lleguen a la escuela a tiempo. Atentamente,\n Directora Silvana y el Complejo Educativo"',
+
     },
   ]
 
@@ -87,7 +88,11 @@ function MockNotifications() {
       <div className="container">
         <div className="row mt-5">
           <ul className="list-group shadow">
-            {generalNotificationsInfoBackend.map((notification) => {
+        
+            {/* ***** */}
+        
+            {mockNotifications2.map((notification) => {
+              // generalNotificationsInfoBackend.map((notification) => {
               return (
                 <>
                   <div className="col-12 bg-light h3 text-center">{notification.title} </div>
@@ -98,7 +103,8 @@ function MockNotifications() {
                   <div className="col-12 bg-light mt-2 mb-5 h5">{notification.content}</div>
                 </>
               )
-            })}
+            })
+            }
 
             {/*lo dejo para usar sin levantar el back, pero eventualmente hay que sacarlo*/}
 
@@ -112,7 +118,7 @@ function MockNotifications() {
                 </div></>)
             })
           } */}
-          </ul>
+          </ul>1
         </div>
       </div>
     </>

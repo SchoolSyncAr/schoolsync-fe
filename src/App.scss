@@ -1,42 +1,95 @@
-// #root {
-//   max-width: 1280px;
-//   margin: 0 auto;
-//   padding: 2rem;
-//   text-align: center;
-// }
+@font-face {
+  font-family: 'Pathway Gothic One';
+  src: url(assets/PathwayGothicOne-Regular.ttf);
+}
 
-// .logo {
-//   height: 6em;
-//   padding: 1.5em;
-//   will-change: filter;
-//   transition: filter 300ms;
-// }
-// .logo:hover {
-//   filter: drop-shadow(0 0 2em #646cffaa);
-// }
-// .logo.react:hover {
-//   filter: drop-shadow(0 0 2em #61dafbaa);
-// }
+:root {
+  --main-font: 'Pathway Gothic One', 'Lucida Sans', sans-serif;
+  --title-font: 'Pathway Gothic One', 'Lucida Sans', sans-serif;
+  --font-small: 1rem;
+  --font-medium: 1.5rem;
+  --font-large: 3rem;
+  --border-radius: 1rem;
+  --border-small: 1px;
+  --border-medium: 2px;
+  --border-large: 4px;
+  --border-xlarge: 10px;
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
 
-// @keyframes logo-spin {
-//   from {
-//     transform: rotate(0deg);
-//   }
-//   to {
-//     transform: rotate(360deg);
-//   }
-// }
+  /* First option */
+  --color-primary: #153448;
+  --color-on-primary: #dfd0b8;
+  --color-secondary: #948979;
+  --color-on-secondary: #3c5b6f;
+  --color-background: #ededed;
+  --color-on-background: #201a19;
+  --color-surface: #d3d3d3;
+  --color-on-surface: #201a19;
+  --color-outline: #c6b3b0;
+}
 
-// @media (prefers-reduced-motion: no-preference) {
-//   a:nth-of-type(2) .logo {
-//     animation: logo-spin infinite 20s linear;
-//   }
-// }
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+}
 
-// .card {
-//   padding: 2em;
-// }
+*::selection {
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+}
 
-// .read-the-docs {
-//   color: #888;
-// }
+html {
+  font-family: var(--main-font);
+  font-size: var(--font-small);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  scroll-behavior: smooth;
+}
+
+.screen {
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.black_word {
+  font-weight: 900;
+}
+
+.black_word > span {
+  font-weight: normal;
+}
+
+.app-header {
+  grid-area: header;
+}
+.app-search {
+  grid-area: search;
+}
+.app-aside {
+  grid-area: aside;
+}
+.app-footer {
+  grid-area: footer;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* otra posibilidad*/
+    --color-primary: #ff9077;
+    --color-on-primary: #410001;
+    --color-secondary: #410001;
+    --color-on-secondary: #ffcabe;
+    --color-background: #000000;
+    --color-on-background: #ffe8e2;
+    --color-surface: #101010;
+    --color-on-surface: #ffe8e2;
+    --color-outline: #736c6c;
+  }
+}
