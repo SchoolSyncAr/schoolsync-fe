@@ -4,17 +4,20 @@ import { Notification } from 'models/Notification'
 // import { NotifProps } from '../interfaces/Notification'
 
 class NotificationService {
-  getAllGeneralNotifications = async () => {
-    const allNotificationsJson = await api.get(`${REACT_APP_REST_SERVER_URL}/notifications/all`) //array de objetos
+  getAllGeneralNotifications = async (filter: { searchField: string; orderParam: string; sortDirection: string }) => {
+    const allNotificationsJson = await api.get(`${REACT_APP_REST_SERVER_URL}/notifications/all`, {
+      params: {
+        searchField: filter.searchField,
+        orderParam: filter.orderParam,
+        sortDirection: filter.sortDirection,
+      },
+    })
     return allNotificationsJson.data.map((allNotificationsJson: { id: number; title: string; content: string }) =>
       Notification.fromJson(allNotificationsJson),
     )
   }
 
-  createNotification = async (notification: {
-    title: string
-    content: string
-  }) => {
+  createNotification = async (notification: { title: string; content: string }) => {
     const response = await api.post(`${REACT_APP_REST_SERVER_URL}/createNotifications`, notification)
     return response.data
   }
@@ -34,7 +37,9 @@ class NotificationService {
 
   deleteNotificationById = async (notificationId: number) => {
     const notificationJson = await api.delete(`${REACT_APP_REST_SERVER_URL}/deleteNotification/${notificationId}`)
-    return notificationJson.data.map((notificationJson: string) => { Notification.fromJson(notificationJson) })
+    return notificationJson.data.map((notificationJson: string) => {
+      Notification.fromJson(notificationJson)
+    })
   }
 }
 
