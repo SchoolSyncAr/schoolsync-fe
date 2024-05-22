@@ -5,7 +5,7 @@ import { Notification } from 'models/Notification'
 
 class NotificationService {
   getAllGeneralNotifications = async (filter: { searchField: string; orderParam: string; sortDirection: string }) => {
-    const allNotificationsJson = await api.get(`${REACT_APP_REST_SERVER_URL}/notifications/all`, {
+    const allNotificationsJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/all`, {
       params: {
         searchField: filter.searchField,
         orderParam: filter.orderParam,
@@ -18,12 +18,12 @@ class NotificationService {
   }
 
   createNotification = async (notification: { title: string; content: string }) => {
-    const response = await api.post(`${REACT_APP_REST_SERVER_URL}/createNotifications`, notification)
+    const response = await api.post(`${REACT_APP_REST_SERVER_URL}/api/notification/create`, notification)
     return response.data
   }
 
   getNotificationsCount = async () => {
-    const notificationsCountJson = await api.get(`${REACT_APP_REST_SERVER_URL}/notifications/count`) //array de objetos
+    const notificationsCountJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/count`) //array de objetos
     console.log(notificationsCountJson.data + 'del service')
     return notificationsCountJson.data
   }

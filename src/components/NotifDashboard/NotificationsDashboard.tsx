@@ -22,6 +22,7 @@ function NotificationsDashboard() {
   useOnInit(async () => {
     try {
       const notifs = await notificationService.getAllGeneralNotifications(filter)
+      console.log('solic notif ', notifs)
       setNotifications(notifs)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
@@ -83,7 +84,7 @@ function NotificationsDashboard() {
       <br></br>
       <br></br>
       <div>
-        <MockNotifications></MockNotifications>
+        {/*<MockNotifications></MockNotifications>*/}
         <div className="buttonsToRightEnd">
           <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
           Volver
