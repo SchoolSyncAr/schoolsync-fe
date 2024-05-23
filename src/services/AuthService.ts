@@ -1,19 +1,17 @@
-import api from 'api/axios'
 import { LoginArgs } from 'models/interfaces/types'
+import axios from 'axios'
+import api from 'api/axios.tsx'
 
 
 const AuthService = () => {
   const login = async (credentials: LoginArgs ) => {
     try {
       const response = await api.post('/api/auth', credentials)
-      const token = response.data.token
+      const token = response.data.accessToken
       const role = response.data.role
-      const user_id = response.data.id_logged_user
 
-      console.log(JSON.stringify(response?.data))
-      sessionStorage.setItem("auth", token)
-      sessionStorage.setItem("role", role)
-      sessionStorage.setItem("user_id", user_id)
+      localStorage.setItem("token", token)
+      localStorage.setItem("role", role)
 
       return token
       
@@ -24,20 +22,22 @@ const AuthService = () => {
   }
 
   const getUserToken = () => {
-    return sessionStorage.getItem("auth")
+    return localStorage.getItem("token")
   }
 
-  const getUserId = () => {
-    return sessionStorage.getItem("id_logged_user")
+  const getUserRole = () => {
+    return localStorage.getItem("role")
+  }
+
+  const clearUser = () => {
+    console.log("session clear")
+    localStorage.removeItem("auth")
   }
 
   return {
-    login, getUserToken, getUserId, clearUser
+    login, getUserToken, getUserRole, clearUser
   }
 
-  function clearUser() {
-    sessionStorage.removeItem("auth")
-  }
 }
 
 export const authService = AuthService()
