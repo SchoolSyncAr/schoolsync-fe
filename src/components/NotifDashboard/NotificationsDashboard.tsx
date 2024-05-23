@@ -19,7 +19,7 @@ function NotificationsDashboard() {
     sortDirection: params.get('sortDirection') || '',
   })
 
-  useOnInit(async () => {
+  const getData = async () => {
     try {
       const notifs = await notificationService.getAllGeneralNotifications(filter)
       console.log('solic notif ', notifs)
@@ -27,6 +27,10 @@ function NotificationsDashboard() {
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }
+  }
+
+  useOnInit(async () => {
+    getData()
   })
 
   useEffect(() => {
@@ -36,17 +40,6 @@ function NotificationsDashboard() {
     newParams.append('sortDirection', filter.sortDirection)
     setParams(newParams)
   }, [filter, setParams])
-
-  const handleSearchInit = () => {
-    useOnInit(async () => {
-      try {
-        const notifs = await notificationService.getAllGeneralNotifications(filter)
-        setNotifications(notifs)
-      } catch {
-        setErrorMessage('No se pudo obtener info notifications')
-      }
-    })
-  }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = event.target
@@ -75,7 +68,7 @@ function NotificationsDashboard() {
   return (
     <>
       <SearchBar
-        handleSearchInit={handleSearchInit}
+        handleSearchInit={getData}
         handleChange={handleChange}
         filter={filter}
         handleFilterChange={handleFilterChange} // Pasa la nueva prop
@@ -87,7 +80,7 @@ function NotificationsDashboard() {
         {/*<MockNotifications></MockNotifications>*/}
         <div className="buttonsToRightEnd">
           <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
-          Volver
+            Volver
           </Button>
         </div>
       </div>
