@@ -1,11 +1,12 @@
-@font-face {
-  font-family: 'Pathway Gothic One';
-  src: url(assets/PathwayGothicOne-Regular.ttf);
-}
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;700;800;900&family=Roboto:wght@300;400;500;600;700;900&display=swap');
+@import url('./styles/inputs.scss');
+@import url('./styles/typeface.scss');
+@import url('./styles/shadow.scss');
+@import url('./styles/animated.scss');
 
 :root {
-  --main-font: 'Pathway Gothic One', 'Lucida Sans', sans-serif;
-  --title-font: 'Pathway Gothic One', 'Lucida Sans', sans-serif;
+  --typeface-main: 'Mulish', 'Open Sans', 'Verdana', 'sans-serif';
+  --typeface-alt: 'Roboto', 'Open Sans', 'Verdana', 'sans-serif';
   --font-small: 1rem;
   --font-medium: 1.5rem;
   --font-large: 3rem;
@@ -14,20 +15,56 @@
   --border-medium: 2px;
   --border-large: 4px;
   --border-xlarge: 10px;
-  --spacing-small: 0.5rem;
-  --spacing-medium: 1rem;
-  --spacing-large: 2rem;
 
-  /* First option */
-  --color-primary: #153448;
-  --color-on-primary: #dfd0b8;
-  --color-secondary: #948979;
-  --color-on-secondary: #3c5b6f;
+  // Default Size for elements
+  --header-height: 8rem;
+  --search-height: 5rem;
+  --footer-height: 5rem;
+  --element-height: 3rem;
+
+  // Padding | Margin | Gap
+  --spacing-small: 0.8rem;
+  --spacing: 1.6rem;
+  --spacing-medium: 2rem;
+  --spacing-large: 2.4rem;
+
+  /* Border Radius */
+  --border-radius-sm: 0.3rem;
+  --border-radius: 0.5rem;
+  --border-radius-md: 1rem;
+  --border-radius-xl: 1.5rem;
+
+  /* First option color palette */
+  // Font
+  --typeface-color: hsla(206, 100%, 10%, 1);
+  --typeface-color-light: hsla(206, 100%, 30%, 1);
+
+  // High Contrast
+  --color-dark: black;
+  --color-white: white;
+
+  // Gradients
+  --gradient-vertical: linear-gradient(to bottom, hsla(0, 0, 0, 1) 0%, var(--color-white) 10%);
+
+  // Rest
+  --color-primary: hsla(206, 100%, 38%, 1);
+  --color-primary-hover: hsla(206, 100%, 45%, 1);
+  --color-secondary: hsl(206, 100%, 55%, 1);
+  --color-secondary-hover: hsla(206, 100%, 65%, 1);
   --color-background: #ededed;
   --color-on-background: #201a19;
   --color-surface: #d3d3d3;
   --color-on-surface: #201a19;
   --color-outline: #c6b3b0;
+
+  /* Poin of Interest Color */
+  --color-focus: rgb(255, 166, 0);
+  --color-hot: hsla(0, 80%, 50%, 1);
+
+  /* Animations */
+  --transition-fast: 0.5s;
+  --transition-slow: 1s;
+  --translateY: -8%;
 }
 
 * {
@@ -50,6 +87,17 @@ html {
   background-color: var(--color-background);
   color: var(--color-on-background);
   scroll-behavior: smooth;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.incolumn {
+  display: flex;
+  flex-direction: column;
 }
 
 .screen {
@@ -79,17 +127,17 @@ html {
   grid-area: footer;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* otra posibilidad*/
-    --color-primary: #ff9077;
-    --color-on-primary: #410001;
-    --color-secondary: #410001;
-    --color-on-secondary: #ffcabe;
-    --color-background: #000000;
-    --color-on-background: #ffe8e2;
-    --color-surface: #101010;
-    --color-on-surface: #ffe8e2;
-    --color-outline: #736c6c;
-  }
-}
+// @media (prefers-color-scheme: dark) {
+//   :root {
+//     /* otra posibilidad*/
+//     --color-primary: #ff9077;
+//     --color-on-primary: #410001;
+//     --color-secondary: #410001;
+//     --color-on-secondary: #ffcabe;
+//     --color-background: #000000;
+//     --color-on-background: #ffe8e2;
+//     --color-surface: #101010;
+//     --color-on-surface: #ffe8e2;
+//     --color-outline: #736c6c;
+//   }
+// }

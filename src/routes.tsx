@@ -7,12 +7,12 @@ import { LayoutWrap } from 'components/LayoutWrap'
 import NotFound from 'components/NotFound'
 import DeleteNotification from 'components/DeleteNotification'
 import SeeAllStudents from 'components/SeeAllStudents'
-import { Login } from 'components/Login/login'
+import { LoginPage } from 'pages/Login/LoginPage'
 
 export const MyRoutes = () => (
   <Routes>
-    <Route path="" element={<Login />} />
-    <Route path="/login" element={<Login />} />
+    <Route path="" element={<LoginPage />} />
+    <Route path="/login" element={<LoginPage />} />
     <Route path="/" element={<LayoutWrap />}>
       <Route path="parentDashboard" element={<ParentDashboard />} />
       <Route path="notificationsDashboard" element={<NotificationsDashboard />} />
