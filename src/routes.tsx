@@ -12,18 +12,16 @@ import { Login } from 'components/Login/login'
 export const MyRoutes = () => (
   <Routes>
     <Route path="" element={<Login />} />
-    <Route path='/login' element={<Login />}/>
+    <Route path="/login" element={<Login />} />
     <Route path="/" element={<LayoutWrap />}>
       <Route path="parentDashboard" element={<ParentDashboard />} />
       <Route path="notificationsDashboard" element={<NotificationsDashboard />} />
       <Route path="children" element={<Children />} />
       <Route path="adminDashboard" element={<AdminDashboard />} />
       <Route path="deleteNotification" element={<DeleteNotification />} />
-      <Route path='seeAllStudents' element={<SeeAllStudents/>}/>
+      <Route path="seeAllStudents" element={<SeeAllStudents />} />
     </Route>
-
     <Route path="*" element={<NotFound />} />
-    {/* <Link to="/login">Iniciar sesión</Link> */}
   </Routes>
 )
 
