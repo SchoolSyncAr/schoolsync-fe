@@ -18,8 +18,11 @@ export const NotifCard = (props: NotifProps) => {
         <section className="notif-card__body" ref={contentRef}>
           {content}
         </section>
+        <section className="notif-card__button">
+          <button>Mostrar Mas</button>
+        </section>
+        
       </article>
-      {/* Modal */}
       <Modal open={modalOpen} onClose={handleToggleModal} >
         <article className="notif-card notif-modal">
           <IconButton style={{ position: 'absolute', top: '0.5em', right: '0.5em' }} onClick={handleToggleModal}>

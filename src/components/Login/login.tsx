@@ -1,4 +1,4 @@
-import './Login.scss'
+import './login.scss'
 import { LoginArgs } from 'models/interfaces/types'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
