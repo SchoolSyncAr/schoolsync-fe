@@ -7,7 +7,6 @@ import './NotificationDashboard.css'
 import { NotifProps } from 'interfaces/Notification'
 import notificationService from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
-import MockNotifications from 'components/MockNotifications'
 
 function NotificationsDashboard() {
   const [notifications, setNotifications] = useState<NotifProps[]>([])
@@ -71,8 +70,9 @@ function NotificationsDashboard() {
         handleSearchInit={getData}
         handleChange={handleChange}
         filter={filter}
-        handleFilterChange={handleFilterChange} // Pasa la nueva prop
+        handleFilterChange={handleFilterChange}
       />
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div className="notif-grid">{notifList()}</div>
       <br></br>
       <br></br>
