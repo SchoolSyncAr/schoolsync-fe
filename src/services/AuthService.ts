@@ -1,5 +1,4 @@
 import { LoginArgs } from 'models/interfaces/types'
-import axios from 'axios'
 import api from 'api/axios.tsx'
 
 
@@ -10,8 +9,8 @@ const AuthService = () => {
       const token = response.data.accessToken
       const role = response.data.role
 
-      localStorage.setItem("token", token)
-      localStorage.setItem("role", role)
+      sessionStorage.setItem("token", token)
+      sessionStorage.setItem("role", role)
 
       return token
       
@@ -22,16 +21,16 @@ const AuthService = () => {
   }
 
   const getUserToken = () => {
-    return localStorage.getItem("token")
+    return sessionStorage.getItem("token")
   }
 
   const getUserRole = () => {
-    return localStorage.getItem("role")
+    return sessionStorage.getItem("role")
   }
 
   const clearUser = () => {
     console.log("session clear")
-    localStorage.removeItem("auth")
+    sessionStorage.removeItem("auth")
   }
 
   return {
