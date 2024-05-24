@@ -49,33 +49,33 @@ export const Login = () => {
       <form className="login__form" onSubmit={handleSubmit(onSubmit)} noValidate data-testid="login-form">
         <section className="login__inputs incolumn">
           <div className="field__container">
-            <label className="field__label text text--light">Usuario</label>
             <input
+              id="username"
               className="field field--rounded animated shadow"
               autoFocus={true}
               {...register('email', { required: 'Ingrese un nombre de usuario.' })}
               data-testid="login-username"
               required
             />
+            <label className="field__label text text--light" htmlFor="username">
+              Usuario
+            </label>
           </div>
           {errors.email && <span className="login__error">{errors.email.message}</span>}
 
-          <div className="login__input">
-            <div className="field__container">
-              <label className="field__label text text--light">
-                Contraseña<span className="password-toggle-icon">{ToggleIcon}</span>
-              </label>
-              <input
-                className="field field--rounded shadow animated"
-                {...register('password', { required: 'Ingrese El password.' })}
-                type={PasswordInputType as string}
-                data-testid="login-password"
-                required
-              />
-            </div>
-
-            {errors.password && <span className="login__error">{errors.password.message}</span>}
+          <div className="field__container">
+            <input
+              className="field field--rounded shadow animated"
+              {...register('password', { required: 'Ingrese El password.' })}
+              type={PasswordInputType as string}
+              data-testid="login-password"
+              required
+            />
+            <label className="field__label text text--light">Contraseña</label>
+            <span className="field__eye-icon text text--light">{ToggleIcon}</span>
           </div>
+          {errors.password && <span className="login__error">{errors.password.message}</span>}
+
           {errorMsg && (
             <span className="login__error" data-testid="login-error">
               {errorMsg}
@@ -83,12 +83,12 @@ export const Login = () => {
           )}
         </section>
         <button
-          className="button button--primary button--tall button--rounded text--md text--strong text--spaced animated shadow--box button1 send-button"
+          className="button button--primary button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
           disabled={!isDirty || !isValid || isSubmitting}
           type="submit"
           data-testid="login-submit"
         >
-          <Link to="parentDashboard">Enviar</Link>
+          Enviar
         </button>
       </form>
     </article>

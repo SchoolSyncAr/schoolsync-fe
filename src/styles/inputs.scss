@@ -15,20 +15,21 @@
 
     color: var(--typeface-color-light);
     letter-spacing: 1px;
-    text-transform: uppercase;
 
     pointer-events: none;
-  }
-
-  &:focus ~ label,
-  &:valid ~ label {
-    color: var(--color-primary);
-    transform: translateX(10px) translateY(-19px);
-    font-size: 0.8rem;
+    transition: all var(--transition-fast) ease;
   }
 
   &__container {
     position: relative;
+
+    &input:focus ~ label,
+    input:valid ~ label {
+      transform: translate(-0.4em, -2.4em);
+      color: var(--color-white);
+      font-size: 0.9em;
+      letter-spacing: 0;
+    }
   }
 
   &--rounded {
@@ -63,5 +64,13 @@
 
   &::placeholder {
     color: var(--typeface-color-light);
+  }
+
+  &__eye-icon {
+    position: absolute;
+    top: 22%;
+    right: 0.6em;
+    z-index: 1000;
+    cursor: pointer;
   }
 }
