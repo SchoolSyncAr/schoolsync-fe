@@ -1,13 +1,17 @@
 import { NotifProps } from "interfaces/Notification"
 
 export class Notification {
-  id: number  //ver si es necesario
+  id: number
   title: string
   content: string
+  weight: string
+  scope: string[]
   constructor(props: NotifProps) {
     this.id = props.id
     this.title = props.title
     this.content = props.content
+    this.weight = props.weight
+    this.scope = props.scope ?? []
   }
 
   static fromJson(notifData: NotifProps) {

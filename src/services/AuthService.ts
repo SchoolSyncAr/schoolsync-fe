@@ -1,5 +1,4 @@
 import { LoginArgs } from 'models/interfaces/types'
-import axios from 'axios'
 import api from 'api/axios.tsx'
 
 
@@ -15,7 +14,6 @@ const AuthService = () => {
 
       return token
       
-
     } catch (error) {
       throw new Error('Error en la autenticación. Por favor, verifica tus credenciales.')
     }
