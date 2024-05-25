@@ -1,15 +1,52 @@
 .new-notif {
-  padding: 1em;
-  gap: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+  width: 100%;
+  padding: var(--spacing);
+  // gap: var(--spacing);
+  font-family: var(--typeface-main);
 
-  &_header {
-
+  &_form {
+    display: flex;
+    gap: var(--spacing);
+    height: 100%;
   }
 
+  &_body {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+    height: fit-content;
+    padding: var(--spacing-large);
+    gap: var(--spacing);
+    border-radius: var(--border-radius);
+    background: linear-gradient(110deg, var(--color-primary-hover) 60%, var(--color-secondary) 60%);
+  }
+
+  // &_header {
+  //   font-weight: 700;
+  // }
+
+  &_settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 30%;
+    padding: 0 var(--spacing-large);
+    border-radius: var(--border-radius);
+    background: linear-gradient(110deg, var(--color-primary-hover) 60%, var(--color-secondary) 60%);
+  }
+
+  &_settings-section {
+    display: flex;
+    flex-direction: column;
+  }
 
 }
 
-.go-back {
+.control-buttons {
   display: flex;
   justify-content: end;
 }
