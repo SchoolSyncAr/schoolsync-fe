@@ -1,7 +1,7 @@
 .notif-card {
   display: flex;
   flex-direction: column;
-  height: 13em;
+  height: 14em;
   overflow: hidden;
   background-color: rgb(240, 242, 255);
   box-shadow: 0rem 0.4rem 0.7rem rgba(0, 0, 0, 0.3);
@@ -9,7 +9,6 @@
   gap: 0.3em;
   padding: 1em;
   border-radius: var(--border-radius);
-  background: linear-gradient(110deg, var(--color-primary-hover) 85%, var(--color-secondary) 60%);
   position: relative;
 
   &__title {
@@ -30,6 +29,7 @@
 
   &__button {
     display: flex;
+    height: var(--element-height);
     // justify-content: end;
     position: absolute;
     bottom: 1em; 
@@ -49,4 +49,16 @@
 .scollable {
   overflow-y: auto;
   max-height: 100%;
+}
+
+.LOW {
+  background: linear-gradient(110deg, var(--color-primary-hover) 85%, var(--color-secondary) 60%);
+}
+
+.MEDIUM {
+  background: linear-gradient(110deg, var(--color-warning-hover) 85%, var(--color-warning) 60%);
+}
+
+.HIGH {
+  background: linear-gradient(110deg, var(--color-important-hover) 85%, var(--color-important) 60%);
 }

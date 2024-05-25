@@ -4,5 +4,5 @@ export interface NotifProps {
   title: string,
   content: string,
   weight: string,
-  scope: string[]
+  scope?: string[]
 }

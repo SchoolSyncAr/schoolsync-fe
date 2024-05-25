@@ -58,7 +58,7 @@ function NotificationsDashboard() {
 
   const notifList = () => {
     return notifications.map((data) => (
-      <NotifCard key={data.id} id={data.id} title={data.title} content={data.content} />
+      <NotifCard key={data.id} id={data.id} title={data.title} content={data.content} weight={data.weight} />
     ))
   }
 
