@@ -1,7 +1,7 @@
 import { NotifProps } from "interfaces/Notification"
 
 export class Notification {
-  id: number  //ver si es necesario
+  id: number
   title: string
   content: string
   constructor(props: NotifProps) {

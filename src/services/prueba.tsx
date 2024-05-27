@@ -1,14 +1,11 @@
-import axios from "axios"
-import { REACT_APP_REST_SERVER_URL } from "constants/constants"
-
+import api from "api/axios"
+import { Notification } from 'models/Notification'
 
 
 export const deleteNotificationById2 = async (notificationId: number, token: string) => {
-  console.log("deletttttttttttt")
-  console.log(notificationId)
-  console.log(token)
   const headers = {
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json'
   }
 
   const data = {
@@ -17,40 +14,7 @@ export const deleteNotificationById2 = async (notificationId: number, token: str
     sortDirection: 'asc'
   }
 
-  const notificationJson = await axios.delete(`http://localhost:8080/notification/deleteNotification/${notificationId}`, { headers, data })
-  return notificationJson.data.map((notificationJson: any)=>{Notification.fromJson(notificationJson)})
+  const notificationJson = await api.delete(`api/notification/deleteNotification/${notificationId}?searchField=&orderParam=date&sortDirection=asc"`, {headers, data})
+  return notificationJson.data.map((notificationJson: any) => Notification.fromJson(notificationJson))
+
 }
-
-
-//REACT_APP_REST_SERVER_URL=http://localhost:8080
-
-//REACT_APP_REST_SERVER_URL=http://localhost:8081
-
-
-
-
-
-//asi estaba antes de empezar a cambierlo
-// import axios from "axios"
-// import { REACT_APP_REST_SERVER_URL } from "constants/constants"
-
-
-/*
-// export const deleteNotificationById2 = async (notificationId: number) => {
-//  const notificationJson = await axios.delete(`${REACT_APP_REST_SERVER_URL}/notification///deleteNotification/${notificationId}?searchField=&orderParam=date&sortDirection=asc`)
-//   return notificationJson.data.map((notificationJson: any)=>{Notification.fromJson(notificationJson)})
-// }
-
-
-//asi cuando estaba todo junto
-// export const deleteNotificationById2 = async (notificationId: number, token: string) => {
-//   console.log("deletttttttttttt")
-//   console.log(notificationId)
-//   console.log(token)
-//   const headers = {
-//     Authorization: `Bearer ${token}`
-//   }
-
-//   const notificationJson = await axios.delete(`http://localhost:8080/notification/deleteNotification/${notificationId}?searchField=&orderParam=date&sortDirection=asc`, { headers })
-//   return notificationJson.data.map((notificationJson: any)=>{Notification.fromJson(notificationJson)})
-// }*/

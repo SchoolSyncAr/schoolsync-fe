@@ -3,18 +3,13 @@ import notificationService  from 'services/NotificationService'
 import { useOnInit } from 'utils/useOnInit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { deleteNotificationById2 } from '../services/prueba'
-import { NotifProps } from 'interfaces/Notification'
 import '../components/NotifDashboard/NotificationDashboard.css'
-import { NotifCard } from './NotifCard/NotifCard'
 import { authService } from 'services/AuthService.ts'
+import { Notification } from 'models/Notification'
 
 function MockNotifications() {
   const [generalNotificationsInfoBackend, setGeneralNotificationsInfoBackend] = useState<Array<Notification>>([])
   const [errorMessage, setErrorMessage] = useState('')
-
-  // const [notifications, setNotifications] = useState<NotifProps[]>([])
-
-
 
   useOnInit(async () => {
     try {
@@ -23,25 +18,17 @@ function MockNotifications() {
         orderParam: '',
         sortDirection: ''
       })
-      console.log('desde useOnInit')
-      console.log(generalNotificationData)
       setGeneralNotificationsInfoBackend(generalNotificationData)
-      console.log('desde useOnInit longitud segundo  ' + generalNotificationsInfoBackend.length)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }
   })
 
-  // const isAdministrator = true
-
   const handleDeleteNotification = async (notificationId: number) => {
     try {
       const token = authService.getUserToken()
       if (token) {
-        console.log(notificationId)
-        console.log(token)
         const newNotificationList = await deleteNotificationById2(notificationId, token)
-        console.log(newNotificationList)
         setGeneralNotificationsInfoBackend(newNotificationList)
       } else {
         throw new Error("Token is null")
@@ -50,7 +37,6 @@ function MockNotifications() {
       setErrorMessage("error")
     }
     finally {
-      console.log("recharging")
       rechargeNotification()
       updateNotificationCount()
     }
@@ -63,33 +49,20 @@ function MockNotifications() {
         orderParam: '',
         sortDirection: ''
       })
-      console.log('desde recharge')
-      console.log(generalNotificationData)
       setGeneralNotificationsInfoBackend(generalNotificationData)
-      console.log('desde recharge longitud segundo  ' + generalNotificationsInfoBackend.length)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }
   }
-  //ver para usar para actualizar el header
   const updateNotificationCount = async () => {
     try {
       const notificationCount = await notificationService.getNotificationsCount()
       const newNotificationCount = notificationCount
-      console.log("new notification count " + newNotificationCount)
       return newNotificationCount
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }
   }
-
-  // const notifList = () => {
-  //   return generalNotificationsInfoBackend.map((data) => (
-  //     <NotifCard key={data.id} id={data.id} title={data.title} content={data.content} />
-  //   ))
-  // }
-
-
 
   return (
     <>
@@ -101,19 +74,11 @@ function MockNotifications() {
         
             {/* {mockNotifications2.map((notification) => { */}
             {generalNotificationsInfoBackend.map((notification) => {
-              console.log("esteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
-              console.log(notification)
               return (
                 <>
                   <div className="col-12 bg-light h3 text-center">{notification.title} </div>
-                  {/* <div className="notif-grid">{notification.title}</div> */}
-                  {/* <div className="notif-grid">{notification.content}</div> */}
-                  {/* <div className="notif-grid">{notifList()}</div> */}
-
-
-                  {/* {isAdministrator && (<button>delete</button>)} */}
                   <div className="buttonsToRightEnd">
-                    <DeleteIcon onClick={() => handleDeleteNotification(notification.id)}></DeleteIcon>
+                    <DeleteIcon style={{ color: 'red'}} onClick={() => handleDeleteNotification(notification.id)}></DeleteIcon>
                   </div>
                   <div className="col-12 bg-light mt-2 mb-5 h5">{notification.content}</div>
                 </>

@@ -23,7 +23,7 @@ class NotificationService {
 
   getNotificationsCount = async () => {
     const notificationsCountJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/count`) //array de objetos
-    console.log(notificationsCountJson.data + 'del service')
+    // console.log(notificationsCountJson.data + 'del service')
     return notificationsCountJson.data
   }
 
