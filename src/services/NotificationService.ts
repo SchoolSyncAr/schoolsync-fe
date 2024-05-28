@@ -1,7 +1,7 @@
 import api from 'api/axios'
 import { REACT_APP_REST_SERVER_URL } from 'constants/constants'
 import { Notification } from 'models/Notification'
-import { NotifProps } from 'interfaces/Notification'
+// import { NotifProps } from 'interfaces/Notification'
 class NotificationService {
   getAllGeneralNotifications = async (filter: { searchField: string; orderParam: string; sortDirection: string }) => {
     const allNotificationsJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/all`, {
@@ -27,22 +27,28 @@ class NotificationService {
     return notificationsCountJson.data
   }
 
-  //   deleteNotificationById = async (notificationId: any) => {
-  //   console.log("sevide")
-  //   console.log(notificationId)
-  //   const notificationJson = await axios.delete(`${REST_SERVER_URL}/deleteNotification/${notificationId}`)
-  //   return notificationJson.data.map((notificationJson: NotifProps)=>{Notification.fromJson(notificationJson)})
-  // }
+  deleteNotificationById = async (notificationId: number, token: string) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
 
-  deleteNotificationById = async (notificationId: number) => {
-    const notificationJson = await api.delete(`${REACT_APP_REST_SERVER_URL}/deleteNotification/${notificationId}`)
-    return Notification.fromJson(notificationJson.data)
+    const data = {
+      searchField: '',
+      orderParam: 'date',
+      sortDirection: 'asc'
+    }
 
-    // return notificationJson.data.map((notificationJson: string) => {
-    //   Notification.fromJson(notificationJson)
-    // })
+    const notificationJson = await api.delete(`api/notification/deleteNotification/${notificationId}?searchField=&orderParam=date&sortDirection=asc"`, {headers, data})
+    return notificationJson.data.map((notificationJson: { id: number; title: string; content: string }) => Notification.fromJson(notificationJson))
+
   }
 }
 
 const notificationService = new NotificationService()
 export default notificationService
+
+
+//  return allNotificationsJson.data.map((allNotificationsJson: { id: number; title: string; content: string }) =>
+//     Notification.fromJson(allNotificationsJson),
+//   )
