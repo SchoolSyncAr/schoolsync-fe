@@ -24,7 +24,8 @@ const Button: React.FC<ButtonProps> = (props) => {
     display: 'inline-block',
     fontFamily: 'monospace',
     fontSize: props.fontSize || 20,
-    textAlign: 'center' as const,
+    textAlign: "center",
+    backgroundColor: props.backgroundColor
   }
 
   // const {type = 'button'} = props
