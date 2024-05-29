@@ -1,17 +1,25 @@
 import { LoginArgs } from 'models/interfaces/types'
 import api from 'api/axios.tsx'
+import { jwtDecode } from 'jwt-decode'
+
+interface DecodedTokenArgs {
+  userId: string
+  role: string
+  exp: number
+}
 
 const AuthService = () => {
   const login = async (credentials: LoginArgs) => {
     try {
       const response = await api.post('/api/auth', credentials)
       const token = response.data.accessToken
-      const role = response.data.role
-      const userId = response.data.userId
+
+      const decodedToken: DecodedTokenArgs = jwtDecode(token)
 
       sessionStorage.setItem('token', token)
-      sessionStorage.setItem('role', role)
-      sessionStorage.setItem('userId', userId)
+      sessionStorage.setItem('role', decodedToken.role)
+      sessionStorage.setItem('userId', decodedToken.userId)
+      sessionStorage.setItem('tokenExpiration', decodedToken.exp.toString())
 
       return token
     } catch (error) {
@@ -31,6 +39,12 @@ const AuthService = () => {
     return sessionStorage.getItem('userId')
   }
 
+  const getTokenExpiration = (): Date => {
+    const tokenExpiration = sessionStorage.getItem('tokenExpiration')
+    const expirationTime = tokenExpiration ? parseInt(tokenExpiration, 10) * 1000 : 0
+    return new Date(expirationTime)
+  }
+
   const clearUser = () => {
     console.log('session clear')
     sessionStorage.removeItem('auth')
@@ -42,6 +56,7 @@ const AuthService = () => {
     getUserRole,
     clearUser,
     getUserId,
+    getTokenExpiration,
   }
 }
 
