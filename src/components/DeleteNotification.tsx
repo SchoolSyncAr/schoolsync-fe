@@ -11,7 +11,7 @@ function DeleteNotification() {
     <div className="notif-grid"/>
     <MockNotifications />
     <div className="buttonsToRightEnd">
-      <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
+      <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/adminDashboard')}>
           Volver
       </Button>
     </div>
