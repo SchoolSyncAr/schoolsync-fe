@@ -65,7 +65,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearchInit, handleChange, f
             id="input-with-icon-adornment"
             startAdornment={
               <InputAdornment position="start">
-                <NotificationsIcon />
+                <SearchRoundedIcon/>
+                {/* <NotificationsIcon /> */}
               </InputAdornment>
             }
             type="text"
