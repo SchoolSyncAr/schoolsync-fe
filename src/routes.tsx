@@ -8,6 +8,7 @@ import NotFound from 'components/NotFound'
 import DeleteNotification from 'components/DeleteNotification'
 import SeeAllStudents from 'components/SeeAllStudents'
 import { LoginPage } from 'pages/Login/LoginPage'
+import SeeAllParents from 'components/seeAllParents'
 
 export const MyRoutes = () => (
   <Routes>
@@ -20,6 +21,7 @@ export const MyRoutes = () => (
       <Route path="adminDashboard" element={<AdminDashboard />} />
       <Route path="deleteNotification" element={<DeleteNotification />} />
       <Route path="seeAllStudents" element={<SeeAllStudents />} />
+      <Route path="seeAllParents" element={<SeeAllParents/>} />
     </Route>
     <Route path="*" element={<NotFound />} />
   </Routes>
