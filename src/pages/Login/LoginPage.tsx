@@ -1,5 +1,5 @@
 import './LoginPage.scss'
-import { Login } from 'components/Login/login'
+import { Login } from 'components/Login/Login.tsx'
 
 export const LoginPage = () => {
   return (

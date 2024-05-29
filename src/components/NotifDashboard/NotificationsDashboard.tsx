@@ -68,7 +68,7 @@ function NotificationsDashboard() {
         handleSearchInit={getData}
         handleChange={handleChange}
         filter={filter}
-        handleFilterChange={handleFilterChange} // Pasa la nueva prop
+        handleFilterChange={handleFilterChange}
       />
       <div className='notif'>
         <div className="notif__grid">{notifList()}</div>

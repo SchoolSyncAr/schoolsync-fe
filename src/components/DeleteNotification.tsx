@@ -1,14 +1,13 @@
 import { useNavigate } from "react-router-dom"
 import Button from "./Button"
 import MockNotifications from "./MockNotifications"
-// import 'components/NotifDashboard/NotificationDashboard.css'
 
 
 function DeleteNotification() {
 
   const navigate = useNavigate()
   return (<>
-    <h3>Delete Notification</h3>
+    {/* <h3>Delete Notification</h3> */}
     <div className="notif-grid"/>
     <MockNotifications />
     <div className="buttonsToRightEnd">

@@ -39,24 +39,25 @@ class NotificationService {
   }
 
   getNotificationsCount = async () => {
-    const notificationsCountJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/count`) //array de objetos
-    console.log(notificationsCountJson.data + 'del service')
+    const notificationsCountJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/count`)
     return notificationsCountJson.data
   }
 
-  //   deleteNotificationById = async (notificationId: any) => {
-  //   console.log("sevide")
-  //   console.log(notificationId)
-  //   const notificationJson = await axios.delete(`${REST_SERVER_URL}/deleteNotification/${notificationId}`)
-  //   return notificationJson.data.map((notificationJson: NotifProps)=>{Notification.fromJson(notificationJson)})
-  // }
+  deleteNotificationById = async (notificationId: number, token: string) => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
 
-  // deleteNotificationById = async (notificationId: number) => {
-  //   await api.delete(`${REACT_APP_REST_SERVER_URL}/deleteNotification/${notificationId}`)
-  //   return notificationJson.data.map((notificationJson: string) => {
-  //     Notification.fromJson(notificationJson)
-  //   })
-  // }
+    const data = {
+      searchField: '',
+      orderParam: 'date',
+      sortDirection: 'asc'
+    }
+
+    const notificationJson = await api.delete(`api/notification/deleteNotification/${notificationId}?searchField=&orderParam=date&sortDirection=asc"`, {headers, data})
+    return notificationJson.data.map((notificationJson: { id: number; title: string; content: string }) => Notification.fromJson(notificationJson))
+  }
 
   getGroups = async () : Promise<string[]> => {
     const recipientGroups = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/recipient-groups`)

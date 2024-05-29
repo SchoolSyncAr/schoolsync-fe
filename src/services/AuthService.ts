@@ -1,46 +1,63 @@
 import { LoginArgs } from 'models/interfaces/types'
 import api from 'api/axios.tsx'
+import { jwtDecode } from 'jwt-decode'
+
+interface DecodedTokenArgs {
+  userId: string
+  role: string
+  exp: number
+}
 
 const AuthService = () => {
-  const login = async (credentials: LoginArgs ) => {
+  const login = async (credentials: LoginArgs) => {
     try {
       const response = await api.post('/api/auth', credentials)
       const token = response.data.accessToken
-      const role = response.data.role
-      const id = response.data.id
 
-      localStorage.setItem("token", token)
-      localStorage.setItem("role", role)
-      localStorage.setItem("id", id)
+      const decodedToken: DecodedTokenArgs = jwtDecode(token)
+
+      sessionStorage.setItem('token', token)
+      sessionStorage.setItem('role', decodedToken.role)
+      sessionStorage.setItem('userId', decodedToken.userId)
+      sessionStorage.setItem('tokenExpiration', decodedToken.exp.toString())
 
       return token
-      
     } catch (error) {
       throw new Error('Error en la autenticación. Por favor, verifica tus credenciales.')
     }
   }
 
   const getUserToken = () => {
-    return localStorage.getItem("token")
+    return sessionStorage.getItem('token')
   }
 
   const getUserRole = () => {
-    return localStorage.getItem("role")
+    return sessionStorage.getItem('role')
   }
 
   const getUserId = () => {
-    return localStorage.getItem("id")
+    return sessionStorage.getItem('userId')
+  }
+
+  const getTokenExpiration = (): Date => {
+    const tokenExpiration = sessionStorage.getItem('tokenExpiration')
+    const expirationTime = tokenExpiration ? parseInt(tokenExpiration, 10) * 1000 : 0
+    return new Date(expirationTime)
   }
 
   const clearUser = () => {
-    console.log("session clear")
-    localStorage.removeItem("auth")
+    console.log('session clear')
+    sessionStorage.removeItem('auth')
   }
 
   return {
-    login, getUserToken, getUserRole, getUserId, clearUser
+    login,
+    getUserToken,
+    getUserRole,
+    clearUser,
+    getUserId,
+    getTokenExpiration,
   }
-
 }
 
 export const authService = AuthService()

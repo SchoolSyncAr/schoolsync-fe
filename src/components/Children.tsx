@@ -1,39 +1,39 @@
 import { useNavigate } from "react-router-dom"
 import Button from "./Button"
 import { useOnInit } from "utils/useOnInit"
-import { getAllChildrenForAParent} from '../services/ParentService'
+import { getMyChildren} from '../services/ParentService'
+import { Student } from "models/Student"
+import { useState } from "react"
 
 function Children() {
 
-  const navigate = useNavigate()
-
-  const unhijo = ["juan"]
-  const cuatrohijos = ["JUan", "lola", "pepe", "ana"]
+  const [childrenInfoBackend, setchildrenInfoBackend] = useState<Array<Student>>([])
+  const [errorMessage, setErrorMessage] = useState('')
 
   useOnInit(async () => {
-    getAllChildrenForAParent(6)
+    try {
+      const childrenData = await getMyChildren()
+      setchildrenInfoBackend(childrenData)
+    } catch {
+      setErrorMessage('No se pudo obtener info children')
+    }
+  }
+  )
 
-    // try {
-    //   const generalNotificationData = await notificationService.getAllGeneralNotifications()
-    //   console.log('desde useOnInit')
-    //   console.log(generalNotificationData)
-    //   setGeneralNotificationsInfoBackend(generalNotificationData)
-    //   console.log('desde useOnInit longitud segundo  ' + generalNotificationsInfoBackend.length)
-    // } catch {
-    //   setErrorMessage('No se pudo obtener info notifications')
-    // }
-  })
+  const assignColor = (index: number) => {
+    const colors = ['red', 'green', 'yellow']
+    return colors[index % colors.length]
+  }
 
-
-
-
+  const navigate = useNavigate()
 
   return (
     <>
       <div>
-        {cuatrohijos.map((hijo) => {
+        {childrenInfoBackend.map((child, index) => {
+          const color = assignColor(index)
           return (
-            <Button className='forAllButtons button1' height={60}>{hijo}</Button>
+            <Button key={ index} className='forAllButtons' height={60} backgroundColor={color}>{child.firstName}</Button>
           )
         })}
       </div>
