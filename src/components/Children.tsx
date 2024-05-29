@@ -21,7 +21,7 @@ function Children() {
   )
 
   const assignColor = (index: number) => {
-    const colors = ['red', 'green', 'yellow']
+    const colors = ['#89f788', '#f78889', '#f7d488']
     return colors[index % colors.length]
   }
 
