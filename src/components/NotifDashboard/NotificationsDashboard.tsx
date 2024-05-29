@@ -70,8 +70,9 @@ function NotificationsDashboard() {
         handleSearchInit={getData}
         handleChange={handleChange}
         filter={filter}
-        handleFilterChange={handleFilterChange} // Pasa la nueva prop
+        handleFilterChange={handleFilterChange}
       />
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div className="notif-grid">{notifList()}</div>
       <div>
         <div className="buttonsToRightEnd">
