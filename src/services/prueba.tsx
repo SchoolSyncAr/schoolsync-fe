@@ -1,9 +1,20 @@
-import axios from "axios"
-import { REACT_APP_REST_SERVER_URL } from "constants/constants"
-// import { REST_SERVER_URL } from "../constants/constants"
+// import api from "api/axios"
+// import { Notification } from 'models/Notification'
 
 
-export const deleteNotificationById2 = async (notificationId: number) => {
-  const notificationJson = await axios.delete(`${REACT_APP_REST_SERVER_URL}/deleteNotification/${notificationId}`)
-  return notificationJson.data.map((notificationJson: any)=>{Notification.fromJson(notificationJson)})
-}
+// export const deleteNotificationById2 = async (notificationId: number, token: string) => {
+//   const headers = {
+//     Authorization: `Bearer ${token}`,
+//     'Content-Type': 'application/json'
+//   }
+
+//   const data = {
+//     searchField: '',
+//     orderParam: 'date',
+//     sortDirection: 'asc'
+//   }
+
+//   const notificationJson = await api.delete(`api/notification/deleteNotification/${notificationId}?searchField=&orderParam=date&sortDirection=asc"`, {headers, data})
+//   return notificationJson.data.map((notificationJson: any) => Notification.fromJson(notificationJson))
+
+// }

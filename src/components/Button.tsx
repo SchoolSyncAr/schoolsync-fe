@@ -10,7 +10,8 @@ function Button(props) {
     display: "inline-block",
     fontFamily: "monospace",
     fontSize: props.fontSize || 20,
-    textAlign: "center"
+    textAlign: "center",
+    backgroundColor: props.backgroundColor
   }
 
   // const {type = 'button'} = props
