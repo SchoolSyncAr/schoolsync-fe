@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import Button from 'components/Button'
 import { NotifCard } from 'components/NotifCard/NotifCard'
 import { useOnInit } from 'utils/useOnInit'
-import './NotificationDashboard.css'
 import { NotifProps } from 'interfaces/Notification'
 import notificationService from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
+import './NotificationDashboard.scss'
 
 function NotificationsDashboard() {
   const [notifications, setNotifications] = useState<NotifProps[]>([])
@@ -21,7 +20,6 @@ function NotificationsDashboard() {
   const getData = async () => {
     try {
       const notifs = await notificationService.getAllGeneralNotifications(filter)
-      console.log('solic notif ', notifs)
       setNotifications(notifs)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
@@ -72,12 +70,14 @@ function NotificationsDashboard() {
         filter={filter}
         handleFilterChange={handleFilterChange} // Pasa la nueva prop
       />
-      <div className="notif-grid">{notifList()}</div>
-      <div>
-        <div className="buttonsToRightEnd">
-          <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
-            Volver
-          </Button>
+      <div className='notif'>
+        <div className="notif__grid">{notifList()}</div>
+        <div>
+          <div className="notif__go-back">
+            <button className="button button--primary button--medium button--rounded text--md text--spaced text--upper animated shadow--box" onClick={() => navigate('/parentDashboard')}>
+              Volver
+            </button>
+          </div>
         </div>
       </div>
     </>

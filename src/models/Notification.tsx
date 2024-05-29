@@ -5,13 +5,19 @@ export class Notification {
   title: string
   content: string
   weight: string
-  scope: string[]
-  constructor(props: NotifProps) {
-    this.id = props.id
-    this.title = props.title
-    this.content = props.content
-    this.weight = props.weight
-    this.scope = props.scope ?? []
+  sender: number
+  scope: string
+  recipientGroups: string[]
+  recipient: number
+  constructor(props?: NotifProps) {
+    this.id = props?.id ?? 0
+    this.title = props?.title ?? ''
+    this.content = props?.content ?? ''
+    this.weight = props?.weight ?? ''
+    this.sender = props?.sender ?? 0
+    this.scope = props?.scope ?? ''
+    this.recipientGroups = props?.recipientGroups ?? []
+    this.recipient = props?.recipient ?? 0
   }
 
   static fromJson(notifData: NotifProps) {

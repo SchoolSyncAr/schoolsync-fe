@@ -51,14 +51,14 @@
   max-height: 100%;
 }
 
-.LOW {
+.BAJO {
   background: linear-gradient(110deg, var(--color-primary-hover) 85%, var(--color-secondary) 60%);
 }
 
-.MEDIUM {
+.MEDIO {
   background: linear-gradient(110deg, var(--color-warning-hover) 85%, var(--color-warning) 60%);
 }
 
-.HIGH {
+.ALTO {
   background: linear-gradient(110deg, var(--color-important-hover) 85%, var(--color-important) 60%);
 }

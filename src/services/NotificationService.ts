@@ -1,7 +1,8 @@
 import api from 'api/axios'
 import { REACT_APP_REST_SERVER_URL } from 'constants/constants'
 import { Notification } from 'models/Notification'
-// import { NotifProps } from '../interfaces/Notification'
+import { authService } from './AuthService'
+import { NotifProps } from 'interfaces/Notification'
 
 class NotificationService {
   getAllGeneralNotifications = async (filter: { searchField: string; orderParam: string; sortDirection: string }) => {
@@ -18,7 +19,21 @@ class NotificationService {
     )
   }
 
-  createNotification = async (notification: { title: string; content: string }) => {
+  getAllNotificationsByParentId = async (filter: { searchField: string; orderParam: string; sortDirection: string }) => {
+    const notifsJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/${authService.getUserId()}/all`, {
+      params: {
+        searchField: filter.searchField,
+        orderParam: filter.orderParam,
+        sortDirection: filter.sortDirection,
+      },
+    })
+    console.log(notifsJson)
+    return notifsJson.data.map((notif: NotifProps) =>
+      Notification.fromJson(notif)
+    )
+  }
+
+  createNotification = async (notification: NotifProps) => {
     const response = await api.post(`${REACT_APP_REST_SERVER_URL}/api/notification/create`, notification)
     return response.data
   }
@@ -36,11 +51,16 @@ class NotificationService {
   //   return notificationJson.data.map((notificationJson: NotifProps)=>{Notification.fromJson(notificationJson)})
   // }
 
-  deleteNotificationById = async (notificationId: number) => {
-    const notificationJson = await api.delete(`${REACT_APP_REST_SERVER_URL}/deleteNotification/${notificationId}`)
-    return notificationJson.data.map((notificationJson: string) => {
-      Notification.fromJson(notificationJson)
-    })
+  // deleteNotificationById = async (notificationId: number) => {
+  //   await api.delete(`${REACT_APP_REST_SERVER_URL}/deleteNotification/${notificationId}`)
+  //   return notificationJson.data.map((notificationJson: string) => {
+  //     Notification.fromJson(notificationJson)
+  //   })
+  // }
+
+  getGroups = async () : Promise<string[]> => {
+    const recipientGroups = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/recipient-groups`)
+    return recipientGroups.data
   }
 }
 

@@ -1,40 +1,41 @@
 .new-notif {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing);
+  // gap: var(--spacing);
   width: 100%;
   padding: var(--spacing);
-  // gap: var(--spacing);
   font-family: var(--typeface-main);
 
   &_form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+  }
+
+  &_form-body {
     display: flex;
     gap: var(--spacing);
     height: 100%;
   }
 
-  &_body {
+  &_text {
     display: flex;
     flex-direction: column;
     width: 70%;
     height: 100%;
     height: fit-content;
-    padding: var(--spacing-large);
+    padding: var(--spacing);
     gap: var(--spacing);
     border-radius: var(--border-radius);
     background: linear-gradient(110deg, var(--color-primary-hover) 60%, var(--color-secondary) 60%);
   }
 
-  // &_header {
-  //   font-weight: 700;
-  // }
-
   &_settings {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     width: 30%;
-    padding: 0 var(--spacing-large);
+    padding: var(--spacing) var(--spacing)0 var(--spacing);
+    gap: var(--spacing-small);
     border-radius: var(--border-radius);
     background: linear-gradient(110deg, var(--color-primary-hover) 60%, var(--color-secondary) 60%);
   }
@@ -49,4 +50,5 @@
 .control-buttons {
   display: flex;
   justify-content: end;
+  padding-top: var(--spacing);
 }
