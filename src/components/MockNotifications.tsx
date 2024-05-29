@@ -2,8 +2,6 @@ import { useState } from 'react'
 import notificationService  from 'services/NotificationService'
 import { useOnInit } from 'utils/useOnInit'
 import DeleteIcon from '@mui/icons-material/Delete'
-// import { deleteNotificationById2 } from '../services/prueba'
-import '../components/NotifDashboard/NotificationDashboard.css'
 import { authService } from 'services/AuthService.ts'
 import { Notification } from 'models/Notification'
 

@@ -11,13 +11,13 @@ export const getAllChildrenForAParent = async (parentId: number) => {
 
 class ParentService {
 
-  getAll = async () => {
-    const parents = await api.get(`${REACT_APP_REST_SERVER_URL}/api/parent/all`)
+  getAllNames = async () => {
+    const parents = await api.get(`${REACT_APP_REST_SERVER_URL}/api/parent/names/all`)
     return parents.data.map((parent: ParentProps) => Parent.fromJson(parent))
   }
 }
-
 export const parentService = new ParentService()
+
 export const getMyChildren = async () => {     //eventualmente hay que agregar (parentId: number)
   console.log("estoy en getMyChildren del Student servicce")
   const allMyChildrenJson = await api.get(`api/parent/myChildren/7`)

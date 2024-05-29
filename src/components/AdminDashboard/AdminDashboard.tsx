@@ -7,6 +7,7 @@ import { parentService } from 'services/ParentService'
 import { Parent } from 'models/interfaces/Parent'
 import { useOnInit } from 'utils/useOnInit'
 import './AdminDashboard.scss'
+import { authService } from 'services/AuthService'
 
 function AdminDashboard() {
   const [title, setTitle] = useState('')
@@ -22,7 +23,7 @@ function AdminDashboard() {
 
   const getParents = async () => {
     try {
-      const fetchedParents = await parentService.getAll()
+      const fetchedParents = await parentService.getAllNames()
       setParents(fetchedParents)
     } catch (error) {
       // Error
@@ -76,9 +77,8 @@ function AdminDashboard() {
       title: title,
       content: content,
       weight: weight,
-      // sender: Number(localStorage.getItem("id")),
-      sender: 0,
-      scope: scope,
+      sender: Number(authService.getUserId()),
+      scope: scope.toUpperCase(),
       recipientGroups: recipientGroups,
       recipient: recipient.id,
     })
@@ -170,7 +170,7 @@ function AdminDashboard() {
                 </label>
                 <FormControl sx={{ color: 'white' }}>
                   <RadioGroup row value={scope} onChange={handleScopeChange}>
-                    <FormControlLabel value="Grupal" control={<Radio sx={{ color: 'white','&.Mui-checked': {color: 'white'}, }}/>} label="Grupal" />
+                    <FormControlLabel value="General" control={<Radio sx={{ color: 'white','&.Mui-checked': {color: 'white'}, }}/>} label="General" />
                     <FormControlLabel value="Individual" control={<Radio sx={{ color: 'white','&.Mui-checked': {color: 'white'}, }}/>} label="Individual" />
                   </RadioGroup>
                 </FormControl>
@@ -187,7 +187,7 @@ function AdminDashboard() {
                         </MenuItem>
                       ))}
                     </Select>}
-                  {scope === 'Grupal' && <>
+                  {scope === 'General' && <>
                     <Select
                       multiple
                       value={recipientGroups}
