@@ -1,6 +1,6 @@
-import axios from "axios"
+// import axios from "axios"
 import api from 'api/axios'
-import { REACT_APP_REST_SERVER_URL } from "constants/constants"
+// import { REACT_APP_REST_SERVER_URL } from "constants/constants"
 import { Student } from "models/Student"
 
 export const getAllStudents = async () => {
