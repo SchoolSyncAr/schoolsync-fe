@@ -9,6 +9,7 @@
   background-color: var(--color-white);
   outline: none;
 
+  &__label--textarea,
   &__label {
     position: absolute;
     left: var(--spacing-small);
@@ -20,16 +21,23 @@
     transition: all var(--transition-fast) ease;
   }
 
+  &__label--textarea {
+    top: var(--spacing-small);
+  }
+
   &__container {
     position: relative;
 
+    &textarea:focus ~ label,
+    textarea:valid ~ label,
     &input:focus ~ label,
     input:valid ~ label {
       transform: translate(-0.4em, -2.4em);
       color: var(--color-white);
       font-size: 0.9em;
       letter-spacing: 0;
-    }
+    } 
+
   }
 
   &--rounded {
@@ -42,6 +50,11 @@
 
   &--tall {
     height: 4.2rem;
+  }
+
+  &--textarea {
+    height: 100%;
+    min-height: 10em;
   }
 
   &:disabled {

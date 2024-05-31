@@ -2,24 +2,22 @@ import { useNavigate } from "react-router-dom"
 import Button from "./Button"
 import { useState } from "react"
 import { useOnInit } from "utils/useOnInit"
-import { getAllStudents } from '../services/StudentsService'
-import { Student } from '../models/Student'
-import { getAllParents } from "services/ParentService"
 import { Parent } from "models/Parent"
 import AddCardIcon from '@mui/icons-material/AddCard'
+import { parentService } from "services/ParentService"
 
 function SeeAllParents() {
 
-  const [parentInfoBackend, setParentInfoBackend] = useState<Array<Parent>>([])  //Esto es porque me marca error de type NEVER -- property-id-does-not-exist-on-type-never-on-map-function
+  const [parents, setParents] = useState<Parent[]>([])  //Esto es porque me marca error de type NEVER -- property-id-does-not-exist-on-type-never-on-map-function
   const [errorMessage, setErrorMessage] = useState('')
 
 
   useOnInit(async () => {
     try {
-      const parentData = await getAllParents()
+      const parentData = await parentService.getAll()
       console.log('desde useOnInit')
       console.log(parentData)
-      setParentInfoBackend(parentData)
+      setParents(parentData)
       console.log('desde useOnInit  ' + parentData.length)
     } catch {
       setErrorMessage('No se pudo obtener info parents')
@@ -35,7 +33,7 @@ function SeeAllParents() {
       <div className="container">
         <div className="row mt-5">
           <ul className="list-group shadow">
-            {parentInfoBackend.map((parent) => {
+            {parents.map((parent) => {
               return (
                 <>
                   <div>

@@ -1,0 +1,35 @@
+.notif {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: var(--spacing);
+  gap: var(--spacing);
+
+  &__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  align-items: start;
+  justify-content: start;
+  gap: 1em;
+  overflow-y: auto;
+  }
+
+  &__go-back {
+    display: flex;
+    justify-content: end;
+    height: var(--element-height);
+  }
+}
+
+@media (max-width: 1000px) {
+  .notif__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .notif__grid {
+    grid-template-columns: 1fr;
+  }
+}
