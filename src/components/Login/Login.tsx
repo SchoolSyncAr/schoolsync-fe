@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { authService } from 'services/AuthService'
 import { errorHandler } from 'models/errors/ErrorHandler'
+import { Link } from 'react-router-dom'
 import { UsePasswordToggle } from 'components/hooks/usePasswordToggle'
 
 export const Login = () => {
@@ -26,17 +27,8 @@ export const Login = () => {
 
   const onSubmit: SubmitHandler<LoginArgs> = async (data) => {
     try {
-      const token = await authService.login(data)
-      const role = authService.getUserRole()
-      console.log("probando token y role en login")
-      console.log(token)
-      console.log(role)
       await authService.login(data)
-      if (role === "ADMIN") {
-        navigate('/adminDashboard')  
-      } else if (role === "USER") {
-        navigate('/parentDashboard')
-      }
+      navigate('/parentDashboard')
     } catch (error) {
       setErrorMsg(errorHandler(error as AxiosError))
     }

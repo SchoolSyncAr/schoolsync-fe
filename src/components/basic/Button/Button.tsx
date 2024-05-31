@@ -39,7 +39,9 @@ export const Button = (props: ButtonProps) => {
         ${taller && 'button--tall'}
         ${disabled && 'button--disabled'}
         ${animated && !disabled && 'animated'} 
-        ${className || ''}}`}
+        ${className || ''}}
+        text text--strong text--md text--spaced text--upper shadow shadow--box
+        `}
       onClick={onClick}
       disabled={disabled}
       type={type}
