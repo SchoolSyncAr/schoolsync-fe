@@ -23,7 +23,8 @@ export const NotifCard = ({notifProps, deleteButton, handleDelete}: NotifCardPro
       <article className={`notif-card ${weight}`}>
         <section className="notif-card__title">
           {title}
-          {deleteButton && handleDelete && <IconButton onClick={() => handleDelete(notifProps.id)}><DeleteIcon /></IconButton>}</section>
+          {deleteButton && handleDelete && <div><IconButton onClick={() => handleDelete(notifProps.id)}><DeleteIcon style={{ fontSize: '1.3em' }} /></IconButton></div>}
+        </section>
         <section className="notif-card__body" ref={contentRef}>
           {content}
         </section>

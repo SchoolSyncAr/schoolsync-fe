@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Route, useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { NotifCard } from 'components/NotifCard/NotifCard'
 import { useOnInit } from 'utils/useOnInit'
 import { NotifProps } from 'models/interfaces/Notification'
@@ -62,20 +62,9 @@ function NotificationsDashboard({deleteButton = false}: NotifDashboardProps) {
     try {
       await notificationService.deleteById(notifId)
       getData()
-      // const token = authService.getUserToken()
-      // if (token) {
-      //   const newNotificationList = await notificationService.deleteNotificationById(notificationId, token)
-      //   setGeneralNotificationsInfoBackend(newNotificationList)
-      // } else {
-      //   throw new Error("Token is null")
-      // }
     } catch {
       setErrorMessage("error")
     }
-    // finally {
-    //   rechargeNotification()
-    //   updateNotificationCount()
-    // }
   }
 
   const notifList = () => {
