@@ -2,14 +2,14 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ParentDashboard from 'components/ParentDashboard'
 import NotificationsDashboard from 'components/NotifDashboard/NotificationsDashboard'
 import Children from 'components/Children'
-import AdminDashboard from 'components/AdminDashboard'
+import AdminDashboard from 'components/CreateNotification/CreateNotification'
 import { LayoutWrap } from 'components/LayoutWrap'
 import NotFound from 'components/NotFound'
 import DeleteNotification from 'components/DeleteNotification'
 import SeeAllStudents from 'components/SeeAllStudents'
 import { LoginPage } from 'pages/Login/LoginPage'
 import SeeAllParents from 'components/seeAllParents'
-import CreateNotification from 'components/CreateNotification'
+import CreateNotification from 'components/CreateNotification/CreateNotification'
 
 export const MyRoutes = () => (
   <Routes>
