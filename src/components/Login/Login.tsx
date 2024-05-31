@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { authService } from 'services/AuthService'
 import { errorHandler } from 'models/errors/ErrorHandler'
 import { UsePasswordToggle } from 'components/hooks/usePasswordToggle'
+import { Button } from 'components/basic/Button/Button'
 
 export const Login = () => {
   const navigate = useNavigate()
@@ -27,10 +28,7 @@ export const Login = () => {
   const onSubmit: SubmitHandler<LoginArgs> = async (data) => {
     try {
       const token = await authService.login(data)
-      const role = authService.getUserRole()
-      console.log('probando token y role en login')
-      console.log(token)
-      console.log('rolllll', role)
+      const role = authService.getUserRole()  
       await authService.login(data)
       if (role === 'ADMIN') {
         navigate('/adminDashboard')
@@ -66,10 +64,9 @@ export const Login = () => {
               required
             />
             <label className="field__label text text--light" htmlFor="username">
-              Usuario
+              {errors.email ? <span className="login__error">{errors.email.message}</span> : 'Usuario'}
             </label>
           </div>
-          {errors.email && <span className="login__error">{errors.email.message}</span>}
 
           <div className="field__container">
             <input
@@ -79,10 +76,11 @@ export const Login = () => {
               data-testid="login-password"
               required
             />
-            <label className="field__label text text--light">Contraseña</label>
+            <label className="field__label text text--light">
+              {errors.password ? <span className="login__error">{errors.password.message}</span> : 'Contraseña'}{' '}
+            </label>
             <span className="field__eye-icon text text--light">{ToggleIcon}</span>
           </div>
-          {errors.password && <span className="login__error">{errors.password.message}</span>}
 
           {errorMsg && (
             <span className="login__error" data-testid="login-error">
@@ -90,14 +88,7 @@ export const Login = () => {
             </span>
           )}
         </section>
-        <button
-          className="button button--primary button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
-          disabled={!isDirty || !isValid || isSubmitting}
-          type="submit"
-          data-testid="login-submit"
-        >
-          Enviar
-        </button>
+        <Button text={'enviar'} fullWidth taller rounded animated />
       </form>
     </article>
   )
