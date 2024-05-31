@@ -1,0 +1,62 @@
+.text {
+  font-family: var(--typeface-main);
+  color: var(--typeface-color);
+  font-size: 1.2em;
+  font-weight: 400;
+
+  &--xxl {
+    font-size: 2.5em;
+  }
+
+  &--xl {
+    font-size: 2em;
+  }
+
+  &--md {
+    font-size: 1.4em;
+  }
+
+  &--xs {
+    font-size: 0.9em;
+  }
+
+  &--light {
+    opacity: 0.6;
+  }
+
+  &--strong {
+    font-weight: 700;
+  }
+
+  &--stronger {
+    font-weight: 900;
+  }
+
+  &--spaced-sm {
+    letter-spacing: 0.5px;
+  }
+
+  &--spaced {
+    letter-spacing: 1.25px;
+  }
+
+  &--upper {
+    text-transform: uppercase;
+  }
+
+  &--white {
+    color: var(--color-white);
+  }
+
+  &--highlight {
+    color: var(--color-focus);
+  }
+
+  &--border {
+    text-shadow: 0 0 0.2em rgba(0, 0, 0, 1);
+  }
+
+  &--error {
+    color: var(--color-hot);
+  }
+}

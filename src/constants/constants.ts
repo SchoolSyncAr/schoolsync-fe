@@ -1,0 +1,1 @@
+export const { REACT_APP_REST_SERVER_URL, REACT_APP_USER_KEY_STORAGE } = process.env
