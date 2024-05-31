@@ -1,4 +1,4 @@
-import './login.scss'
+import './Login.scss'
 import { LoginArgs } from 'models/interfaces/types'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
@@ -6,7 +6,6 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { authService } from 'services/AuthService'
 import { errorHandler } from 'models/errors/ErrorHandler'
-import { Link } from 'react-router-dom'
 import { UsePasswordToggle } from 'components/hooks/usePasswordToggle'
 
 export const Login = () => {
