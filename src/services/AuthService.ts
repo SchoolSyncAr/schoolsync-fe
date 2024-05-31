@@ -48,6 +48,7 @@ const AuthService = () => {
   const clearUser = () => {
     console.log('session clear')
     sessionStorage.removeItem('auth')
+    sessionStorage.removeItem('userId')
   }
 
   return {
