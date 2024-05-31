@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { NotifProps } from 'interfaces/Notification'
+import { NotifProps } from 'models/interfaces/Notification'
 import { IconButton, Modal } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import DeleteIcon from '@mui/icons-material/Delete'

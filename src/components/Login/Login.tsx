@@ -26,8 +26,17 @@ export const Login = () => {
 
   const onSubmit: SubmitHandler<LoginArgs> = async (data) => {
     try {
+      const token = await authService.login(data)
+      const role = authService.getUserRole()
+      console.log("probando token y role en login")
+      console.log(token)
+      console.log("rolllll", role)
       await authService.login(data)
-      navigate('/parentDashboard')
+      if (role === "ADMIN") {
+        navigate('/adminDashboard')  
+      } else if (role === "USER") {
+        navigate('/parentDashboard')
+      }
     } catch (error) {
       setErrorMsg(errorHandler(error as AxiosError))
     }

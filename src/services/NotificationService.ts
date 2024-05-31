@@ -2,7 +2,7 @@ import api from 'api/axios'
 import { REACT_APP_REST_SERVER_URL } from 'constants/constants'
 import { Notification } from 'models/Notification'
 import { authService } from './AuthService'
-import { NotifProps } from 'interfaces/Notification'
+import { NotifProps } from 'models/interfaces/Notification'
 
 class NotificationService {
   getAllGeneralNotifications = async (filter: { searchField: string; orderParam: string; sortDirection: string }) => {

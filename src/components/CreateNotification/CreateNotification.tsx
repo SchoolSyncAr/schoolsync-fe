@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { FormControl, FormControlLabel, FormHelperText, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent } from '@mui/material'
 import { Notification } from 'models/Notification'
 import { parentService } from 'services/ParentService'
-import { Parent } from 'models/interfaces/Parent'
 import { useOnInit } from 'utils/useOnInit'
-import './AdminDashboard.scss'
 import { authService } from 'services/AuthService'
+import './CreateNotification.scss'
+import { Parent } from 'models/Parent'
 
-function AdminDashboard() {
+function CreateNotification() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const [weight, setWeight] = useState('')
@@ -23,7 +23,7 @@ function AdminDashboard() {
 
   const getParents = async () => {
     try {
-      const fetchedParents = await parentService.getAllNames()
+      const fetchedParents = await parentService.getAll()
       setParents(fetchedParents)
     } catch (error) {
       // Error
@@ -183,7 +183,7 @@ function AdminDashboard() {
                     >
                       {parents.map((parent) => (
                         <MenuItem key={parent.id} value={parent.id}>
-                          {parent.fullName}
+                          {parent.firstName}, {parent.lastName}
                         </MenuItem>
                       ))}
                     </Select>}
@@ -226,4 +226,4 @@ function AdminDashboard() {
   )
 }
 
-export default AdminDashboard
+export default CreateNotification
