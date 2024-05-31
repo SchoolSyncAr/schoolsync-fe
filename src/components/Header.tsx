@@ -47,6 +47,7 @@ function Header() {
           <Logout color="action" />
         </Link>
       </div>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </nav>
   )
 }

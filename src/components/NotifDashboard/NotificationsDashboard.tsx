@@ -70,15 +70,19 @@ function NotificationsDashboard() {
         filter={filter}
         handleFilterChange={handleFilterChange}
       />
-      <div className='notif'>
+      <div className="notif">
         <div className="notif__grid">{notifList()}</div>
         <div>
           <div className="notif__go-back">
-            <button className="button button--primary button--medium button--rounded text--md text--spaced text--upper animated shadow--box" onClick={() => navigate('/parentDashboard')}>
+            <button
+              className="button button--primary button--medium button--rounded text--md text--spaced text--upper animated shadow--box"
+              onClick={() => navigate('/parentDashboard')}
+            >
               Volver
             </button>
           </div>
         </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
     </>
   )
