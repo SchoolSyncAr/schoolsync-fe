@@ -30,7 +30,7 @@ export const Login = () => {
       const role = authService.getUserRole()
       console.log("probando token y role en login")
       console.log(token)
-      console.log(role)
+      console.log("rolllll", role)
       await authService.login(data)
       if (role === "ADMIN") {
         navigate('/adminDashboard')  
