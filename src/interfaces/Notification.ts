@@ -1,6 +1,6 @@
 
 export interface NotifProps {
-  id?: number,
+  id: number,
   title?: string,
   content?: string,
   weight?: string,

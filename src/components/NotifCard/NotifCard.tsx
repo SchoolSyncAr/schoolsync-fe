@@ -2,30 +2,39 @@ import { useState, useRef } from 'react'
 import { NotifProps } from 'interfaces/Notification'
 import { IconButton, Modal } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
+import DeleteIcon from '@mui/icons-material/Delete'
 import './NotifCard.scss'
 
-export const NotifCard = (props: NotifProps) => {
+interface NotifCardProps {
+  notifProps: NotifProps
+  deleteButton?: boolean
+  handleDelete?: (notifId: number) => void
+}
+
+export const NotifCard = ({notifProps, deleteButton, handleDelete}: NotifCardProps) => {
   const [modalOpen, setModalOpen] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
-  const { title, content } = props
+  const { title, content, weight } = notifProps
 
   const handleToggleModal = () => setModalOpen(!modalOpen)
 
   return (
     <>
-      <article className={`notif-card ${props.weight}`} onClick={handleToggleModal}>
-        <section className="notif-card__title">{title}</section>
+      <article className={`notif-card ${weight}`}>
+        <section className="notif-card__title">
+          {title}
+          {deleteButton && handleDelete && <IconButton onClick={() => handleDelete(notifProps.id)}><DeleteIcon /></IconButton>}</section>
         <section className="notif-card__body" ref={contentRef}>
           {content}
         </section>
         <section className="notif-card__button">
-          <button className="button button--secondary button--rounded text--xs text--spaced text--upper animated shadow--box">
+          <button onClick={handleToggleModal} className="button button--secondary button--rounded text--xs text--spaced text--upper animated shadow--box">
             Ver Más</button>
         </section>
         
       </article>
       <Modal open={modalOpen} onClose={handleToggleModal} >
-        <article className={`notif-card notif-modal ${props.weight}`}>
+        <article className={`notif-card notif-modal ${weight}`}>
           <IconButton style={{ position: 'absolute', top: '0.5em', right: '0.5em' }} onClick={handleToggleModal}>
             <CloseIcon />
           </IconButton>

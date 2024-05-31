@@ -26,7 +26,7 @@ function MockNotifications() {
     try {
       const token = authService.getUserToken()
       if (token) {
-        const newNotificationList = await notificationService.deleteNotificationById(notificationId, token)
+        const newNotificationList = await notificationService.deleteById(notificationId, token)
         setGeneralNotificationsInfoBackend(newNotificationList)
       } else {
         throw new Error("Token is null")

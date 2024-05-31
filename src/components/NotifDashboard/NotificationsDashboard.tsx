@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Route, useNavigate, useSearchParams } from 'react-router-dom'
 import { NotifCard } from 'components/NotifCard/NotifCard'
 import { useOnInit } from 'utils/useOnInit'
 import { NotifProps } from 'interfaces/Notification'
@@ -7,7 +7,11 @@ import notificationService from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
 import './NotificationDashboard.scss'
 
-function NotificationsDashboard() {
+interface NotifDashboardProps {
+  deleteButton?: boolean
+}
+
+function NotificationsDashboard({deleteButton = false}: NotifDashboardProps) {
   const [notifications, setNotifications] = useState<NotifProps[]>([])
   const [params, setParams] = useSearchParams()
   const [errorMessage, setErrorMessage] = useState('')
@@ -54,9 +58,29 @@ function NotificationsDashboard() {
     }))
   }
 
+  const handleDelete = async (notifId: number) => {
+    try {
+      await notificationService.deleteById(notifId)
+      getData()
+      // const token = authService.getUserToken()
+      // if (token) {
+      //   const newNotificationList = await notificationService.deleteNotificationById(notificationId, token)
+      //   setGeneralNotificationsInfoBackend(newNotificationList)
+      // } else {
+      //   throw new Error("Token is null")
+      // }
+    } catch {
+      setErrorMessage("error")
+    }
+    // finally {
+    //   rechargeNotification()
+    //   updateNotificationCount()
+    // }
+  }
+
   const notifList = () => {
-    return notifications.map((data) => (
-      <NotifCard key={data.id} id={data.id} title={data.title} content={data.content} weight={data.weight} />
+    return notifications.map((data, index) => (
+      <NotifCard key={index} notifProps={data} {...(deleteButton ? {deleteButton, handleDelete} : {} )} />
     ))
   }
 
