@@ -17,7 +17,7 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid, isSubmitting },
+    formState: { errors },
   } = useForm<LoginArgs>({
     defaultValues: {
       email: '',
@@ -28,7 +28,8 @@ export const Login = () => {
   const onSubmit: SubmitHandler<LoginArgs> = async (data) => {
     try {
       await authService.login(data)
-      navigate('/parentDashboard')
+      const role = authService.getUserRole()
+      role === 'ADMIN' ? navigate('/adminDashboard') : navigate('/parentDashboard')
     } catch (error) {
       setErrorMsg(errorHandler(error as AxiosError))
     }
