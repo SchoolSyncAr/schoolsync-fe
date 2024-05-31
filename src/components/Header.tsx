@@ -21,9 +21,9 @@ function Header() {
   })
   return (
     <nav className="nav">
-      <div className='left-group-container'>
+      <div className="left-group-container">
         <img className="left_logo" src="/images/logo.png" alt="SchoolSync" />
-        <h2 className='nav-title'>
+        <h2 className="nav-title">
           {/* <a href="/parentDashboard" className="nav-title"> */}
           SchoolSyncAr
           {/* </a> */}
