@@ -23,7 +23,7 @@ function Header() {
   })
 
   const handleLogout = () => {
-    authService.clearUser()
+    authService.logout()
     navigate('/login')
   }
 
