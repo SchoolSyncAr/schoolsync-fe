@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useOnInit } from "utils/useOnInit"
 import { getAllStudents } from '../services/StudentsService'
 import { Student } from '../models/Student'
+import AddCardIcon from '@mui/icons-material/AddCard'
 
 function SeeAllStudents() {
 
@@ -36,14 +37,17 @@ function SeeAllStudents() {
               return (
                 <>
                   <div>
-                    <div className="col-12 bg-light h3">{ student.lastName}, {student.firstName} </div>
+                    <div className="col-12 bg-light h3">{student.lastName}, {student.firstName} </div>
+                    <div className="buttonsToRightEnd">
+                      <AddCardIcon style={{ color: 'green'}} ></AddCardIcon>
+                    </div>
                   </div>
                 </>
               )
             })}
           </ul > 
           <div className="buttonsToRightEnd">
-            <Button className='forAllButtons buttonReturn' height={60} actionOnClick={() => navigate('/parentDashboard')}>Volver</Button>
+            <Button className='forAllButtons buttonReturn' height={60} actionOnClick={() => navigate('/adminDashboard')}>Volver</Button>
           </div>
         </div> 
       </div>

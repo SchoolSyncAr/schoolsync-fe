@@ -2,13 +2,14 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import ParentDashboard from 'components/ParentDashboard'
 import NotificationsDashboard from 'components/NotifDashboard/NotificationsDashboard'
 import Children from 'components/Children'
-import AdminDashboard from 'components/AdminDashboard/AdminDashboard'
+import AdminDashboard from 'components/CreateNotification/CreateNotification'
 import { LayoutWrap } from 'components/LayoutWrap'
 import NotFound from 'components/NotFound'
 import DeleteNotification from 'components/DeleteNotification'
 import SeeAllStudents from 'components/SeeAllStudents'
 import { LoginPage } from 'pages/Login/LoginPage'
 import SeeAllParents from 'components/seeAllParents'
+import CreateNotification from 'components/CreateNotification/CreateNotification'
 
 export const MyRoutes = () => (
   <Routes>
@@ -21,7 +22,8 @@ export const MyRoutes = () => (
       <Route path="adminDashboard" element={<AdminDashboard />} />
       <Route path="deleteNotification" element={<DeleteNotification />} />
       <Route path="seeAllStudents" element={<SeeAllStudents />} />
-      <Route path="seeAllParents" element={<SeeAllParents/>} />
+      <Route path="seeAllParents" element={<SeeAllParents />} />
+      <Route path="createNotification" element={<CreateNotification />} />
     </Route>
     <Route path="*" element={<NotFound />} />
   </Routes>

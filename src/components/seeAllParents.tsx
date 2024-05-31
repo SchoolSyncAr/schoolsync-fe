@@ -6,6 +6,7 @@ import { getAllStudents } from '../services/StudentsService'
 import { Student } from '../models/Student'
 import { getAllParents } from "services/ParentService"
 import { Parent } from "models/Parent"
+import AddCardIcon from '@mui/icons-material/AddCard'
 
 function SeeAllParents() {
 
@@ -38,14 +39,17 @@ function SeeAllParents() {
               return (
                 <>
                   <div>
-                    <div className="col-12 bg-light h3">{ parent.lastName}, {parent.firstName} </div>
+                    <div className="col-12 bg-light h3">{parent.lastName}, {parent.firstName} </div>
+                    <div className="buttonsToRightEnd">
+                      <AddCardIcon style={{ color: 'green'}} ></AddCardIcon>
+                    </div>
                   </div>
                 </>
               )
             })}
           </ul > 
           <div className="buttonsToRightEnd">
-            <Button className='forAllButtons buttonReturn' height={60} actionOnClick={() => navigate('/parentDashboard')}>Volver</Button>
+            <Button className='forAllButtons buttonReturn' height={60} actionOnClick={() => navigate('/adminDashboard')}>Volver</Button>
           </div>
         </div> 
       </div>

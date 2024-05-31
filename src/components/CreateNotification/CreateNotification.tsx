@@ -1,10 +1,10 @@
 import { SetStateAction, useState } from 'react'
 import  notificationService  from 'services/NotificationService'
 import Button from '../Button'
-import './AdminDashboard.scss'
+import './CreateNotification.scss'
 import { useNavigate } from 'react-router-dom'
 
-function AdminDashboard() {
+function CreateNotification() {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
@@ -93,4 +93,4 @@ function AdminDashboard() {
   )
 }
 
-export default AdminDashboard
+export default CreateNotification
