@@ -50,6 +50,13 @@ const AuthService = () => {
     sessionStorage.removeItem('auth')
   }
 
+  const logout = () => {
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('role')
+    sessionStorage.removeItem('userId')
+    sessionStorage.removeItem('tokenExpiration')
+  }
+
   return {
     login,
     getUserToken,
@@ -57,6 +64,7 @@ const AuthService = () => {
     clearUser,
     getUserId,
     getTokenExpiration,
+    logout,
   }
 }
 
