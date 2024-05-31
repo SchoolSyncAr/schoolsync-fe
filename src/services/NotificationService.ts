@@ -11,8 +11,9 @@ class NotificationService {
         sortDirection: filter.sortDirection,
       },
     })
-    return allNotificationsJson.data.map((allNotificationsJson: { id: number; title: string; content: string }) =>
-      Notification.fromJson(allNotificationsJson),
+    console.log(allNotificationsJson)
+    return allNotificationsJson.data.map((allNotificationsJson: Notification) =>
+      Notification.fromJson(allNotificationsJson)
     )
   }
 

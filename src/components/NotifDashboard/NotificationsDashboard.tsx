@@ -58,7 +58,7 @@ function NotificationsDashboard() {
 
   const notifList = () => {
     return notifications.map((data) => (
-      <NotifCard key={data.id} id={data.id} title={data.title} content={data.content} />
+      <NotifCard key={data.id} id={data.id} title={data.title} content={data.content} weight={data.weight} />
     ))
   }
 
@@ -74,10 +74,7 @@ function NotificationsDashboard() {
       />
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       <div className="notif-grid">{notifList()}</div>
-      <br></br>
-      <br></br>
       <div>
-        {/*<MockNotifications></MockNotifications>*/}
         <div className="buttonsToRightEnd">
           <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
             Volver

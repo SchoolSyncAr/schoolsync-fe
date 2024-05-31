@@ -25,7 +25,6 @@ const Button: React.FC<ButtonProps> = (props) => {
     fontFamily: 'monospace',
     fontSize: props.fontSize || 20,
     textAlign: "center",
-    backgroundColor: props.backgroundColor
   }
 
   // const {type = 'button'} = props
