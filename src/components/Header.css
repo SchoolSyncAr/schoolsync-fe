@@ -10,6 +10,7 @@
   position: sticky;
   top: 0;
   transition: top 500ms ease-in-out;
+  z-index: 1;
 }
 
 .nav-title {
