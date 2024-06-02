@@ -1,10 +1,8 @@
-import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { LayoutWrap } from 'components/LayoutWrap'
 import { LoginPage } from 'pages/Login/LoginPage'
 import NotificationsDashboard from 'components/NotifDashboard/NotificationsDashboard'
 import CreateNotification from 'components/CreateNotification/CreateNotification'
-import DeleteNotification from 'components/DeleteNotification'
 import ParentDashboard from 'components/ParentDashboard'
 import AdminDashboard from 'components/AdminDashboard'
 import SeeAllStudents from 'components/SeeAllStudents'
@@ -23,7 +21,7 @@ export const MyRoutes = () => (
         <Route path="notificationsDashboard" element={<NotificationsDashboard />} />
         <Route path="children" element={<Children />} />
         <Route path="adminDashboard" element={<AdminDashboard />} />
-        <Route path="deleteNotification" element={<DeleteNotification />} />
+        <Route path="deleteNotification" element={<NotificationsDashboard deleteButton={true} />} />
         <Route path="seeAllStudents" element={<SeeAllStudents />} />
         <Route path="seeAllParents" element={<SeeAllParents />} />
         <Route path="createNotification" element={<CreateNotification />} />

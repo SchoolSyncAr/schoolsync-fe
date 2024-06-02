@@ -1,7 +1,7 @@
 import { NotifProps } from "models/interfaces/Notification"
 
 export class Notification {
-  id: number
+  id?: number
   title: string
   content: string
   weight: string

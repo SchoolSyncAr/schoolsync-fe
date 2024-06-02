@@ -7,7 +7,11 @@ import notificationService from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
 import './NotificationDashboard.scss'
 
-function NotificationsDashboard() {
+interface NotifDashboardProps {
+  deleteButton?: boolean
+}
+
+function NotificationsDashboard({deleteButton = false}: NotifDashboardProps) {
   const [notifications, setNotifications] = useState<NotifProps[]>([])
   const [params, setParams] = useSearchParams()
   const [errorMessage, setErrorMessage] = useState('')
@@ -54,9 +58,18 @@ function NotificationsDashboard() {
     }))
   }
 
+  const handleDelete = async (notifId: number) => {
+    try {
+      await notificationService.deleteById(notifId)
+      getData()
+    } catch {
+      setErrorMessage("error")
+    }
+  }
+
   const notifList = () => {
-    return notifications.map((data) => (
-      <NotifCard key={data.id} id={data.id} title={data.title} content={data.content} weight={data.weight} />
+    return notifications.map((data, index) => (
+      <NotifCard key={index} notifProps={data} {...(deleteButton ? {deleteButton, handleDelete} : {} )} />
     ))
   }
 
