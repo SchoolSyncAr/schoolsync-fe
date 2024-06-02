@@ -15,6 +15,9 @@
     font-size: 1.2em;
     font-weight: 600;
     color: var(--color-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__body {
@@ -34,6 +37,10 @@
     position: absolute;
     bottom: 1em; 
     right: 1em; 
+  }
+
+  &.read-true {
+    opacity: 0.65;
   }
 }
 

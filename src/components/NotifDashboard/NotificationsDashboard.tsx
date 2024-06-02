@@ -54,9 +54,39 @@ function NotificationsDashboard() {
     }))
   }
 
+  const handlePinned = async (id: number) => {
+    try {
+      console.log(id)
+      await notificationService.pinNotification(id)
+      getData()
+    } catch {
+      setErrorMessage('No se pudo pinnear la notificación')
+    }
+  }
+
+  const handleRead = async (id: number) => {
+    try {
+      console.log(id)
+      await notificationService.readNotification(id)
+      getData()
+    } catch {
+      setErrorMessage('No se pudo setear como leída la notificación')
+    }
+  }
+
   const notifList = () => {
     return notifications.map((data) => (
-      <NotifCard key={data.id} id={data.id} title={data.title} content={data.content} weight={data.weight} />
+      <NotifCard
+        key={data.id}
+        id={data.id}
+        title={data.title}
+        content={data.content}
+        weight={data.weight}
+        read={data.read}
+        pinned={data.pinned}
+        handlePinned={handlePinned}
+        handleRead={handleRead}
+      />
     ))
   }
 
