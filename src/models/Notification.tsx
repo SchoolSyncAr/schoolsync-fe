@@ -1,4 +1,4 @@
-import { NotifProps } from "models/interfaces/Notification"
+import { NotifProps } from 'models/interfaces/Notification'
 
 export class Notification {
   id?: number
@@ -9,6 +9,7 @@ export class Notification {
   scope: string
   recipientGroups: string[]
   recipient: number
+  date: string
   constructor(props?: NotifProps) {
     this.id = props?.id ?? 0
     this.title = props?.title ?? ''
@@ -18,6 +19,7 @@ export class Notification {
     this.scope = props?.scope ?? ''
     this.recipientGroups = props?.recipientGroups ?? []
     this.recipient = props?.recipient ?? 0
+    this.date = props?.date ?? ''
   }
 
   static fromJson(notifData: NotifProps) {
