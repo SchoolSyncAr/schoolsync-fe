@@ -11,7 +11,7 @@ interface NotifDashboardProps {
   deleteButton?: boolean
 }
 
-function NotificationsDashboard({deleteButton = false}: NotifDashboardProps) {
+function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
   const [notifications, setNotifications] = useState<NotifProps[]>([])
   const [params, setParams] = useSearchParams()
   const [errorMessage, setErrorMessage] = useState('')
@@ -58,18 +58,44 @@ function NotificationsDashboard({deleteButton = false}: NotifDashboardProps) {
     }))
   }
 
+  const handlePinned = async (notifId: number) => {
+    try {
+      console.log(notifId)
+      await notificationService.pinNotification(notifId)
+      getData()
+    } catch {
+      setErrorMessage('No se pudo pinnear la notificación')
+    }
+  }
+
+  const handleRead = async (notifId: number) => {
+    try {
+      console.log(notifId)
+      await notificationService.readNotification(notifId)
+      getData()
+    } catch {
+      setErrorMessage('No se pudo setear como leída la notificación')
+    }
+  }
+
   const handleDelete = async (notifId: number) => {
     try {
       await notificationService.deleteById(notifId)
       getData()
     } catch {
-      setErrorMessage("error")
+      setErrorMessage('error')
     }
   }
 
   const notifList = () => {
     return notifications.map((data, index) => (
-      <NotifCard key={index} notifProps={data} {...(deleteButton ? {deleteButton, handleDelete} : {} )} />
+      <NotifCard
+        key={index}
+        notifProps={data}
+        handlePinned={handlePinned}
+        handleRead={handleRead}
+        {...(deleteButton ? { deleteButton, handleDelete } : {})}
+      />
     ))
   }
 

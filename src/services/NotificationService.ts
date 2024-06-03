@@ -67,6 +67,16 @@ class NotificationService {
     const recipientGroups = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/recipient-groups`)
     return recipientGroups.data
   }
+
+  pinNotification = async (notificationId: number) => {
+    const notificationJson = await api.put(`api/notification/pin`, notificationId)
+    return notificationJson.data
+  }
+
+  readNotification = async (notificationId: number) => {
+    /* const notificationJson =  */await api.put(`api/notification/read`, notificationId)
+    /* return notificationJson.data */
+  }
 }
 
 const notificationService = new NotificationService()
