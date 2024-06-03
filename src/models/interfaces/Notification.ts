@@ -1,5 +1,5 @@
 export interface NotifProps {
-  id: number; // Asegúrate de que el ID sea requerido
+  id: number;
   title?: string;
   content?: string;
   weight?: string;
@@ -9,6 +9,4 @@ export interface NotifProps {
   recipient?: number;
   read?: boolean;
   pinned?: boolean;
-  handlePinned?: (id: number) => Promise<void>;
-  handleRead?: (id: number) => Promise<void>
 }

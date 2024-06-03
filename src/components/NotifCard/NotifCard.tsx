@@ -18,64 +18,64 @@ interface NotifCardProps {
   handleRead?: (notifId: number) => void
 }
 
-export const NotifCard = ({notifProps, deleteButton, handleDelete, handlePinned, handleRead}: NotifCardProps) => {
+export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned, handleRead }: NotifCardProps) => {
   const [modalOpen, setModalOpen] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
-  const { title, content, weight } = notifProps
+  const { title, content, weight, pinned, read } = notifProps
 
   const handleToggleModal = () => setModalOpen(!modalOpen)
 
-  const handlePinned = async () => {
-    props.handlePinned && (await props.handlePinned(props.id))
-  }
-
-  const handleRead = async () => {
-    props.handleRead && (await props.handleRead(props.id))
-  }
-
   return (
     <>
-      <article className={`notif-card ${weight} ${read ? 'read-true' : ''}`} /* onClick={handleToggleModal} */>
+      <article className={`notif-card ${weight} ${read ? 'read-true' : ''}`}>
         <section className="notif-card__title">
           {title}
-          {handleDelete ? <section>
-            {props.pinned ? (
-              <IconButton style={{ color: 'inherit' }} onClick={handlePinned}>
-                <PushPinIcon />
-              </IconButton>
-            ) : (
-              <IconButton style={{ color: 'inherit' }} onClick={handlePinned}>
-                <PushPinOutlinedIcon />
-              </IconButton>
-            )}
+          {!deleteButton ? (
+            <div>
+              {handlePinned &&
+                (pinned ? (
+                  <IconButton style={{ color: 'inherit' }} onClick={() => handlePinned(notifProps.id)}>
+                    <PushPinIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton style={{ color: 'inherit' }} onClick={() => handlePinned(notifProps.id)}>
+                    <PushPinOutlinedIcon />
+                  </IconButton>
+                ))}
 
-            {props.read ? (
-              <IconButton style={{ color: 'inherit' }} onClick={handleRead}>
-                <MarkChatReadIcon />
-              </IconButton>
-            ) : (
-              <IconButton style={{ color: 'inherit' }} onClick={handleRead}>
-                <MarkChatUnreadIcon />
-              </IconButton>
-            )}
-          </section> : <>}
-          {deleteButton && handleDelete && <div><IconButton onClick={() => handleDelete(notifProps.id)}><DeleteIcon style={{ fontSize: '1.3em' }} /></IconButton></div>}
+              {handleRead &&
+                (read ? (
+                  <IconButton style={{ color: 'inherit' }} onClick={() => handleRead(notifProps.id)}>
+                    <MarkChatReadIcon />
+                  </IconButton>
+                ) : (
+                  <IconButton style={{ color: 'inherit' }} onClick={() => handleRead(notifProps.id)}>
+                    <MarkChatUnreadIcon />
+                  </IconButton>
+                ))}
+            </div>
+          ) : null}
+          {deleteButton && handleDelete && (
+            <IconButton onClick={() => handleDelete(notifProps.id)}>
+              <DeleteIcon style={{ fontSize: '1.3em' }} />
+            </IconButton>
+          )}
         </section>
+
         <section className="notif-card__body" ref={contentRef}>
           {content}
         </section>
         <section className="notif-card__button">
           <button
             className="button button--secondary button--rounded text--xs text--spaced text--upper animated shadow--box"
-            onClick={handleToggleModal} // Eliminamos el `}` antes del `=>`
+            onClick={handleToggleModal}
           >
             Ver Más
           </button>
-
         </section>
       </article>
 
-      <Modal open={modalOpen} onClose={handleToggleModal} >
+      <Modal open={modalOpen} onClose={handleToggleModal}>
         <article className={`notif-card notif-modal ${weight}`}>
           <IconButton style={{ position: 'absolute', top: '0.5em', right: '0.5em' }} onClick={handleToggleModal}>
             <CloseIcon />

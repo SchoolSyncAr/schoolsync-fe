@@ -74,8 +74,8 @@ class NotificationService {
   }
 
   readNotification = async (notificationId: number) => {
-    const notificationJson = await api.put(`api/notification/read`, notificationId)
-    return notificationJson.data
+    /* const notificationJson =  */await api.put(`api/notification/read`, notificationId)
+    /* return notificationJson.data */
   }
 }
 
