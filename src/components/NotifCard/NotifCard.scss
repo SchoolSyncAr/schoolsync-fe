@@ -12,6 +12,8 @@
   position: relative;
 
   &__title {
+    display: flex;
+    justify-content: space-between;
     font-size: 1.2em;
     font-weight: 600;
     color: var(--color-white);

@@ -7,7 +7,11 @@ import notificationService from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
 import './NotificationDashboard.scss'
 
-function NotificationsDashboard() {
+interface NotifDashboardProps {
+  deleteButton?: boolean
+}
+
+function NotificationsDashboard({deleteButton = false}: NotifDashboardProps) {
   const [notifications, setNotifications] = useState<NotifProps[]>([])
   const [params, setParams] = useSearchParams()
   const [errorMessage, setErrorMessage] = useState('')
@@ -54,6 +58,7 @@ function NotificationsDashboard() {
     }))
   }
 
+
   const handlePinned = async (id: number) => {
     try {
       console.log(id)
@@ -71,22 +76,21 @@ function NotificationsDashboard() {
       getData()
     } catch {
       setErrorMessage('No se pudo setear como leída la notificación')
+
+  const handleDelete = async (notifId: number) => {
+    try {
+      await notificationService.deleteById(notifId)
+      getData()
+    } catch {
+      setErrorMessage("error")
+
     }
   }
 
   const notifList = () => {
-    return notifications.map((data) => (
-      <NotifCard
-        key={data.id}
-        id={data.id}
-        title={data.title}
-        content={data.content}
-        weight={data.weight}
-        read={data.read}
-        pinned={data.pinned}
-        handlePinned={handlePinned}
-        handleRead={handleRead}
-      />
+
+    return notifications.map((data, index) => (
+      <NotifCard key={index} notifProps={data} handlePinned={handlePinned} handleRead={handleRead} {...(deleteButton ? {deleteButton, handleDelete} : {} )} />
     ))
   }
 
