@@ -17,6 +17,9 @@
     font-size: 1.2em;
     font-weight: 600;
     color: var(--color-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__body {
@@ -44,6 +47,10 @@
     font-size: 1em;
     font-weight: 600;
     color: var(--color-white);
+  }
+
+  &.read-true {
+    opacity: 0.65;
   }
 }
 

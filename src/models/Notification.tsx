@@ -10,6 +10,9 @@ export class Notification {
   recipientGroups: string[]
   recipient: number
   date: string
+  read: boolean
+  pinned: boolean
+
   constructor(props?: NotifProps) {
     this.id = props?.id ?? 0
     this.title = props?.title ?? ''
@@ -20,6 +23,8 @@ export class Notification {
     this.recipientGroups = props?.recipientGroups ?? []
     this.recipient = props?.recipient ?? 0
     this.date = props?.date ?? ''
+    this.read = props?.read ?? false
+    this.pinned = props?.pinned ?? false
   }
 
   static fromJson(notifData: NotifProps) {
