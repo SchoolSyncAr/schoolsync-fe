@@ -7,6 +7,7 @@ export interface NotifProps {
   scope?: string;
   recipientGroups?: string[];
   recipient?: number;
+  date?: string
   read?: boolean;
   pinned?: boolean;
 }

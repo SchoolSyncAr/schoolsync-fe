@@ -35,10 +35,18 @@
   &__button {
     display: flex;
     height: var(--element-height);
-    // justify-content: end;
     position: absolute;
-    bottom: 1em; 
-    right: 1em; 
+    bottom: 1em;
+    right: 1em;
+  }
+
+  &__date {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--color-white);
   }
 
   &.read-true {
@@ -55,7 +63,7 @@
   width: 40em;
 }
 
-.scollable {
+.scrollable {
   overflow-y: auto;
   max-height: 100%;
 }

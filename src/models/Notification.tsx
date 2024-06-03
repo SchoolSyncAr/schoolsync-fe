@@ -9,6 +9,7 @@ export class Notification {
   scope: string
   recipientGroups: string[]
   recipient: number
+  date: string
   read: boolean
   pinned: boolean
 
@@ -21,6 +22,7 @@ export class Notification {
     this.scope = props?.scope ?? ''
     this.recipientGroups = props?.recipientGroups ?? []
     this.recipient = props?.recipient ?? 0
+    this.date = props?.date ?? ''
     this.read = props?.read ?? false
     this.pinned = props?.pinned ?? false
   }

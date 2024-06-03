@@ -17,13 +17,24 @@ interface NotifCardProps {
   handlePinned?: (notifId: number) => void
   handleRead?: (notifId: number) => void
 }
-
+  
 export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned, handleRead }: NotifCardProps) => {
   const [modalOpen, setModalOpen] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
-  const { title, content, weight, pinned, read } = notifProps
+  const { title, content, weight, date, pinned, read } = notifProps
 
   const handleToggleModal = () => setModalOpen(!modalOpen)
+
+  const formattedDate = new Date(date)
+    .toLocaleString('es-AR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false,
+    })
+    .replace(',', ' a las')
 
   return (
     <>
@@ -65,6 +76,7 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
         <section className="notif-card__body" ref={contentRef}>
           {content}
         </section>
+        <section className="notif-card__date">{formattedDate}</section>
         <section className="notif-card__button">
           <button
             className="button button--secondary button--rounded text--xs text--spaced text--upper animated shadow--box"
@@ -74,14 +86,13 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
           </button>
         </section>
       </article>
-
       <Modal open={modalOpen} onClose={handleToggleModal}>
         <article className={`notif-card notif-modal ${weight}`}>
           <IconButton style={{ position: 'absolute', top: '0.5em', right: '0.5em' }} onClick={handleToggleModal}>
             <CloseIcon />
           </IconButton>
           <section className="notif-card__title">{title}</section>
-          <section className="notif-card__body scollable" ref={contentRef}>
+          <section className="notif-card__body scrollable" ref={contentRef}>
             {content}
           </section>
         </article>
