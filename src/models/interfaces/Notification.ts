@@ -1,5 +1,5 @@
 export interface NotifProps {
-  id?: number // Make id optional
+  id?: number
   title?: string
   content?: string
   weight?: string
