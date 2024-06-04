@@ -115,7 +115,7 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
           <div className="notif__go-back">
             <button
               className="button button--primary button--medium button--rounded text--md text--spaced text--upper animated shadow--box"
-              onClick={() => navigate('/parentDashboard')}
+              onClick={() => navigate(deleteButton ? '/adminDashboard' : '/parentDashboard')}
             >
               Volver
             </button>

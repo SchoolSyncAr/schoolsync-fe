@@ -1,7 +1,16 @@
 import { SetStateAction, useState } from 'react'
-import  notificationService  from 'services/NotificationService'
+import notificationService from 'services/NotificationService'
 import { useNavigate } from 'react-router-dom'
-import { FormControl, FormControlLabel, FormHelperText, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent } from '@mui/material'
+import {
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
+  MenuItem,
+  Radio,
+  RadioGroup,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material'
 import { Notification } from 'models/Notification'
 import { parentService } from 'services/ParentService'
 import { useOnInit } from 'utils/useOnInit'
@@ -40,7 +49,7 @@ function CreateNotification() {
   }
 
   function getWeights() {
-    return ['BAJO','MEDIO','ALTO']
+    return ['BAJO', 'MEDIO', 'ALTO']
   }
 
   function titleInputHandler(event: { target: { value: SetStateAction<string> } }) {
@@ -61,12 +70,12 @@ function CreateNotification() {
     setScope(event.target.value)
   }
 
-  function recipientChangeHandler (event: SelectChangeEvent<Parent>) {
+  function recipientChangeHandler(event: SelectChangeEvent<Parent>) {
     const { value } = event.target
     setRecipient(value as Parent)
   }
 
-  function recipientGroupChangeHandler (event: SelectChangeEvent<string[]>) {
+  function recipientGroupChangeHandler(event: SelectChangeEvent<string[]>) {
     const { value } = event.target
     setRecipientGroups(Array.isArray(value) ? value : [value])
   }
@@ -108,13 +117,13 @@ function CreateNotification() {
 
   return (
     <>
-      <article className='new-notif'>
-        <section className='new-notif_header'>
-          <div className='text text--xl'>Crear Notificacion</div>
+      <article className="new-notif">
+        <section className="new-notif_header">
+          <div className="text text--xl">Crear Notificacion</div>
         </section>
-        <form onSubmit={createNewNotificationEventHandler} className='new-notif_form'>
-          <div className='new-notif_form-body'>
-            <div onSubmit={createNewNotificationEventHandler} className='new-notif_text'>
+        <form onSubmit={createNewNotificationEventHandler} className="new-notif_form">
+          <div className="new-notif_form-body">
+            <div onSubmit={createNewNotificationEventHandler} className="new-notif_text">
               <div className="field__container">
                 <input
                   id="newNotifTitle"
@@ -142,11 +151,9 @@ function CreateNotification() {
                 </label>
               </div>
             </div>
-            <div className='new-notif_settings'>
-              <div className='new-notif_settings-section'>
-                <label className="text text--white text--md text--strong">
-                  Peso
-                </label>
+            <div className="new-notif_settings">
+              <div className="new-notif_settings-section">
+                <label className="text text--white text--md text--strong">Peso</label>
                 <FormControl className="field field--select field--rounded animated shadow">
                   <Select
                     value={weight}
@@ -154,28 +161,31 @@ function CreateNotification() {
                     className="field field--select field--rounded shadow"
                   >
                     {getWeights().map((weight) => (
-                      <MenuItem
-                        key={weight}
-                        value={weight}
-                      >
+                      <MenuItem key={weight} value={weight}>
                         {weight}
                       </MenuItem>
                     ))}
                   </Select>
                 </FormControl>
               </div>
-              <div className='new-notif_settings-section'>
-                <label className="text text--white text--md text--strong">
-                  A quien le llega
-                </label>
+              <div className="new-notif_settings-section">
+                <label className="text text--white text--md text--strong">A quien le llega</label>
                 <FormControl sx={{ color: 'white' }}>
                   <RadioGroup row value={scope} onChange={handleScopeChange}>
-                    <FormControlLabel value="General" control={<Radio sx={{ color: 'white','&.Mui-checked': {color: 'white'}, }}/>} label="General" />
-                    <FormControlLabel value="Individual" control={<Radio sx={{ color: 'white','&.Mui-checked': {color: 'white'}, }}/>} label="Individual" />
+                    <FormControlLabel
+                      value="General"
+                      control={<Radio sx={{ color: 'white', '&.Mui-checked': { color: 'white' } }} />}
+                      label="General"
+                    />
+                    <FormControlLabel
+                      value="Individual"
+                      control={<Radio sx={{ color: 'white', '&.Mui-checked': { color: 'white' } }} />}
+                      label="Individual"
+                    />
                   </RadioGroup>
                 </FormControl>
                 <FormControl className="field field--select field--rounded animated shadow">
-                  {scope === "Individual" && 
+                  {scope === 'Individual' && (
                     <Select
                       value={recipient}
                       onChange={recipientChangeHandler}
@@ -186,25 +196,27 @@ function CreateNotification() {
                           {parent.firstName}, {parent.lastName}
                         </MenuItem>
                       ))}
-                    </Select>}
-                  {scope === 'General' && <>
-                    <Select
-                      multiple
-                      value={recipientGroups}
-                      onChange={recipientGroupChangeHandler}
-                      className="field field--select field--rounded shadow"
-                    >
-                      {groups.map((group, index) => (
-                        <MenuItem key={index} value={group}>
-                          {group}
-                        </MenuItem>
-                      ))}
                     </Select>
-                    <FormHelperText sx={{color: 'var(--color-white)', fontFamily: 'var(--typeface-main)'}}>
-                      (Seleccione 1 o más)
-                    </FormHelperText>
-                  </>
-                  }
+                  )}
+                  {scope === 'General' && (
+                    <>
+                      <Select
+                        multiple
+                        value={recipientGroups}
+                        onChange={recipientGroupChangeHandler}
+                        className="field field--select field--rounded shadow"
+                      >
+                        {groups.map((group, index) => (
+                          <MenuItem key={index} value={group}>
+                            {group}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                      <FormHelperText sx={{ color: 'var(--color-white)', fontFamily: 'var(--typeface-main)' }}>
+                        (Seleccione 1 o más)
+                      </FormHelperText>
+                    </>
+                  )}
                 </FormControl>
               </div>
             </div>
@@ -218,8 +230,13 @@ function CreateNotification() {
             Crear
           </button>
         </form>
-        <section className='control-buttons'>
-          <button className="button button--primary button--medium button--rounded text--md text--spaced text--upper animated shadow--box" onClick={() => navigate('/parentDashboard')}>Volver</button>
+        <section className="control-buttons">
+          <button
+            className="button button--primary button--medium button--rounded text--md text--spaced text--upper animated shadow--box"
+            onClick={() => navigate('/adminDashboard')}
+          >
+            Volver
+          </button>
         </section>
       </article>
     </>
