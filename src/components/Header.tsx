@@ -7,9 +7,11 @@ import NotificationsIcon from '@mui/icons-material/Notifications'
 import notificationService from 'services/NotificationService'
 import { Logout } from '@mui/icons-material'
 import { authService } from 'services/AuthService'
+import { useNotification } from './hooks/NotificationContext'
 
 function Header() {
   const [data, setData] = useState(0)
+  const { notifications } = useNotification()
   const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
 
@@ -35,7 +37,7 @@ function Header() {
       </div>
       <div className="nav-links">
         <Link to={'/notificationsDashboard'} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Badge badgeContent={data} color="error">
+          <Badge badgeContent={notifications.length == 0 ? data : notifications.length} color="error">
             <NotificationsIcon color="action" />
           </Badge>
         </Link>

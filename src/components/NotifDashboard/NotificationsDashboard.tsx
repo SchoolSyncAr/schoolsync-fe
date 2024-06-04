@@ -1,3 +1,4 @@
+// src/components/NotifDashboard/NotificationsDashboard.tsx
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { NotifCard } from 'components/NotifCard/NotifCard'
@@ -6,12 +7,14 @@ import { NotifProps } from 'models/interfaces/Notification'
 import notificationService from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
 import './NotificationDashboard.scss'
+import { useNotification } from 'components/hooks/NotificationContext'
 
 interface NotifDashboardProps {
   deleteButton?: boolean
 }
 
 function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
+  const { updateNotifications } = useNotification()
   const [notifications, setNotifications] = useState<NotifProps[]>([])
   const [params, setParams] = useSearchParams()
   const [errorMessage, setErrorMessage] = useState('')
@@ -25,6 +28,7 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
     try {
       const notifs = await notificationService.getAllGeneralNotifications(filter)
       setNotifications(notifs)
+      updateNotifications(notifs) // Actualizar el contexto
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }
