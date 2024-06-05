@@ -90,6 +90,7 @@ function CreateNotification() {
       scope: scope.toUpperCase(),
       recipientGroups: recipientGroups,
       recipient: recipient.id,
+      date: '',
     })
     notificationService
       .createNotification(newNotification)
