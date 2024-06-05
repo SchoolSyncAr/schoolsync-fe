@@ -1,13 +1,13 @@
 export interface NotifProps {
-  id: number;
-  title?: string;
-  content?: string;
-  weight?: string;
-  sender?: number;
-  scope?: string;
-  recipientGroups?: string[];
-  recipient?: number;
+  id?: number
+  title?: string
+  content?: string
+  weight?: string
+  sender?: number
+  scope?: string
+  recipientGroups?: string[]
+  recipient?: number
   date?: string
-  read?: boolean;
-  pinned?: boolean;
+  read?: boolean
+  pinned?: boolean
 }
