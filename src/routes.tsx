@@ -10,6 +10,7 @@ import SeeAllParents from 'components/seeAllParents'
 import Children from 'components/Children'
 import NotFound from 'components/NotFound'
 import ProtectedRoute from 'protectedRoute'
+import { NotificationProvider } from 'components/hooks/NotificationContext'
 
 export const MyRoutes = () => (
   <Routes>
@@ -33,8 +34,10 @@ export const MyRoutes = () => (
 
 export const SchoolSyncRouter = () => {
   return (
-    <Router>
-      <MyRoutes />
-    </Router>
+    <NotificationProvider>
+      <Router>
+        <MyRoutes />
+      </Router>
+    </NotificationProvider>
   )
 }
