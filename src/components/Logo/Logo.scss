@@ -1,0 +1,28 @@
+.logo {
+  height: 100%;
+  display: flex;
+  gap: var(--spacing-small);
+  text-decoration: none;
+
+  & img {
+    max-height: 100%;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__brand {
+    text-justify: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-white);
+    &--lt {
+      font-weight: 200;
+      color: hsl(0, 0%, 100%, 0.9);
+      text-transform: none;
+    }
+  }
+}

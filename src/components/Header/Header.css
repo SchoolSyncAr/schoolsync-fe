@@ -1,0 +1,12 @@
+/* @import 'src/App.scss'; */
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing);
+}
+
+.nav-links__icon {
+  color: var(--color-white);
+}

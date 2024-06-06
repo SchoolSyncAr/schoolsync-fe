@@ -1,15 +1,16 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './Header.css'
 import { useState } from 'react'
 import { useOnInit } from 'utils/useOnInit'
-import { Badge } from '@mui/material'
+import { Badge, IconButton } from '@mui/material'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import notificationService from 'services/NotificationService'
 import { Logout } from '@mui/icons-material'
 import { authService } from 'services/AuthService'
-import { useNotification } from './hooks/NotificationContext'
+import { useNotification } from '../hooks/NotificationContext'
+import { Logo } from 'components/Logo/Logo'
 
-function Header() {
+export const Header = () => {
   const [data, setData] = useState(0)
   const { notifications } = useNotification()
   const [errorMessage, setErrorMessage] = useState('')
@@ -30,27 +31,19 @@ function Header() {
   }
 
   return (
-    <nav className="nav">
-      <div className="left-group-container">
-        <img className="left_logo" src="/images/logo.png" alt="SchoolSync" />
-        <h2 className="nav-title">SchoolSyncAr</h2>
-      </div>
+    <header className="main__header">
+      <Logo imgUrl={'/images/logo.png'} alt={'SchoolSync'}/>  
       <div className="nav-links">
-        <Link to={'/notificationsDashboard'} style={{ textDecoration: 'none', color: 'inherit' }}>
+        <IconButton onClick={() => navigate('/notificationsDashboard')}>
           <Badge badgeContent={notifications.length == 0 ? data : notifications.length} color="error">
-            <NotificationsIcon color="action" />
+            <NotificationsIcon className='nav-links__icon'/>
           </Badge>
-        </Link>
-        <button
-          onClick={handleLogout}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit' }}
-        >
-          <Logout color="action" />
-        </button>
+        </IconButton>
+        <IconButton onClick={handleLogout} >
+          <Logout className='nav-links__icon'/>
+        </IconButton>
       </div>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-    </nav>
+    </header>
   )
 }
-
-export default Header
