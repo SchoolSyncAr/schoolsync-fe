@@ -6,7 +6,7 @@ import CreateNotification from 'components/CreateNotification/CreateNotification
 import ParentDashboard from 'components/ParentDashboard'
 import AdminDashboard from 'components/AdminDashboard'
 import { SeeAllStudents } from 'components/notifications/SeeAllStudents'
-import SeeAllParents from 'components/seeAllParents'
+import SeeAllParents from 'components/notifications/seeAllParents'
 import Children from 'components/Children'
 import NotFound from 'components/NotFound'
 import ProtectedRoute from 'protectedRoute'

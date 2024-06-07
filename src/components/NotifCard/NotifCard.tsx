@@ -79,13 +79,7 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
         </section>
         <section className="notif-card__date">{formattedDate}</section>
         <section className="notif-card__button">
-          <Button variant="secondary" text="Ver Más" onClick={handleToggleModal} animated />
-          {/* <button
-            className="button button--secondary button--rounded text--xs text--spaced text--upper animated shadow--box"
-            onClick={handleToggleModal}
-          >
-            Ver Más
-          </button> */}
+          <Button variant="secondary" text="Ver Más" onClick={handleToggleModal} animated rounded />
         </section>
       </article>
       <Modal open={modalOpen} onClose={handleToggleModal}>
