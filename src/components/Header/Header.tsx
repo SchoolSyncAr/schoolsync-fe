@@ -34,11 +34,13 @@ export const Header = () => {
     <header className="main__header">
       <Logo imgUrl={'/images/logo.png'} alt={'SchoolSync'}/>  
       <div className="nav-links">
-        <IconButton onClick={() => navigate('/notificationsDashboard')}>
-          <Badge badgeContent={notifications.length == 0 ? data : notifications.length} color="error">
-            <NotificationsIcon className='nav-links__icon'/>
-          </Badge>
-        </IconButton>
+        {authService.getUserRole() != 'ADMIN' &&
+          <IconButton onClick={() => navigate('/notificationsDashboard')}>
+            <Badge badgeContent={notifications.length == 0 ? data : notifications.length} color="error">
+              <NotificationsIcon className='nav-links__icon'/>
+            </Badge>
+          </IconButton>
+        }
         <IconButton onClick={handleLogout} >
           <Logout className='nav-links__icon'/>
         </IconButton>

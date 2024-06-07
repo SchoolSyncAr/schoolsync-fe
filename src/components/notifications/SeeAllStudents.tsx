@@ -24,17 +24,19 @@ export const SeeAllStudents = () => {
   return (
     <article className="notifications">
       <h3 className="notifications__title text--strong">Listado de estudiantes</h3>
-      <ul className="notifications__list shadow">
-        {studentInfoBackend.map((student) => (
-          <div key={student.id} className="notifications__text">
-            <span>
-              {student.lastName}, {student.firstName}{' '}
-            </span>
-            <AddCardIcon style={{ color: 'green' }}></AddCardIcon>
-          </div>
-        ))}
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-      </ul>
+      <section className='notifications__body'>
+        <ul className="notifications__body-list shadow">
+          {studentInfoBackend.map((student) => (
+            <div key={student.id} className="notifications__text">
+              <span>
+                {student.lastName}, {student.firstName}{' '}
+              </span>
+              <AddCardIcon style={{ color: 'green' }}></AddCardIcon>
+            </div>
+          ))}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </ul>
+      </section>
       <section className="notifications__actions">
         <Button text={'volver'} onClick={() => navigate('/adminDashboard')} taller rounded animated />
       </section>

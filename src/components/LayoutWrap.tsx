@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 import { Header } from 'components/Header/Header'
 import { Footer } from 'components/Footer/Footer'
 
-export const Page = () => {
+export const LayoutWrap = () => {
   return (
     <main className='main'>
       <Header />
@@ -14,4 +14,4 @@ export const Page = () => {
   )
 }
 
-Page.propTypes = {}
+LayoutWrap.propTypes = {}

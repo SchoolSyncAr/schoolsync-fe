@@ -24,17 +24,19 @@ function SeeAllParents() {
   return (
     <article className="notifications">
       <h3 className="notifications__title text--strong">Listado de padres</h3>
-      <ul className="notifications__list shadow">
-        {parents.map((parent) => (
-          <div key={parent.id} className="notifications__text">
-            <span>
-              {parent.lastName}, {parent.firstName}{' '}
-            </span>
-            <AddCardIcon style={{ color: 'green' }}></AddCardIcon>
-          </div>
-        ))}
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-      </ul>
+      <section className='notifications__body'>
+        <ul className="notifications__body-list shadow">
+          {parents.map((parent) => (
+            <div key={parent.id} className="notifications__text">
+              <span>
+                {parent.lastName}, {parent.firstName}{' '}
+              </span>
+              <AddCardIcon style={{ color: 'green' }}></AddCardIcon>
+            </div>
+          ))}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </ul>
+      </section>
       <section className="notifications__actions">
         <Button text={'volver'} onClick={() => navigate('/adminDashboard')} taller rounded animated />
       </section>
