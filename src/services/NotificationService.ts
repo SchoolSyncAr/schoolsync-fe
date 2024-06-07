@@ -13,13 +13,17 @@ class NotificationService {
         sortDirection: filter.sortDirection,
       },
     })
-    console.log(allNotificationsJson)
-    return allNotificationsJson.data.map((allNotificationsJson: Notification) =>
-      Notification.fromJson(allNotificationsJson)
+
+    return allNotificationsJson.data.map((notification: Notification) =>
+      Notification.fromJson(notification as NotifProps),
     )
   }
 
-  getAllNotificationsByParentId = async (filter: { searchField: string; orderParam: string; sortDirection: string }) => {
+  getAllNotificationsByParentId = async (filter: {
+    searchField: string
+    orderParam: string
+    sortDirection: string
+  }) => {
     const notifsJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/${authService.getUserId()}/all`, {
       params: {
         searchField: filter.searchField,
@@ -28,9 +32,7 @@ class NotificationService {
       },
     })
     console.log(notifsJson)
-    return notifsJson.data.map((notif: NotifProps) =>
-      Notification.fromJson(notif)
-    )
+    return notifsJson.data.map((notif: NotifProps) => Notification.fromJson(notif))
   }
 
   createNotification = async (notification: NotifProps) => {
@@ -63,7 +65,7 @@ class NotificationService {
     await api.delete(`${REACT_APP_REST_SERVER_URL}/api/notification/${notifId}/delete`)
   }
 
-  getGroups = async () : Promise<string[]> => {
+  getGroups = async (): Promise<string[]> => {
     const recipientGroups = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/recipient-groups`)
     return recipientGroups.data
   }
@@ -74,7 +76,7 @@ class NotificationService {
   }
 
   readNotification = async (notificationId: number) => {
-    /* const notificationJson =  */await api.put(`api/notification/read`, notificationId)
+    /* const notificationJson =  */ await api.put(`api/notification/read`, notificationId)
     /* return notificationJson.data */
   }
 }
