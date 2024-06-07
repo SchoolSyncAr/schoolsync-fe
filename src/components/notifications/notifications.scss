@@ -1,0 +1,31 @@
+.notifications {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  padding: var(--spacing-small);
+  max-width: 45vw;
+  width: 100%;
+
+  &__title {
+    text-transform: uppercase;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing);
+    gap: var(--spacing-small);
+    font-size: 1.3em;
+    margin: 0;
+  }
+
+  &__text {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: end;
+  }
+}

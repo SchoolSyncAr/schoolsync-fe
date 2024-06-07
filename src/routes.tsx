@@ -5,7 +5,7 @@ import NotificationsDashboard from 'components/NotifDashboard/NotificationsDashb
 import CreateNotification from 'components/CreateNotification/CreateNotification'
 import ParentDashboard from 'components/ParentDashboard'
 import AdminDashboard from 'components/AdminDashboard'
-import SeeAllStudents from 'components/SeeAllStudents'
+import { SeeAllStudents } from 'components/notifications/SeeAllStudents'
 import SeeAllParents from 'components/seeAllParents'
 import Children from 'components/Children'
 import NotFound from 'components/NotFound'

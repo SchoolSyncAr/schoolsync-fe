@@ -9,6 +9,7 @@ import MarkChatReadIcon from '@mui/icons-material/MarkChatRead'
 import DeleteIcon from '@mui/icons-material/Delete'
 
 import './NotifCard.scss'
+import { Button } from 'components/basic/Button/Button'
 
 interface NotifCardProps {
   notifProps: NotifProps
@@ -17,7 +18,7 @@ interface NotifCardProps {
   handlePinned?: (notifId: number) => void
   handleRead?: (notifId: number) => void
 }
-  
+
 export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned, handleRead }: NotifCardProps) => {
   const [modalOpen, setModalOpen] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -25,7 +26,7 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
 
   const handleToggleModal = () => setModalOpen(!modalOpen)
 
-  const formattedDate = new Date(date)
+  const formattedDate = (date ? new Date(date) : new Date())
     .toLocaleString('es-AR', {
       day: '2-digit',
       month: '2-digit',
@@ -78,12 +79,13 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
         </section>
         <section className="notif-card__date">{formattedDate}</section>
         <section className="notif-card__button">
-          <button
+          <Button variant="secondary" text="Ver Más" onClick={handleToggleModal} animated />
+          {/* <button
             className="button button--secondary button--rounded text--xs text--spaced text--upper animated shadow--box"
             onClick={handleToggleModal}
           >
             Ver Más
-          </button>
+          </button> */}
         </section>
       </article>
       <Modal open={modalOpen} onClose={handleToggleModal}>
