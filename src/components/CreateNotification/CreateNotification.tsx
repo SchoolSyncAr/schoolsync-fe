@@ -17,6 +17,7 @@ import { useOnInit } from 'utils/useOnInit'
 import { authService } from 'services/AuthService'
 import './CreateNotification.scss'
 import { Parent } from 'models/Parent'
+import { NotifProps } from 'models/interfaces/Notification'
 
 function CreateNotification() {
   const [title, setTitle] = useState('')
@@ -83,6 +84,7 @@ function CreateNotification() {
   function createNewNotificationEventHandler(event: { preventDefault: () => void }) {
     event.preventDefault()
     const newNotification = new Notification({
+      id: 0,
       title: title,
       content: content,
       weight: weight,
@@ -93,7 +95,7 @@ function CreateNotification() {
       date: '',
     })
     notificationService
-      .createNotification(newNotification)
+      .createNotification(newNotification as NotifProps)
       .then((result) => {
         console.log(result)
       })

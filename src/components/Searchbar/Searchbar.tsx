@@ -6,8 +6,7 @@ import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
 import Button from '@mui/material/Button'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
-import NotificationsIcon from '@mui/icons-material/Notifications'
-import Select from '@mui/material/Select'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 
 interface SearchBarProps {
@@ -28,8 +27,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearchInit, handleChange, f
     }
   }
 
-  const handleOrderChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const value = event.target.value as string
+  const handleOrderChange = (event: SelectChangeEvent<string>) => {
+    const value = event.target.value
 
     const mapping: { [key: string]: { orderParam: string; sortDirection: string } } = {
       datedesc: { orderParam: 'date', sortDirection: 'desc' },
@@ -65,7 +64,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearchInit, handleChange, f
             id="input-with-icon-adornment"
             startAdornment={
               <InputAdornment position="start">
-                <SearchRoundedIcon/>
+                <SearchRoundedIcon />
                 {/* <NotificationsIcon /> */}
               </InputAdornment>
             }
@@ -73,7 +72,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearchInit, handleChange, f
             name="searchField"
             value={filter.searchField}
             onChange={handleChange}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyPress}
             placeholder="Title..."
           />
         </FormControl>
@@ -99,7 +98,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearchInit, handleChange, f
         variant="contained"
         color="success"
         onClick={handleSearchInit}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
       >
         SEARCH
       </Button>

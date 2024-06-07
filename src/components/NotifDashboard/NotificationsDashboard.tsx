@@ -8,6 +8,7 @@ import notificationService from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
 import './NotificationDashboard.scss'
 import { useNotification } from 'components/hooks/NotificationContext'
+import { Button } from 'components/basic/Button/Button'
 
 interface NotifDashboardProps {
   deleteButton?: boolean
@@ -117,12 +118,12 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
         <div className="notif__grid">{notifList()}</div>
         <div>
           <div className="notif__go-back">
-            <button
-              className="button button--primary button--medium button--rounded text--md text--spaced text--upper animated shadow--box"
+            <Button
+              text={'Volver'}
               onClick={() => navigate(deleteButton ? '/adminDashboard' : '/parentDashboard')}
-            >
-              Volver
-            </button>
+              animated
+              rounded
+            />
           </div>
         </div>
         {errorMessage && <p className="error-message">{errorMessage}</p>}

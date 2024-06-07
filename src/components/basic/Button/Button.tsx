@@ -33,15 +33,16 @@ export const Button = (props: ButtonProps) => {
 
   return (
     <button
-      className={`button button--${variant} 
-        ${rounded && 'button--rounded'} 
-        ${!fullWidth && 'button--medium'} 
-        ${taller && 'button--tall'}
-        ${disabled && 'button--disabled'}
-        ${animated && !disabled && 'animated'} 
-        ${className || ''}}
-        text text--strong text--md text--spaced text--upper shadow shadow--box
-        `}
+      className={[
+        `button button--${variant}`,
+        rounded ? 'button--rounded' : '',
+        !fullWidth ? 'button--medium' : '',
+        taller ? 'button--tall' : '',
+        disabled ? 'button--disabled' : '',
+        animated && !disabled ? 'animated' : '',
+        className || '',
+        'text text--strong text--spaced text--upper shadow shadow--box',
+      ].join(' ')}
       onClick={onClick}
       disabled={disabled}
       type={type}
