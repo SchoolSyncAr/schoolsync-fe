@@ -1,6 +1,6 @@
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Header.css'
-import { useState } from 'react'
 import { useOnInit } from 'utils/useOnInit'
 import { Badge } from '@mui/material'
 import NotificationsIcon from '@mui/icons-material/Notifications'
@@ -8,6 +8,7 @@ import notificationService from 'services/NotificationService'
 import { Logout } from '@mui/icons-material'
 import { authService } from 'services/AuthService'
 import { useNotification } from './hooks/NotificationContext'
+import PrintError from './PrintError/PrintError'
 
 function Header() {
   const [data, setData] = useState(0)
@@ -50,7 +51,7 @@ function Header() {
           <Logout color="action" />
         </button>
       </div>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <PrintError error={errorMessage} />
     </nav>
   )
 }
