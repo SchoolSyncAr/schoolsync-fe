@@ -32,7 +32,9 @@ function Header() {
   return (
     <nav className="nav">
       <div className="left-group-container">
-        <img className="left_logo" src="/images/logo.png" alt="SchoolSync" />
+        <Link to={'/notificationsDashboard'}>
+          <img className="left_logo" src="/images/logo.png" alt="SchoolSync" />
+        </Link>
         <h2 className="nav-title">SchoolSyncAr</h2>
       </div>
       <div className="nav-links">
