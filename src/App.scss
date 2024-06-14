@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;700;800;900&family=Roboto:wght@300;400;500;600;700;900&display=swap');
+@import url('./styles/layout.scss');
 @import url('./styles/inputs.scss');
 @import url('./styles/typeface.scss');
 @import url('./styles/shadow.scss');
@@ -18,9 +19,9 @@
   --border-xlarge: 10px;
 
   // Default Size for elements
-  --header-height: 8rem;
+  --header-height: 6rem;
   --search-height: 5rem;
-  --footer-height: 5rem;
+  --footer-height: 4rem;
   --element-height: 3rem;
 
   // Padding | Margin | Gap

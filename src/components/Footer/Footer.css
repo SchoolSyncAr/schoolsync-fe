@@ -1,0 +1,9 @@
+
+.links {
+  display: flex;
+}
+
+.icon {
+  color: var(--color-white);
+  font-size: 1.5em;
+}

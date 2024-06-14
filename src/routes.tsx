@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { LayoutWrap } from 'components/LayoutWrap'
 import { LoginPage } from 'pages/Login/LoginPage'
 import NotificationsDashboard from 'components/NotifDashboard/NotificationsDashboard'
 import CreateNotification from 'components/CreateNotification/CreateNotification'
@@ -11,6 +10,7 @@ import Children from 'components/Children'
 import NotFound from 'components/NotFound'
 import ProtectedRoute from 'protectedRoute'
 import { NotificationProvider } from 'components/hooks/NotificationContext'
+import { LayoutWrap } from 'components/LayoutWrap'
 
 export const MyRoutes = () => (
   <Routes>
@@ -35,7 +35,7 @@ export const MyRoutes = () => (
 export const SchoolSyncRouter = () => {
   return (
     <NotificationProvider>
-      <Router>
+      <Router >
         <MyRoutes />
       </Router>
     </NotificationProvider>
