@@ -9,6 +9,7 @@ import SearchBar from 'components/Searchbar/Searchbar'
 import './NotificationDashboard.scss'
 import { useNotification } from 'components/hooks/NotificationContext'
 import { Button } from 'components/basic/Button/Button'
+import { PrintError } from 'components/PrintError/PrintError'
 
 interface NotifDashboardProps {
   deleteButton?: boolean
@@ -126,7 +127,7 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
             />
           </div>
         </div>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        <PrintError error={errorMessage} />
       </div>
     </>
   )

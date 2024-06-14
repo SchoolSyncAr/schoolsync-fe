@@ -9,6 +9,7 @@ import { Logout } from '@mui/icons-material'
 import { authService } from 'services/AuthService'
 import { useNotification } from '../hooks/NotificationContext'
 import { Logo } from 'components/Logo/Logo'
+import { PrintError } from 'components/PrintError/PrintError'
 
 export const Header = () => {
   const [data, setData] = useState(0)
@@ -32,20 +33,20 @@ export const Header = () => {
 
   return (
     <header className="main__header">
-      <Logo imgUrl={'/images/logo.png'} alt={'SchoolSync'}/>  
+      <Logo imgUrl={'/images/logo.png'} alt={'SchoolSync'} />
       <div className="nav-links">
-        {authService.getUserRole() != 'ADMIN' &&
+        {authService.getUserRole() != 'ADMIN' && (
           <IconButton onClick={() => navigate('/notificationsDashboard')}>
             <Badge badgeContent={notifications.length == 0 ? data : notifications.length} color="error">
-              <NotificationsIcon className='nav-links__icon'/>
+              <NotificationsIcon className="nav-links__icon" />
             </Badge>
           </IconButton>
-        }
-        <IconButton onClick={handleLogout} >
-          <Logout className='nav-links__icon'/>
+        )}
+        <IconButton onClick={handleLogout}>
+          <Logout className="nav-links__icon" />
         </IconButton>
       </div>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <PrintError error={errorMessage} />
     </header>
   )
 }

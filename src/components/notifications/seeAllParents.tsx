@@ -6,6 +6,7 @@ import { Parent } from 'models/Parent'
 import AddCardIcon from '@mui/icons-material/AddCard'
 import { parentService } from 'services/ParentService'
 import { Button } from '../basic/Button/Button'
+import { PrintError } from 'components/PrintError/PrintError'
 
 function SeeAllParents() {
   const [parents, setParents] = useState<Parent[]>([]) //Esto es porque me marca error de type NEVER -- property-id-does-not-exist-on-type-never-on-map-function
@@ -24,7 +25,7 @@ function SeeAllParents() {
   return (
     <article className="notifications">
       <h3 className="notifications__title text--strong">Listado de padres</h3>
-      <section className='notifications__body'>
+      <section className="notifications__body">
         <ul className="notifications__body-list shadow">
           {parents.map((parent) => (
             <div key={parent.id} className="notifications__text">
@@ -34,7 +35,7 @@ function SeeAllParents() {
               <AddCardIcon style={{ color: 'green' }}></AddCardIcon>
             </div>
           ))}
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <PrintError error={errorMessage} />
         </ul>
       </section>
       <section className="notifications__actions">
