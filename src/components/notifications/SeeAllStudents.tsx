@@ -6,6 +6,7 @@ import { getAllStudents } from '../../services/StudentsService'
 import { Student } from '../../models/Student'
 import AddCardIcon from '@mui/icons-material/AddCard'
 import { Button } from '../basic/Button/Button'
+import { PrintError } from 'components/PrintError/PrintError'
 
 export const SeeAllStudents = () => {
   const [studentInfoBackend, setStudentInfoBackend] = useState<Array<Student>>([]) //Esto es porque me marca error de type NEVER -- property-id-does-not-exist-on-type-never-on-map-function
@@ -34,7 +35,7 @@ export const SeeAllStudents = () => {
               <AddCardIcon style={{ color: 'green' }}></AddCardIcon>
             </div>
           ))}
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <PrintError error={errorMessage} />
         </ul>
       </section>
       <section className="notifications__actions">

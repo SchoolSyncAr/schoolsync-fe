@@ -6,7 +6,7 @@ import { useOnInit } from 'utils/useOnInit'
 import { getMyChildren } from '../services/ParentService'
 import { Student } from 'models/Student'
 import { Button } from './basic/Button/Button'
-import PrintError from './PrintError/PrintError'
+import { PrintError } from './PrintError/PrintError'
 
 function Children() {
   const [childrenInfoBackend, setchildrenInfoBackend] = useState<Array<Student>>([])
