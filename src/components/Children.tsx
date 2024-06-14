@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './notifications/notifications.scss'
 import './dashboard.scss'
 import { useNavigate } from 'react-router-dom'
