@@ -1,17 +1,30 @@
-import { NotifProps } from "interfaces/Notification"
+import { NotifProps } from 'models/interfaces/Notification'
 
 export class Notification {
-  id: number
+  id?: number
   title: string
   content: string
   weight: string
-  scope: string[]
-  constructor(props: NotifProps) {
-    this.id = props.id
-    this.title = props.title
-    this.content = props.content
-    this.weight = props.weight
-    this.scope = props.scope ?? []
+  sender: number
+  scope: string
+  recipientGroups: string[]
+  recipient: number
+  date: string
+  read: boolean
+  pinned: boolean
+
+  constructor(props?: NotifProps) {
+    this.id = props?.id ?? 0
+    this.title = props?.title ?? ''
+    this.content = props?.content ?? ''
+    this.weight = props?.weight ?? ''
+    this.sender = props?.sender ?? 0
+    this.scope = props?.scope ?? ''
+    this.recipientGroups = props?.recipientGroups ?? []
+    this.recipient = props?.recipient ?? 0
+    this.date = props?.date ?? ''
+    this.read = props?.read ?? false
+    this.pinned = props?.pinned ?? false
   }
 
   static fromJson(notifData: NotifProps) {

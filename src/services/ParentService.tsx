@@ -1,23 +1,24 @@
-import api from 'api/axios'
-// import { REACT_APP_REST_SERVER_URL } from "constants/constants"
+import api from "api/axios"
+import { REACT_APP_REST_SERVER_URL } from "constants/constants"
+import { ParentProps, StudentProps } from "models/interfaces/User"
+import { Parent } from "models/Parent"
 import { Student } from "models/Student"
-import { Parent } from 'models/Parent'
+import { authService } from "./AuthService"
 
 // export const getAllChildrenForAParent = async (parentId: number) => {
 //   console.log("parent service parent id is: " + parentId)
 
 // }
 
-export const getMyChildren = async () => {     //eventualmente hay que agregar (parentId: number)
-  console.log("estoy en getMyChildren del Student servicce")
-  const allMyChildrenJson = await api.get(`api/parent/myChildren/7`)
-  console.log("all my children " + allMyChildrenJson)
-  return allMyChildrenJson.data.map((allStudentsJson: { id: number; firstName: string; lastName: string; absences: number; notifications: any })=>Student.fromJson(allStudentsJson))
+class ParentService {
+  getAll = async (): Promise<Parent[]>  => {
+    const parents = await api.get(`${REACT_APP_REST_SERVER_URL}/api/parent/all`)
+    return parents.data.map((parent: ParentProps) => Parent.fromJson(parent))
+  }
 }
+export const parentService = new ParentService()
 
-export const getAllParents = async () => {
-  console.log("estoy en getallparents parent service")
-  const allParentsJson = await api.get(`api/parent/all`)
-  console.log("allstudents  " + allParentsJson)
-  return allParentsJson.data.map((allParentsJson: { id: number; firstName: string; lastName: string; notifications: any })=>Parent.fromJson(allParentsJson))
+export const getMyChildren = async (): Promise<Student[]> => {
+  const students = await api.get(`api/parent/childs/${authService.getUserId()}`)
+  return students.data.map((student: StudentProps) => new Student(student))
 }

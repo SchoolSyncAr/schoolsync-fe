@@ -1,33 +1,27 @@
 {
   /* Configuración del compilador */
-  
-  "compilerOptions": {    
+  "compilerOptions": {
     "target": "ES2020", // Configuración del objetivo de compilación    
     "module": "ES2020", // Formato de módulo
-    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Librerías utilizadas en la compilación    
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ], // Librerías utilizadas en la compilación    
     "useDefineForClassFields": true, // Utiliza "define" para los campos de clase    
     "skipLibCheck": true, // Evita la comprobación de librerías
-
-    
     /* Resolución de Módulos */
-    
     "baseUrl": ".",
     "moduleResolution": "bundler", // Resolución de módulos para empaquetadores
-    "outDir": "./dist/out-tsc",    
-
-    
-    /* Modo de empaquetado */      
-    
+    "outDir": "./dist/out-tsc",
+    /* Modo de empaquetado */
     "allowImportingTsExtensions": true, // Permite la importación de extensiones .ts
     "resolveJsonModule": true, // Habilita la importación de módulos JSON        
     "isolatedModules": true, // Trata cada archivo como un módulo independiente    
     "noEmit": true, // No emite ningún archivo JS
     "jsx": "react-jsx", // Tipo de JSX
     "downlevelIteration": true, // indica a TypeScript que genere código que sea compatible con iteraciones de ECMAScript en versiones anteriores a ES2015
-    
-    
     /* Linting */
-    
     "strict": true, // Habilita modo estricto
     "noUnusedLocals": true, // Advierte sobre variables locales no utilizadas
     "noUnusedParameters": true, // Advierte sobre parámetros no utilizados
@@ -36,29 +30,42 @@
     "noFallthroughCasesInSwitch": true, // Advierte sobre casos de caída a través en "switch"
     "forceConsistentCasingInFileNames": true, // Advierte cuando no coinciden mayus y minus en un inport
     "noPropertyAccessFromIndexSignature": true, // Evita acceder con el formato algo.prop cuando es parte de un index ej.: algo['prop']
-
-
     /* Debugging */
-    
     "sourceMap": true,
-
-
     /* Aliases */
-
     "paths": {
-      "*": ["./src/*"],
-      "@/assets": ["./src/components/*"],
-      "@/components": ["./src/components/*"],
-      "@/services": ["src/services/*"],
-      "@/models": ["src/models/*"],
-      "@/interfaces": ["src/interfaces/*"],
-      "@/utils": ["src/utils/*"]
+      "*": [
+        "./src/*"
+      ],
+      "@/assets": [
+        "./src/components/*"
+      ],
+      "@/components": [
+        "./src/components/*"
+      ],
+      "@/services": [
+        "src/services/*"
+      ],
+      "@/models": [
+        "src/models/*"
+      ],
+      "@/interfaces": [
+        "src/interfaces/*"
+      ],
+      "@/utils": [
+        "src/utils/*"
+      ]
     }
   },
-  
   // Directorios incluidos en la compilación
-  "include": ["src","setupTest.ts"],
-  
+  "include": [
+    "src",
+    "setupTests.ts"
+  ],
   // Referencias a otros archivos de configuración
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

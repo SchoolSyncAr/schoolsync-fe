@@ -50,6 +50,15 @@ const AuthService = () => {
     sessionStorage.removeItem('auth')
   }
 
+  const logout = () => {
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('role')
+    sessionStorage.removeItem('userId')
+    sessionStorage.removeItem('tokenExpiration')
+  }
+
+  const adminStatus = () => getUserRole() == "ADMIN"
+
   return {
     login,
     getUserToken,
@@ -57,6 +66,8 @@ const AuthService = () => {
     clearUser,
     getUserId,
     getTokenExpiration,
+    logout,
+    adminStatus
   }
 }
 

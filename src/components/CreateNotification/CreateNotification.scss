@@ -1,15 +1,54 @@
 .new-notif {
-  padding: 1em;
-  gap: 1em;
+  display: flex;
+  flex-direction: column;
+  // gap: var(--spacing);
+  width: 100%;
+  padding: var(--spacing);
+  font-family: var(--typeface-main);
 
-  &_header {
-
+  &_form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
   }
 
+  &_form-body {
+    display: flex;
+    gap: var(--spacing);
+    height: 100%;
+  }
+
+  &_text {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+    height: fit-content;
+    padding: var(--spacing);
+    gap: var(--spacing);
+    border-radius: var(--border-radius);
+    background: linear-gradient(110deg, var(--color-primary-hover) 60%, var(--color-secondary) 60%);
+  }
+
+  &_settings {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: var(--spacing) var(--spacing)0 var(--spacing);
+    gap: var(--spacing-small);
+    border-radius: var(--border-radius);
+    background: linear-gradient(110deg, var(--color-primary-hover) 60%, var(--color-secondary) 60%);
+  }
+
+  &_settings-section {
+    display: flex;
+    flex-direction: column;
+  }
 
 }
 
-.go-back {
+.control-buttons {
   display: flex;
   justify-content: end;
+  padding-top: var(--spacing);
 }

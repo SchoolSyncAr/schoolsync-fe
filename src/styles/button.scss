@@ -48,12 +48,13 @@
   }
 
   &--secondary {
-    color: initial;
+    color: var(--color-primary);
     border: 1px solid var(--color-primary);
     background-color: var(--color-white);
 
     &.animated:hover {
       color: var(--color-white);
+      border: 1px solid var(--color-primary);
       background-color: var(--color-primary);
     }
   }

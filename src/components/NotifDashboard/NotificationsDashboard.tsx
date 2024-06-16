@@ -1,14 +1,23 @@
+// src/components/NotifDashboard/NotificationsDashboard.tsx
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import Button from 'components/Button'
 import { NotifCard } from 'components/NotifCard/NotifCard'
 import { useOnInit } from 'utils/useOnInit'
-import './NotificationDashboard.css'
-import { NotifProps } from 'interfaces/Notification'
+import { NotifProps } from 'models/interfaces/Notification'
 import notificationService from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
+import './NotificationDashboard.scss'
+import { useNotification } from 'components/hooks/NotificationContext'
+import { Button } from 'components/basic/Button/Button'
+import { PrintError } from 'components/PrintError/PrintError'
+import { authService } from 'services/AuthService'
 
-function NotificationsDashboard() {
+interface NotifDashboardProps {
+  deleteButton?: boolean
+}
+
+function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
+  const { updateNotifications } = useNotification()
   const [notifications, setNotifications] = useState<NotifProps[]>([])
   const [params, setParams] = useSearchParams()
   const [errorMessage, setErrorMessage] = useState('')
@@ -20,9 +29,9 @@ function NotificationsDashboard() {
 
   const getData = async () => {
     try {
-      const notifs = await notificationService.getAllGeneralNotifications(filter)
-      console.log('solic notif ', notifs)
+      const notifs = authService.adminStatus() ? await notificationService.getAllGeneralNotifications(filter) : await notificationService.getAllNotificationsByParentId(filter)
       setNotifications(notifs)
+      updateNotifications(notifs)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }
@@ -56,9 +65,44 @@ function NotificationsDashboard() {
     }))
   }
 
+  const handlePinned = async (notifId: number) => {
+    try {
+      console.log(notifId)
+      await notificationService.pinNotification(notifId)
+      getData()
+    } catch {
+      setErrorMessage('No se pudo pinnear la notificación')
+    }
+  }
+
+  const handleRead = async (notifId: number) => {
+    try {
+      console.log(notifId)
+      await notificationService.readNotification(notifId)
+      getData()
+    } catch {
+      setErrorMessage('No se pudo setear como leída la notificación')
+    }
+  }
+
+  const handleDelete = async (notifId: number) => {
+    try {
+      await notificationService.deleteById(notifId)
+      getData()
+    } catch {
+      setErrorMessage('error')
+    }
+  }
+
   const notifList = () => {
-    return notifications.map((data) => (
-      <NotifCard key={data.id} id={data.id} title={data.title} content={data.content} weight={data.weight} />
+    return notifications.map((data, index) => (
+      <NotifCard
+        key={index}
+        notifProps={data}
+        handlePinned={handlePinned}
+        handleRead={handleRead}
+        {...(deleteButton ? { deleteButton, handleDelete } : {})}
+      />
     ))
   }
 
@@ -72,14 +116,19 @@ function NotificationsDashboard() {
         filter={filter}
         handleFilterChange={handleFilterChange}
       />
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
-      <div className="notif-grid">{notifList()}</div>
-      <div>
-        <div className="buttonsToRightEnd">
-          <Button className="forAllButtons buttonReturn" height={60} actionOnClick={() => navigate('/parentDashboard')}>
-            Volver
-          </Button>
+      <div className="notif">
+        <div className="notif__grid">{notifList()}</div>
+        <div>
+          <div className="notif__go-back">
+            <Button
+              text={'Volver'}
+              onClick={() => navigate(deleteButton ? '/adminDashboard' : '/parentDashboard')}
+              animated
+              rounded
+            />
+          </div>
         </div>
+        <PrintError error={errorMessage} />
       </div>
     </>
   )
