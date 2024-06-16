@@ -32,6 +32,10 @@
     max-height: calc(1.4em * 4);
   }
 
+  &__actions {
+    display: flex;
+  }
+
   &__button {
     display: flex;
     height: var(--element-height);

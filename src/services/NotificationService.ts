@@ -24,7 +24,7 @@ class NotificationService {
     orderParam: string
     sortDirection: string
   }) => {
-    const notifsJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/${authService.getUserId()}/all`, {
+    const notifsJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/parent/${authService.getUserId()}/notifications`, {
       params: {
         searchField: filter.searchField,
         orderParam: filter.orderParam,

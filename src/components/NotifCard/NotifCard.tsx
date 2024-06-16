@@ -43,7 +43,7 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
         <section className="notif-card__title">
           {title}
           {!deleteButton ? (
-            <div>
+            <div className='notif-card__actions'>
               {handlePinned &&
                 (pinned ? (
                   <IconButton style={{ color: 'inherit' }} onClick={() => handlePinned(notifProps.id)}>

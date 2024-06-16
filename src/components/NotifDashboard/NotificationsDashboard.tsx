@@ -10,6 +10,7 @@ import './NotificationDashboard.scss'
 import { useNotification } from 'components/hooks/NotificationContext'
 import { Button } from 'components/basic/Button/Button'
 import { PrintError } from 'components/PrintError/PrintError'
+import { authService } from 'services/AuthService'
 
 interface NotifDashboardProps {
   deleteButton?: boolean
@@ -28,9 +29,9 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
 
   const getData = async () => {
     try {
-      const notifs = await notificationService.getAllGeneralNotifications(filter)
+      const notifs = authService.adminStatus() ? await notificationService.getAllGeneralNotifications(filter) : await notificationService.getAllNotificationsByParentId(filter)
       setNotifications(notifs)
-      updateNotifications(notifs) // Actualizar el contexto
+      updateNotifications(notifs)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }

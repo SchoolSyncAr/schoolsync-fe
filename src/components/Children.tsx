@@ -9,13 +9,13 @@ import { Button } from './basic/Button/Button'
 import { PrintError } from './PrintError/PrintError'
 
 function Children() {
-  const [childrenInfoBackend, setchildrenInfoBackend] = useState<Array<Student>>([])
+  const [children, setChildren] = useState<Student[]>([])
   const [errorMessage, setErrorMessage] = useState('')
 
   useOnInit(async () => {
     try {
       const childrenData = await getMyChildren()
-      setchildrenInfoBackend(childrenData)
+      setChildren(childrenData)
     } catch {
       setErrorMessage('No se pudo obtener info children')
     }
@@ -25,7 +25,7 @@ function Children() {
 
   return (
     <main className="dashboard">
-      {childrenInfoBackend.map((child) => {
+      {children.map((child) => {
         return <Button key={child.id} text={child.firstName} taller rounded animated />
       })}
       <PrintError error={errorMessage} />

@@ -1,4 +1,4 @@
-import { ParentProps } from './interfaces/Parent'
+import { ParentProps } from './interfaces/User'
 
 export class Parent {
   id: number

@@ -9,13 +9,13 @@ import { Button } from '../basic/Button/Button'
 import { PrintError } from 'components/PrintError/PrintError'
 
 export const SeeAllStudents = () => {
-  const [studentInfoBackend, setStudentInfoBackend] = useState<Array<Student>>([]) //Esto es porque me marca error de type NEVER -- property-id-does-not-exist-on-type-never-on-map-function
+  const [students, setStudents] = useState<Student[]>([])
   const [errorMessage, setErrorMessage] = useState('')
 
   useOnInit(async () => {
     try {
       const studentData = await getAllStudents()
-      setStudentInfoBackend(studentData)
+      setStudents(studentData)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }
@@ -27,7 +27,7 @@ export const SeeAllStudents = () => {
       <h3 className="notifications__title text--strong">Listado de estudiantes</h3>
       <section className="notifications__body">
         <ul className="notifications__body-list shadow">
-          {studentInfoBackend.map((student) => (
+          {students.map((student) => (
             <div key={student.id} className="notifications__text">
               <span>
                 {student.lastName}, {student.firstName}{' '}

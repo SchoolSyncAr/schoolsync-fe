@@ -7,3 +7,11 @@ export interface ParentProps {
   notifications?: number[]
   notificationGroups?: string[]
 }
+
+export interface StudentProps {
+  id: number
+  firstName: string
+  lastName: string
+  absences?: number
+  notifications?: number[]
+}
