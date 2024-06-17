@@ -1,7 +1,6 @@
-import axios from 'axios'
-
 import { authService } from 'services/AuthService.ts'
 import { VITE_REST_SERVER_URL } from 'models/constants/constants'
+import axios from 'axios'
 
 const API = axios.create({
   baseURL: VITE_REST_SERVER_URL,
@@ -11,7 +10,6 @@ const API = axios.create({
   withCredentials: false,
 })
 
-// Add a request interceptor
 API.interceptors.request.use(
   (config) => {
     const token = authService.getUserToken()

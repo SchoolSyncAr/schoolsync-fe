@@ -7,7 +7,7 @@ export const adminToken =
   'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbnVzZXJAc2Nob29sc3luYy5tYWlsLmNvbSIsImlhdCI6MTcxODY1NjA2NywiZXhwIjoxNzE4NjU5NjY3LCJ1c2VySWQiOjEsInJvbGUiOiJBRE1JTiJ9.3bOT-RWp2gLwJHEZrurqs86GifIbJW4oWaRY_qS-qok'
 
 const sessionStorageMock = (function () {
-  let store: { [key: string]: string } = {}
+  let store: Record<string, string> = {}
 
   return {
     getItem(key: string) {
@@ -29,7 +29,9 @@ Object.defineProperty(window, 'sessionStorage', {
   value: sessionStorageMock,
 })
 
-beforeAll(() => {})
+beforeAll(() => {
+  vi.mock('./api/axios.ts')
+})
 
 beforeEach(() => {
   sessionStorage.clear()
