@@ -1,26 +1,26 @@
 import axios from 'axios'
-import { REACT_APP_REST_SERVER_URL } from 'constants/constants'
-import { authService } from 'services/AuthService.ts'
 
-const api = axios.create({
-  baseURL: REACT_APP_REST_SERVER_URL,
+import { authService } from 'services/AuthService.ts'
+import { VITE_REST_SERVER_URL } from 'models/constants/constants'
+
+const API = axios.create({
+  baseURL: VITE_REST_SERVER_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: false
+  withCredentials: false,
 })
 
 // Add a request interceptor
-api.interceptors.request.use(
+API.interceptors.request.use(
   (config) => {
     const token = authService.getUserToken()
     if (token) {
       config.headers.Authorization = `Bearer ${authService.getUserToken()}`
     }
-
     return config
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 )
 
-export default api
+export default API

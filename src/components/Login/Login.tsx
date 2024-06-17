@@ -2,12 +2,13 @@ import './Login.scss'
 import { LoginArgs } from 'models/interfaces/types'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { authService } from 'services/AuthService'
 import { errorHandler } from 'models/errors/ErrorHandler'
 import { UsePasswordToggle } from 'components/hooks/usePasswordToggle'
 import { Button } from 'components/basic/Button/Button'
+import { validateEmail } from 'utils/validateEmail'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 export const Login = () => {
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ export const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<LoginArgs>({
     defaultValues: {
       email: '',
@@ -29,7 +30,7 @@ export const Login = () => {
     try {
       await authService.login(data)
       const role = authService.getUserRole()
-      role === 'ADMIN' ? navigate('/adminDashboard') : navigate('/parentDashboard')
+      role === 'ADMIN' ? navigate('/admin_dashboard') : navigate('/parentDashboard')
     } catch (error) {
       setErrorMsg(errorHandler(error as AxiosError))
     }
@@ -54,12 +55,21 @@ export const Login = () => {
               id="username"
               className="field field--rounded animated shadow"
               autoFocus={true}
-              {...register('email', { required: 'Ingrese un nombre de usuario.' })}
+              {...register('email', {
+                required: 'Ingrese un nombre de usuario.',
+                validate: (value: string) => validateEmail(value) || 'Intente con un formato de email válido.',
+              })}
               data-testid="login-username"
               required
             />
             <label className="field__label text text--light" htmlFor="username">
-              {errors.email ? <span className="login__error">{errors.email.message}</span> : 'Usuario'}
+              {errors.email ? (
+                <span className="login__error" data-testid={'login-username-error'}>
+                  {errors.email.message}
+                </span>
+              ) : (
+                'Usuario'
+              )}
             </label>
           </div>
 
@@ -72,7 +82,13 @@ export const Login = () => {
               required
             />
             <label className="field__label text text--light">
-              {errors.password ? <span className="login__error">{errors.password.message}</span> : 'Contraseña'}{' '}
+              {errors.password ? (
+                <span className="login__error" data-testid={'login-password-error'}>
+                  {errors.password.message}
+                </span>
+              ) : (
+                'Contraseña'
+              )}{' '}
             </label>
             <span className="field__eye-icon text text--light">{ToggleIcon}</span>
           </div>
@@ -83,7 +99,15 @@ export const Login = () => {
             </span>
           )}
         </section>
-        <Button text={'enviar'} fullWidth taller rounded animated />
+        <Button
+          text={'enviar'}
+          fullWidth
+          taller
+          rounded
+          animated
+          data-testid={'login-submit'}
+          disabled={isSubmitting}
+        />
       </form>
     </article>
   )

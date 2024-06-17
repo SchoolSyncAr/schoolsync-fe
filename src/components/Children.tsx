@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import './notifications/notifications.scss'
 import './dashboard.scss'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useOnInit } from 'utils/useOnInit'
 import { getMyChildren } from '../services/ParentService'
@@ -8,7 +8,7 @@ import { Student } from 'models/Student'
 import { Button } from './basic/Button/Button'
 import { PrintError } from './PrintError/PrintError'
 
-function Children() {
+export const Children = () => {
   const [children, setChildren] = useState<Student[]>([])
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -33,5 +33,3 @@ function Children() {
     </main>
   )
 }
-
-export default Children

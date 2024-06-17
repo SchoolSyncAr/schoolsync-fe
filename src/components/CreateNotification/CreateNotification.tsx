@@ -236,7 +236,7 @@ function CreateNotification() {
         <section className="control-buttons">
           <button
             className="button button--primary button--medium button--rounded text--md text--spaced text--upper animated shadow--box"
-            onClick={() => navigate('/adminDashboard')}
+            onClick={() => navigate('/admin_dashboard')}
           >
             Volver
           </button>

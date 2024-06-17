@@ -4,8 +4,8 @@
   gap: var(--spacing-small);
   text-decoration: none;
 
-  & img {
-    max-height: 100%;
+  &__img {
+    max-height: 90%;
   }
 
   &__text {
@@ -20,7 +20,7 @@
     text-transform: uppercase;
     color: var(--color-white);
     &--lt {
-      font-weight: 200;
+      font-weight: 400;
       color: hsl(0, 0%, 100%, 0.9);
       text-transform: none;
     }
