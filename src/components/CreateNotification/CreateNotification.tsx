@@ -1,6 +1,5 @@
 import { SyntheticEvent, useEffect, useState } from 'react'
 import notificationService from 'services/NotificationService'
-import { useNavigate } from 'react-router-dom'
 import { Autocomplete, MenuItem, Select, TextField } from '@mui/material'
 import { Notification } from 'models/Notification'
 import { parentService } from 'services/ParentService'
@@ -36,7 +35,6 @@ function CreateNotification() {
     priority: '',
     recipients: '',
   })
-  const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchData() {
@@ -245,12 +243,6 @@ function CreateNotification() {
             data-testid="new-notif-submit"
           >
             Crear
-          </button>
-          <button
-            className="button button--primary button--medium button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
-            onClick={() => navigate('/adminDashboard')}
-          >
-            Volver
           </button>
         </section>
       </form>

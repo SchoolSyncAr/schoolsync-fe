@@ -14,12 +14,6 @@
   gap: 1em;
   overflow-y: auto;
   }
-
-  &__go-back {
-    display: flex;
-    justify-content: end;
-    height: var(--element-height);
-  }
 }
 
 @media (max-width: 1000px) {

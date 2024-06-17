@@ -1,6 +1,6 @@
 // src/components/NotifDashboard/NotificationsDashboard.tsx
 import React, { useState, useEffect } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { NotifCard } from 'components/NotifCard/NotifCard'
 import { useOnInit } from 'utils/useOnInit'
 import { NotifProps } from 'models/interfaces/Notification'
@@ -8,7 +8,6 @@ import notificationService from 'services/NotificationService'
 import SearchBar from 'components/Searchbar/Searchbar'
 import './NotificationDashboard.scss'
 import { useNotification } from 'components/hooks/NotificationContext'
-import { Button } from 'components/basic/Button/Button'
 import { PrintError } from 'components/PrintError/PrintError'
 import { authService } from 'services/AuthService'
 import { enqueueSnackbar } from 'notistack'
@@ -108,8 +107,6 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
     ))
   }
 
-  const navigate = useNavigate()
-
   return (
     <>
       <SearchBar
@@ -120,16 +117,6 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
       />
       <div className="notif">
         <div className="notif__grid">{notifList()}</div>
-        <div>
-          <div className="notif__go-back">
-            <Button
-              text={'Volver'}
-              onClick={() => navigate(deleteButton ? '/adminDashboard' : '/parentDashboard')}
-              animated
-              rounded
-            />
-          </div>
-        </div>
         <PrintError error={errorMessage} />
       </div>
     </>

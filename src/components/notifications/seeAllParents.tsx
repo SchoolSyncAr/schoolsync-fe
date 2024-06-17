@@ -1,11 +1,9 @@
 import './notifications.scss'
-import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useOnInit } from 'utils/useOnInit'
 import { Parent } from 'models/Parent'
 import AddCardIcon from '@mui/icons-material/AddCard'
 import { parentService } from 'services/ParentService'
-import { Button } from '../basic/Button/Button'
 import { PrintError } from 'components/PrintError/PrintError'
 
 function SeeAllParents() {
@@ -21,7 +19,6 @@ function SeeAllParents() {
     }
   })
 
-  const navigate = useNavigate()
   return (
     <article className="notifications">
       <h3 className="notifications__title text--strong">Listado de padres</h3>
@@ -37,9 +34,6 @@ function SeeAllParents() {
           ))}
           <PrintError error={errorMessage} />
         </ul>
-      </section>
-      <section className="notifications__actions">
-        <Button text={'volver'} onClick={() => navigate('/adminDashboard')} taller rounded animated />
       </section>
     </article>
   )
