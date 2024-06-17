@@ -52,13 +52,3 @@
   gap: var(--spacing-small);
   padding-top: var(--spacing-small);
 }
-
-.error {
-  margin: 0px;
-}
-
-.with-error {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-}
