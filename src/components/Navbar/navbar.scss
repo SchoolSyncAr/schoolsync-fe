@@ -1,0 +1,12 @@
+.navbar {
+  display: flex;
+  gap: var(--spacing);
+}
+
+.nav-item {
+  cursor: pointer;
+}
+
+.selected {
+  color: var(--color-secondary-hover);
+}
