@@ -137,6 +137,7 @@ function CreateNotification() {
     setFormState({ ...formState, 
       title:'',
       content: '',
+      priority: '',
       recipients: [],
       recipientGroups: []
     })
