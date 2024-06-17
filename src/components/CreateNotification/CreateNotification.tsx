@@ -239,7 +239,7 @@ function CreateNotification() {
         </section>
         <section className="control-buttons">
           <button
-            className="button button--primary button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
+            className="button button--tertiary button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
             // disabled={!isDirty || !isValid || isSubmitting}
             type="submit"
             data-testid="new-notif-submit"
