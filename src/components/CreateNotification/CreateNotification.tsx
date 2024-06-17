@@ -159,7 +159,7 @@ function CreateNotification() {
                 data-testid="login-username"
               />
               <label className="field__label text" htmlFor="newNotifTitle">
-                Titulo {formErrors['title'] && <span className="text text--xs text--highlight">{formErrors['title']}</span>}
+                Titulo {formErrors['title'] && <span className="text text--xs text--error">{formErrors['title']}</span>}
               </label>
             </div>
             <div className="field__container">
@@ -170,7 +170,7 @@ function CreateNotification() {
                 className="field field--textarea field--rounded animated shadow"
               />
               <label className="field__label--textarea text" htmlFor="newNotifContent">
-                Contenido {formErrors['content'] && <span className="text text--xs text--highlight">{formErrors['content']}</span>}
+                Contenido {formErrors['content'] && <span className="text text--xs text--error">{formErrors['content']}</span>}
               </label>
             </div>
           </div>
@@ -180,7 +180,7 @@ function CreateNotification() {
                 <label className="text text--white text--md text--strong">
                   Prioridad 
                 </label>
-                {formErrors['priority'] && <span className="text text--xs text--highlight">{formErrors['priority']}</span>}
+                {formErrors['priority'] && <span className="text text--xs text--error">{formErrors['priority']}</span>}
                 <Select
                   value={formState.priority}
                   onChange={weightChangeHandler}
@@ -199,7 +199,7 @@ function CreateNotification() {
               <label> 
                 <span className="text text--white text--md text--strong">A quien le llega </span>
                 <span className="text text--xs text--white">(Seleccione 1 o más)</span>
-                {formErrors['recipients'] && <div className="text text--xs text--highlight">{formErrors['recipients']}</div>}
+                {formErrors['recipients'] && <div className="text text--xs text--error">{formErrors['recipients']}</div>}
               </label>
               <div className="new-notif__settings-item">
                 <label className="text text--white text--strong">Padres:</label>
