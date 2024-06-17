@@ -52,3 +52,13 @@
   gap: var(--spacing-small);
   padding-top: var(--spacing-small);
 }
+
+.modal {
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  height: 30em;
+  width: 40em;
+  // background: linear-gradient(110deg, rgb(75, 170, 75) 85%, rgb(120, 202, 120) 60%);
+}

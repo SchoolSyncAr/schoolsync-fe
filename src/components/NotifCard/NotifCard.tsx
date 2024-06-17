@@ -7,9 +7,8 @@ import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
 import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread'
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead'
 import DeleteIcon from '@mui/icons-material/Delete'
-
-import './NotifCard.scss'
 import { Button } from 'components/basic/Button/Button'
+import './NotifCard.scss'
 
 interface NotifCardProps {
   notifProps: NotifProps

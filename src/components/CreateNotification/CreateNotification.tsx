@@ -8,13 +8,14 @@ import { authService } from 'services/AuthService'
 import './CreateNotification.scss'
 import { Parent } from 'models/Parent'
 import { NotifProps } from 'models/interfaces/Notification'
+import { enqueueSnackbar } from 'notistack'
 
 interface FormState {
-  title: string;
-  content: string;
-  priority: string;
-  recipients: number[];
-  recipientGroups: string[];
+  title: string
+  content: string
+  priority: string
+  recipients: Parent[]
+  recipientGroups: string[]
 }
 
 function CreateNotification() {
@@ -95,9 +96,9 @@ function CreateNotification() {
     setFormState({ ...formState, priority: event.target.value})
   }
 
-  const handleRecipientChange = (event: SyntheticEvent<Element, Event>, newValue: Parent[]) => {
+  const handleRecipientChange = (event: SyntheticEvent<Element, Event>, value: Parent[]) => {
     event
-    setFormState({ ...formState, recipients: (newValue.map(parent => parent.id))})
+    setFormState({ ...formState, recipients: value})
   }
 
   function recipientGroupChangeHandler(event: SyntheticEvent<Element, Event>, value: string[]) {
@@ -113,21 +114,22 @@ function CreateNotification() {
     }
 
     const newNotification = new Notification({
+      id: 0,
       title: formState.title,
       content: formState.content,
       weight: formState.priority,
       sender: Number(authService.getUserId()),
       recipientGroups: formState.recipientGroups,
-      recipients: formState.recipients,
+      recipients: formState.recipients.map(parent => parent.id),
     })
 
     try {
-      const result = await notificationService.createNotification(newNotification as NotifProps)
-      console.log(result)
+      await notificationService.createNotification(newNotification as NotifProps)
+      enqueueSnackbar('Notificacion creada con exito', { variant: 'success' })
       clearAll()
-      console.log(newNotification)
     } catch (error) {
       console.error('Error creating notification:', error)
+      enqueueSnackbar('No se pudo crear la notificación', { variant: 'error' })
     }
   }
 
@@ -141,117 +143,117 @@ function CreateNotification() {
   }
 
   return (
-    <form onSubmit={createNewNotificationEventHandler} className="new-notif">
-      <section className="new-notif__form-body">
-        <div onSubmit={createNewNotificationEventHandler} className="new-notif__text">
-          <div className="text text--xl text--strong text--white">Crear Notificacion</div>
-          <div className="field__container">
-            <input
-              id="newNotifTitle"
-              className="field field--rounded animated shadow"
-              onChange={titleInputHandler}
-              value={formState.title}
-              autoFocus={true}
-              data-testid="login-username"
-            />
-            <label className="field__label text" htmlFor="newNotifTitle">
-              Titulo {formErrors['title'] && <span className="text text--xs text--highlight">{formErrors['title']}</span>}
-            </label>
-          </div>
-          <div className="field__container">
-            <textarea
-              id="newNotifContent"
-              onChange={contentInputHandler}
-              value={formState.content}
-              className="field field--textarea field--rounded animated shadow"
-            />
-            <label className="field__label--textarea text" htmlFor="newNotifContent">
-              Contenido {formErrors['content'] && <span className="text text--xs text--highlight">{formErrors['content']}</span>}
-            </label>
-          </div>
-        </div>
-        <div className="new-notif__settings">
-          <div className="new-notif__settings-section">
-            <div className="new-notif__settings-item">
-              <label className="text text--white text--md text--strong">
-                Prioridad 
+    <>
+      <form onSubmit={createNewNotificationEventHandler} className="new-notif">
+        <section className="new-notif__form-body">
+          <div onSubmit={createNewNotificationEventHandler} className="new-notif__text">
+            <div className="text text--xl text--strong text--white">Crear Notificacion</div>
+            <div className="field__container">
+              <input
+                id="newNotifTitle"
+                className="field field--rounded animated shadow"
+                onChange={titleInputHandler}
+                value={formState.title}
+                autoFocus={true}
+                data-testid="login-username"
+              />
+              <label className="field__label text" htmlFor="newNotifTitle">
+                Titulo {formErrors['title'] && <span className="text text--xs text--highlight">{formErrors['title']}</span>}
               </label>
-              {formErrors['priority'] && <span className="text text--xs text--highlight">{formErrors['priority']}</span>}
-              <Select
-                value={formState.priority}
-                onChange={weightChangeHandler}
-                className="field field--select field--rounded shadow"
-              >
-                <MenuItem value="">Seleccione una opción</MenuItem>
-                {priorities.map((item) => (
-                  <MenuItem key={item} value={item}>
-                    {item}
-                  </MenuItem>
-                ))}
-              </Select>
+            </div>
+            <div className="field__container">
+              <textarea
+                id="newNotifContent"
+                onChange={contentInputHandler}
+                value={formState.content}
+                className="field field--textarea field--rounded animated shadow"
+              />
+              <label className="field__label--textarea text" htmlFor="newNotifContent">
+                Contenido {formErrors['content'] && <span className="text text--xs text--highlight">{formErrors['content']}</span>}
+              </label>
             </div>
           </div>
-          <div className="new-notif__settings-section">
-            <label> 
-              <span className="text text--white text--md text--strong">A quien le llega </span>
-              <span className="text text--xs text--white">(Seleccione 1 o más)</span>
-              {formErrors['recipients'] && <div className="text text--xs text--highlight">{formErrors['recipients']}</div>}
-            </label>
-            <div className="new-notif__settings-item">
-              <label className="text text--white text--strong">Padres:</label>
-              <Autocomplete
-                multiple
-                id="tags-outlined"
-                options={parents}
-                getOptionLabel={(option) => `${option.firstName}, ${option.lastName}`}
-                filterSelectedOptions
-                onChange={handleRecipientChange}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    placeholder="Buscar..."
-                    sx = {{ background: 'var(--color-white)', borderRadius: 'var(--border-radius-sm)' }}
-                  />
-                )}
-              />
+          <div className="new-notif__settings">
+            <div className="new-notif__settings-section">
+              <div className="new-notif__settings-item">
+                <label className="text text--white text--md text--strong">
+                  Prioridad 
+                </label>
+                {formErrors['priority'] && <span className="text text--xs text--highlight">{formErrors['priority']}</span>}
+                <Select
+                  value={formState.priority}
+                  onChange={weightChangeHandler}
+                  className="field field--select field--rounded shadow"
+                >
+                  <MenuItem value="">Seleccione una opción</MenuItem>
+                  {priorities.map((item) => (
+                    <MenuItem key={item} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </div>
             </div>
-            <div className="new-notif__settings-item">
-              <label className="text text--white text--strong">Grupos:</label>
-              <Autocomplete
-                multiple
-                options={groups}
-                value={formState.recipientGroups}
-                onChange={recipientGroupChangeHandler}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    placeholder="Buscar..."
-                    sx = {{ background: 'var(--color-white)', borderRadius: 'var(--border-radius-sm)' }}
-                  />
-                )}
-              />
+            <div className="new-notif__settings-section">
+              <label> 
+                <span className="text text--white text--md text--strong">A quien le llega </span>
+                <span className="text text--xs text--white">(Seleccione 1 o más)</span>
+                {formErrors['recipients'] && <div className="text text--xs text--highlight">{formErrors['recipients']}</div>}
+              </label>
+              <div className="new-notif__settings-item">
+                <label className="text text--white text--strong">Padres:</label>
+                <Autocomplete
+                  multiple
+                  options={parents}
+                  getOptionLabel={(option) => `${option.firstName}, ${option.lastName}`}
+                  value={formState.recipients}
+                  onChange={handleRecipientChange}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder="Buscar..."
+                      sx = {{ background: 'var(--color-white)', borderRadius: 'var(--border-radius-sm)' }}
+                    />
+                  )}
+                />
+              </div>
+              <div className="new-notif__settings-item">
+                <label className="text text--white text--strong">Grupos:</label>
+                <Autocomplete
+                  multiple
+                  options={groups}
+                  value={formState.recipientGroups}
+                  onChange={recipientGroupChangeHandler}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder="Buscar..."
+                      sx = {{ background: 'var(--color-white)', borderRadius: 'var(--border-radius-sm)' }}
+                    />
+                  )}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section className="control-buttons">
-        <button
-          className="button button--primary button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
-          // disabled={!isDirty || !isValid || isSubmitting}
-          type="submit"
-          data-testid="new-notif-submit"
-        >
-          Crear
-        </button>
-        <button
-          className="button button--primary button--medium button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
-          onClick={() => navigate('/adminDashboard')}
-        >
-          Volver
-        </button>
-      </section>
-    </form>
-
+        </section>
+        <section className="control-buttons">
+          <button
+            className="button button--primary button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
+            // disabled={!isDirty || !isValid || isSubmitting}
+            type="submit"
+            data-testid="new-notif-submit"
+          >
+            Crear
+          </button>
+          <button
+            className="button button--primary button--medium button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
+            onClick={() => navigate('/adminDashboard')}
+          >
+            Volver
+          </button>
+        </section>
+      </form>
+    </>
   )
 }
 
