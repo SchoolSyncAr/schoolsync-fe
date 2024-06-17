@@ -1,12 +1,12 @@
 export interface NotifProps {
-  id: number
+  id?: number
   title?: string
   content?: string
   weight?: string
   sender?: number
   scope?: string
   recipientGroups?: string[]
-  recipient?: number
+  recipients?: number[]
   date?: string
   read?: boolean
   pinned?: boolean
