@@ -35,7 +35,7 @@ const AuthService = () => {
     return sessionStorage.getItem('role')
   }
 
-  const getUserId: String = () => {
+  const getUserId = () => {
     return sessionStorage.getItem('userId')
   }
 
