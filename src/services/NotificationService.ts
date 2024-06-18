@@ -55,7 +55,7 @@ class NotificationService {
   }
 
   getPriorities = async (): Promise<string[]> => {
-    const priorities = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/priorities`)
+    const priorities = await API.get(`${VITE_REST_SERVER_URL}/api/notification/priorities`)
     return priorities.data
   }
 
