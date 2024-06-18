@@ -11,6 +11,7 @@ import { useNotification } from 'components/hooks/NotificationContext'
 import { Button } from 'components/basic/Button/Button'
 import { PrintError } from 'components/PrintError/PrintError'
 import { authService } from 'services/AuthService'
+import { enqueueSnackbar } from 'notistack'
 
 interface NotifDashboardProps {
   deleteButton?: boolean
@@ -91,6 +92,7 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
     try {
       await notificationService.deleteById(notifId)
       getData()
+      enqueueSnackbar('Notificación borrada', { variant: 'error' })
     } catch {
       setErrorMessage('error')
     }
