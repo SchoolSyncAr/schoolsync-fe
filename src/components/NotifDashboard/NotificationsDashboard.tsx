@@ -29,9 +29,11 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
 
   const getData = async () => {
     try {
-      const notifs = authService.adminStatus() ? await notificationService.getAllGeneralNotifications(filter) : await notificationService.getAllNotificationsByParentId(filter)
+      const notifs = authService.adminStatus()
+        ? await notificationService.getAllGeneralNotifications(filter)
+        : await notificationService.getAllNotificationsByParentId(filter)
       setNotifications(notifs)
-      updateNotifications(notifs)
+      updateNotifications(notifs.filter((notification: NotifProps) => !notification.read).length)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }

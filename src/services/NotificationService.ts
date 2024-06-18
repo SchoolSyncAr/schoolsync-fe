@@ -41,7 +41,8 @@ class NotificationService {
   }
 
   getNotificationsCount = async () => {
-    const notificationsCountJson = await api.get(`${REACT_APP_REST_SERVER_URL}/api/notification/count`)
+    const param: number = 3
+    const notificationsCountJson = await api.get(`api/notification/count`, {params: {userId: param}})
     return notificationsCountJson.data
   }
 

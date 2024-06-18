@@ -13,7 +13,7 @@ import { PrintError } from 'components/PrintError/PrintError'
 
 export const Header = () => {
   const [data, setData] = useState(0)
-  const { notifications } = useNotification()
+  const { notifications, init } = useNotification()
   const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
 
@@ -37,7 +37,7 @@ export const Header = () => {
       <div className="nav-links">
         {authService.getUserRole() != 'ADMIN' && (
           <IconButton onClick={() => navigate('/notificationsDashboard')}>
-            <Badge badgeContent={notifications.length == 0 ? data : notifications.length} color="error">
+            <Badge badgeContent={init ? data : notifications} color="error">
               <NotificationsIcon className="nav-links__icon" />
             </Badge>
           </IconButton>
