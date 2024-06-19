@@ -1,13 +1,9 @@
-import { SchoolSyncRouter } from './routes'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { routes } from './routes'
 
 function App() {
-  return (
-    <>
-      {/* <Header></Header> */}
-      <SchoolSyncRouter></SchoolSyncRouter>
-      {/* <Footer></Footer> */}
-    </>
-  )
+  const router = createBrowserRouter(routes)
+  return <RouterProvider router={router} />
 }
 
 export default App

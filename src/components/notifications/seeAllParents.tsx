@@ -1,5 +1,5 @@
 import './notifications.scss'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom"
 import { useState } from 'react'
 import { useOnInit } from 'utils/useOnInit'
 import { Parent } from 'models/Parent'
@@ -39,7 +39,7 @@ function SeeAllParents() {
         </ul>
       </section>
       <section className="notifications__actions">
-        <Button text={'volver'} onClick={() => navigate('/adminDashboard')} taller rounded animated />
+        <Button text={'volver'} onClick={() => navigate('/admin_dashboard')} taller rounded animated />
       </section>
     </article>
   )

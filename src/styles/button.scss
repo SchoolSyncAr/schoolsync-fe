@@ -59,6 +59,18 @@
     }
   }
 
+  &--tertiary {
+    color: var(--color-white);
+    border: 1px solid var(--color-focus);
+    background-color: var(--color-focus);
+
+    &.animated:hover {
+      color: var(--color-focus);
+      border: 1px solid var(--color-focus);
+      background-color: var(--color-white);
+    }
+  }
+
   &--short {
     height: 2.5rem;
   }

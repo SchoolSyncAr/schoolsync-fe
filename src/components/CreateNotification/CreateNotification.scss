@@ -1,54 +1,57 @@
 .new-notif {
   display: flex;
   flex-direction: column;
-  // gap: var(--spacing);
   width: 100%;
-  padding: var(--spacing);
+  padding: var(--spacing-small);
   font-family: var(--typeface-main);
 
-  &_form {
+  &__form-body {
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing);
-  }
-
-  &_form-body {
-    display: flex;
-    gap: var(--spacing);
+    gap: var(--spacing-small);
     height: 100%;
   }
 
-  &_text {
+  &__text {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 65%;
     height: 100%;
     height: fit-content;
     padding: var(--spacing);
-    gap: var(--spacing);
+    gap: var(--spacing-medium);
     border-radius: var(--border-radius);
     background: linear-gradient(110deg, var(--color-primary-hover) 60%, var(--color-secondary) 60%);
   }
 
-  &_settings {
+  &__settings {
     display: flex;
     flex-direction: column;
-    width: 30%;
-    padding: var(--spacing) var(--spacing)0 var(--spacing);
+    width: 35%;
+    gap: var(--spacing-small);
+  }
+
+  &__settings-section {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing);
     gap: var(--spacing-small);
     border-radius: var(--border-radius);
     background: linear-gradient(110deg, var(--color-primary-hover) 60%, var(--color-secondary) 60%);
   }
 
-  &_settings-section {
+  &__settings-item {
     display: flex;
     flex-direction: column;
   }
+}
 
+.custom {
+  height: 200px;
 }
 
 .control-buttons {
   display: flex;
   justify-content: end;
-  padding-top: var(--spacing);
+  gap: var(--spacing-small);
+  padding-top: var(--spacing-small);
 }

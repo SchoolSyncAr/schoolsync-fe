@@ -36,8 +36,11 @@
       color: var(--color-white);
       font-size: 0.9em;
       letter-spacing: 0;
-    } 
+    }
+  }
 
+  &--dropdown {
+    height: 56px;
   }
 
   &--rounded {
@@ -54,7 +57,7 @@
 
   &--textarea {
     height: 100%;
-    min-height: 10em;
+    min-height: 15em;
   }
 
   &:disabled {

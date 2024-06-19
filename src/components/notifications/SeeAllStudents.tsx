@@ -39,7 +39,7 @@ export const SeeAllStudents = () => {
         </ul>
       </section>
       <section className="notifications__actions">
-        <Button text={'volver'} onClick={() => navigate('/adminDashboard')} taller rounded animated />
+        <Button text={'volver'} onClick={() => navigate('/admin_dashboard')} taller rounded animated />
       </section>
     </article>
   )

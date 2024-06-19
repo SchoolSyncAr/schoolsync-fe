@@ -7,9 +7,8 @@ import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined'
 import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread'
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead'
 import DeleteIcon from '@mui/icons-material/Delete'
-
-import './NotifCard.scss'
 import { Button } from 'components/basic/Button/Button'
+import './NotifCard.scss'
 
 interface NotifCardProps {
   notifProps: NotifProps
@@ -43,7 +42,7 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
         <section className="notif-card__title">
           {title}
           {!deleteButton ? (
-            <div className='notif-card__actions'>
+            <div className="notif-card__actions">
               {handlePinned &&
                 (pinned ? (
                   <IconButton style={{ color: 'inherit' }} onClick={() => handlePinned(notifProps.id)}>
@@ -69,7 +68,7 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
           ) : null}
           {deleteButton && handleDelete && (
             <IconButton onClick={() => handleDelete(notifProps.id)}>
-              <DeleteIcon style={{ fontSize: '1.3em' }} />
+              <DeleteIcon style={{ fontSize: '1.3em', color: 'var(--color-white)' }} />
             </IconButton>
           )}
         </section>

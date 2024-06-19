@@ -33,7 +33,7 @@ export const Header = () => {
 
   return (
     <header className="main__header">
-      <Logo imgUrl={'/images/logo.png'} alt={'SchoolSync'} />
+      <Logo imgUrl={'/images/logo.png'} linkTo={'/NotificationsDashboard'} alt={'SchoolSync'} />
       <div className="nav-links">
         {authService.getUserRole() != 'ADMIN' && (
           <IconButton onClick={() => navigate('/notificationsDashboard')}>
