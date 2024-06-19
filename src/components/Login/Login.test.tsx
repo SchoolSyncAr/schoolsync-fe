@@ -52,8 +52,8 @@ describe('Login Tests', () => {
     const emptyUsernameErrorMsg = (await screen.findByTestId('login-username-error')) as HTMLSpanElement
     const emptyPasswordErrorMsg = (await screen.findByTestId('login-password-error')) as HTMLSpanElement
 
-    expect(emptyUsernameErrorMsg.textContent).contains('usuario')
-    expect(emptyPasswordErrorMsg.textContent).contains('password')
+    expect(emptyUsernameErrorMsg.textContent).toContain('usuario')
+    expect(emptyPasswordErrorMsg.textContent).toContain('password')
     expect(router.state.location.pathname).toEqual('/login')
   })
 
@@ -66,7 +66,7 @@ describe('Login Tests', () => {
 
     const emptyUsernameErrorMsg = (await screen.findByTestId('login-username-error')) as HTMLSpanElement
 
-    expect(emptyUsernameErrorMsg.textContent).contains('email')
+    expect(emptyUsernameErrorMsg.textContent).toContain('email')
     expect(router.state.location.pathname).toEqual('/login')
   })
 
@@ -127,7 +127,7 @@ describe('Login Tests', () => {
     await waitFor(async () => {
       const errorMsg = (await screen.findByTestId('login-error')) as HTMLSpanElement
       expect(router.state.location.pathname).toEqual('/login')
-      expect(errorMsg.textContent).contains('credenciales' && 'incorrectas')
+      expect(errorMsg.textContent).toContain('credenciales' && 'incorrectas')
     })
   })
 })
