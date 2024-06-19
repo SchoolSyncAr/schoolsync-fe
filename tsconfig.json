@@ -34,33 +34,44 @@
     "sourceMap": true,
     /* Aliases */
     "paths": {
-      "*": [
-        "./src/*"
+      "root/*": [
+        "./*"
       ],
-      "@/assets": [
-        "./src/components/*"
+      "src/*": [
+        "src/*"
       ],
-      "@/components": [
-        "./src/components/*"
+      "api/*": [
+        "src/api/*"
       ],
-      "@/services": [
+      "assets/*": [
+        "src/assets/*"
+      ],
+      "components/*": [
+        "src/components/*"
+      ],
+      "constants/*": [
+        "src/models/constants/*"
+      ],
+      "services/*": [
         "src/services/*"
       ],
-      "@/models": [
+      "pages/*": [
+        "src/pages/*"
+      ],
+      "models/*": [
         "src/models/*"
       ],
-      "@/interfaces": [
+      "interfaces/*": [
         "src/interfaces/*"
       ],
-      "@/utils": [
+      "utils/*": [
         "src/utils/*"
       ]
     }
   },
   // Directorios incluidos en la compilación
   "include": [
-    "src",
-    "setupTests.ts"
+    "src"
   ],
   // Referencias a otros archivos de configuración
   "references": [

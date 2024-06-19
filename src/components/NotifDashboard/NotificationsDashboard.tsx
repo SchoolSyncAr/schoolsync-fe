@@ -30,7 +30,9 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
 
   const getData = async () => {
     try {
-      const notifs = authService.adminStatus() ? await notificationService.getAllGeneralNotifications(filter) : await notificationService.getAllNotificationsByParentId(filter)
+      const notifs = authService.adminStatus()
+        ? await notificationService.getAllGeneralNotifications(filter)
+        : await notificationService.getAllNotificationsByParentId(filter)
       setNotifications(notifs)
       updateNotifications(notifs)
     } catch {
@@ -124,7 +126,7 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
           <div className="notif__go-back">
             <Button
               text={'Volver'}
-              onClick={() => navigate(deleteButton ? '/adminDashboard' : '/parentDashboard')}
+              onClick={() => navigate(deleteButton ? '/admin_dashboard' : '/parentDashboard')}
               animated
               rounded
             />

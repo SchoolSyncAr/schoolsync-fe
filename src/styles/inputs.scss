@@ -36,8 +36,11 @@
       color: var(--color-white);
       font-size: 0.9em;
       letter-spacing: 0;
-    } 
+    }
+  }
 
+  &--dropdown {
+    height: 56px;
   }
 
   &--rounded {

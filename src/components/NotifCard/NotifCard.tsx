@@ -42,7 +42,7 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
         <section className="notif-card__title">
           {title}
           {!deleteButton ? (
-            <div className='notif-card__actions'>
+            <div className="notif-card__actions">
               {handlePinned &&
                 (pinned ? (
                   <IconButton style={{ color: 'inherit' }} onClick={() => handlePinned(notifProps.id)}>
@@ -68,7 +68,7 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
           ) : null}
           {deleteButton && handleDelete && (
             <IconButton onClick={() => handleDelete(notifProps.id)}>
-              <DeleteIcon style={{ fontSize: '1.3em' }} />
+              <DeleteIcon style={{ fontSize: '1.3em', color: 'var(--color-white)' }} />
             </IconButton>
           )}
         </section>

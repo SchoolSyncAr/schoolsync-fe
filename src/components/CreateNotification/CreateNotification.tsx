@@ -85,25 +85,25 @@ function CreateNotification() {
   }
 
   function titleInputHandler(event: { target: { value: string } }) {
-    setFormState({ ...formState, title: event.target.value})
+    setFormState({ ...formState, title: event.target.value })
   }
 
   function contentInputHandler(event: { target: { value: string } }) {
-    setFormState({ ...formState, content: event.target.value})
+    setFormState({ ...formState, content: event.target.value })
   }
 
   function weightChangeHandler(event: { target: { value: string } }) {
-    setFormState({ ...formState, priority: event.target.value})
+    setFormState({ ...formState, priority: event.target.value })
   }
 
   const handleRecipientChange = (event: SyntheticEvent<Element, Event>, value: Parent[]) => {
     event
-    setFormState({ ...formState, recipients: value})
+    setFormState({ ...formState, recipients: value })
   }
 
   function recipientGroupChangeHandler(event: SyntheticEvent<Element, Event>, value: string[]) {
     event
-    setFormState({ ...formState, recipientGroups: value})
+    setFormState({ ...formState, recipientGroups: value })
   }
 
   async function createNewNotificationEventHandler(event: { preventDefault: () => void }) {
@@ -120,7 +120,7 @@ function CreateNotification() {
       weight: formState.priority,
       sender: Number(authService.getUserId()),
       recipientGroups: formState.recipientGroups,
-      recipients: formState.recipients.map(parent => parent.id),
+      recipients: formState.recipients.map((parent) => parent.id),
     })
 
     try {
@@ -134,13 +134,7 @@ function CreateNotification() {
   }
 
   function clearAll() {
-    setFormState({ ...formState, 
-      title:'',
-      content: '',
-      priority: '',
-      recipients: [],
-      recipientGroups: []
-    })
+    setFormState({ ...formState, title: '', content: '', priority: '', recipients: [], recipientGroups: [] })
   }
 
   return (
@@ -170,21 +164,20 @@ function CreateNotification() {
                 className="field field--textarea field--rounded animated shadow"
               />
               <label className="field__label--textarea text" htmlFor="newNotifContent">
-                Contenido {formErrors['content'] && <span className="text text--xs text--error">{formErrors['content']}</span>}
+                Contenido{' '}
+                {formErrors['content'] && <span className="text text--xs text--error">{formErrors['content']}</span>}
               </label>
             </div>
           </div>
           <div className="new-notif__settings">
             <div className="new-notif__settings-section">
               <div className="new-notif__settings-item">
-                <label className="text text--white text--md text--strong">
-                  Prioridad 
-                </label>
+                <label className="text text--white text--md text--strong">Prioridad</label>
                 {formErrors['priority'] && <span className="text text--xs text--error">{formErrors['priority']}</span>}
                 <Select
                   value={formState.priority}
                   onChange={weightChangeHandler}
-                  className="field field--select field--rounded shadow"
+                  className="custom field field--select field--rounded field--dropdown shadow"
                 >
                   <MenuItem value="">Seleccione una opción</MenuItem>
                   {priorities.map((item) => (
@@ -196,10 +189,12 @@ function CreateNotification() {
               </div>
             </div>
             <div className="new-notif__settings-section">
-              <label> 
+              <label>
                 <span className="text text--white text--md text--strong">A quien le llega </span>
                 <span className="text text--xs text--white">(Seleccione 1 o más)</span>
-                {formErrors['recipients'] && <div className="text text--xs text--error">{formErrors['recipients']}</div>}
+                {formErrors['recipients'] && (
+                  <div className="text text--xs text--error">{formErrors['recipients']}</div>
+                )}
               </label>
               <div className="new-notif__settings-item">
                 <label className="text text--white text--strong">Padres:</label>
@@ -213,7 +208,7 @@ function CreateNotification() {
                     <TextField
                       {...params}
                       placeholder="Buscar..."
-                      sx = {{ background: 'var(--color-white)', borderRadius: 'var(--border-radius-sm)' }}
+                      sx={{ background: 'var(--color-white)', borderRadius: 'var(--border-radius-sm)' }}
                     />
                   )}
                 />
@@ -229,7 +224,7 @@ function CreateNotification() {
                     <TextField
                       {...params}
                       placeholder="Buscar..."
-                      sx = {{ background: 'var(--color-white)', borderRadius: 'var(--border-radius-sm)' }}
+                      sx={{ background: 'var(--color-white)', borderRadius: 'var(--border-radius-sm)' }}
                     />
                   )}
                 />
@@ -247,8 +242,8 @@ function CreateNotification() {
             Crear
           </button>
           <button
-            className="button button--primary button--medium button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
-            onClick={() => navigate('/adminDashboard')}
+            className="button button--primary button--medium button--rounded text--md text--spaced text--upper animated shadow--box"
+            onClick={() => navigate('/admin_dashboard')}
           >
             Volver
           </button>

@@ -2,7 +2,7 @@ import './dashboard.scss'
 import { useNavigate } from 'react-router-dom'
 import { Button } from './basic/Button/Button'
 
-const AdminDashboard = () => {
+export const AdminDashboard = () => {
   const navigate = useNavigate()
   return (
     <main className="dashboard">
@@ -13,5 +13,3 @@ const AdminDashboard = () => {
     </main>
   )
 }
-
-export default AdminDashboard
