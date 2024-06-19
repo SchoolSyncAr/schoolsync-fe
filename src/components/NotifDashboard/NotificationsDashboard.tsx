@@ -34,7 +34,7 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
         ? await notificationService.getAllGeneralNotifications(filter)
         : await notificationService.getAllNotificationsByParentId(filter)
       setNotifications(notifs)
-      updateNotifications(notifs)
+      updateNotifications(notifs.filter((notification: NotifProps) => !notification.read).length)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }
