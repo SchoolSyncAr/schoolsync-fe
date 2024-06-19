@@ -74,7 +74,7 @@ function CreateNotification() {
     }
 
     if (formState.recipients.length === 0 && formState.recipientGroups.length === 0) {
-      errors['recipients'] = 'Seleccione al menos un padre o grupo'
+      errors['recipients'] = 'Seleccione al menos uno'
       valid = false
     }
 
@@ -176,9 +176,8 @@ function CreateNotification() {
             <div className="new-notif__settings-section">
               <div className="new-notif__settings-item">
                 <label className="text text--white text--md text--strong">
-                  Prioridad 
+                  Prioridad {formErrors['priority'] && <span className="text text--xs text--error">{formErrors['priority']}</span>}
                 </label>
-                {formErrors['priority'] && <span className="text text--xs text--error">{formErrors['priority']}</span>}
                 <Select
                   value={formState.priority}
                   onChange={weightChangeHandler}
@@ -195,9 +194,8 @@ function CreateNotification() {
             </div>
             <div className="new-notif__settings-section">
               <label> 
-                <span className="text text--white text--md text--strong">A quien le llega </span>
-                <span className="text text--xs text--white">(Seleccione 1 o más)</span>
-                {formErrors['recipients'] && <div className="text text--xs text--error">{formErrors['recipients']}</div>}
+                <span className="text text--white text--md text--strong">A quien le llega {formErrors['recipients'] && <span className="text text--xs text--error">{formErrors['recipients']}</span>}</span>
+                <div className="text text--xs text--white">(Seleccione 1 o más)</div>
               </label>
               <div className="new-notif__settings-item">
                 <label className="text text--white text--strong">Padres:</label>
