@@ -16,7 +16,7 @@ export const Header = () => {
 
   return (
     <header className="main__header">
-      <Logo imgUrl={'/images/logo.png'} linkTo={'/NotificationsDashboard'} alt={'SchoolSync'} />
+      <Logo imgUrl={'/images/logo.png'} linkTo={authService.getUserRole() == 'ADMIN' ? '/admin_dashboard' : '/parent_dashboard'} alt={'SchoolSync'} />
       <div className="nav-links">
         {authService.getUserRole() == 'ADMIN' && AdminNavbar()}
         {authService.getUserRole() != 'ADMIN' && ParentNavbar()}

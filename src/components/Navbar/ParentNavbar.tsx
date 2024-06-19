@@ -32,9 +32,9 @@ const ParentNavbar = () => {
       <div onClick={() => navigate('/children')} className={`nav-item text text--md text--strong ${getNavItemClass('/children')}`}>
         Hijos
       </div>
-      <IconButton onClick={() => navigate('/notificationsDashboard')}>
+      <IconButton onClick={() => navigate('/parent_dashboard')}>
         <Badge badgeContent={init ? data : notifications} color="error">
-          <NotificationsIcon className={`nav-links__icon ${getNavItemClass('/notificationsDashboard')}`} />
+          <NotificationsIcon className={`nav-links__icon ${getNavItemClass('/parent_dashboard')}`} />
         </Badge>
       </IconButton>
     </nav>

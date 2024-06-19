@@ -7,8 +7,6 @@ import { NotFound } from 'components/NotFound'
 import { ProtectedRoute } from './protectedRoute'
 import { LayoutWrap } from 'components/LayoutWrap'
 import { LoginPage } from 'pages/Login/LoginPage'
-import ParentNavbar from './components/Navbar/ParentNavbar'
-import AdminNavbar from './components/Navbar/AdminNavbar'
 import Children from './components/Children/Children'
 
 export const routes: RouteObject[] = [
@@ -22,11 +20,9 @@ export const routes: RouteObject[] = [
         path: '/',
         element: <LayoutWrap />,
         children: [
-          { path: 'parentDashboard', element: <ParentNavbar /> },
-          { path: 'notificationsDashboard', element: <NotificationsDashboard /> },
+          { path: 'parent_dashboard', element: <NotificationsDashboard /> },
           { path: 'children', element: <Children /> },
-          { path: 'admin_dashboard', element: <AdminNavbar /> },
-          { path: 'deleteNotification', element: <NotificationsDashboard deleteButton={true} /> },
+          { path: 'admin_dashboard', element: <NotificationsDashboard deleteButton={true} /> },
           { path: 'seeAllStudents', element: <SeeAllStudents /> },
           { path: 'seeAllParents', element: <SeeAllParents /> },
           { path: 'createNotification', element: <CreateNotification /> },

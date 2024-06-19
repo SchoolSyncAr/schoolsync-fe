@@ -30,7 +30,7 @@ export const Login = () => {
     try {
       await authService.login(data)
       const role = authService.getUserRole()
-      role === 'ADMIN' ? navigate('/deleteNotification') : navigate('/notificationsDashboard')
+      role === 'ADMIN' ? navigate('/admin_dashboard') : navigate('/parent_dashboard')
     } catch (error) {
       setErrorMsg(errorHandler(error as AxiosError))
     }

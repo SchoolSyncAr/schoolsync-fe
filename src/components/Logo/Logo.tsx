@@ -9,7 +9,6 @@ interface LogoProps {
 
 export const Logo = ({ ...props }: LogoProps) => {
   return (
-    //Cambiar el Link "to" cuando este la homepage definida
     <Link to={props.linkTo} className="logo">
       <img className="logo__img" src={props.imgUrl} alt={props.alt} />
       <div className="logo__text">

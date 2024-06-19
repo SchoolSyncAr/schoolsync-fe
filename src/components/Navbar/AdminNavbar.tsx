@@ -9,7 +9,7 @@ const AdminNavbar = () => {
   }
   return (
     <nav className="navbar">
-      <div onClick={() => navigate('/deleteNotification')} className={`nav-item text text--md text--strong ${getNavItemClass('/deleteNotification')}`}>
+      <div onClick={() => navigate('/admin_dashboard')} className={`nav-item text text--md text--strong ${getNavItemClass('/admin_dashboard')}`}>
         Notificaciones
       </div>
       <div onClick={() => navigate('/createNotification')} className={`nav-item text text--md text--strong ${getNavItemClass('/createNotification')}`}>
