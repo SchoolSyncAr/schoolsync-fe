@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-function NotFound() {
+export function NotFound() {
   return (
     <div style={{ textAlign: 'center', marginTop: '50px' }}>
       <h1>404 - Página no encontrada</h1>
@@ -9,6 +9,3 @@ function NotFound() {
     </div>
   )
 }
-
-export default NotFound
-

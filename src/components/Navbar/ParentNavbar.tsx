@@ -9,7 +9,7 @@ import { useNotification } from '../hooks/NotificationContext'
 
 const ParentNavbar = () => {
   const [data, setData] = useState(0)
-  const { notifications } = useNotification()
+  const { notifications, init } = useNotification()
   const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
 
@@ -33,7 +33,7 @@ const ParentNavbar = () => {
         Hijos
       </div>
       <IconButton onClick={() => navigate('/notificationsDashboard')}>
-        <Badge badgeContent={notifications.length == 0 ? data : notifications.length} color="error">
+        <Badge badgeContent={init ? data : notifications} color="error">
           <NotificationsIcon className={`nav-links__icon ${getNavItemClass('/notificationsDashboard')}`} />
         </Badge>
       </IconButton>
