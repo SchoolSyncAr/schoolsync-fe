@@ -3,36 +3,31 @@ import { authService } from './AuthService'
 import { NotifProps } from 'models/interfaces/Notification'
 import API from 'api/axios'
 import { VITE_REST_SERVER_URL } from 'constants/constants'
+import { FilterArgs } from '../models/interfaces/types'
 
 class NotificationService {
-  getAllGeneralNotifications = async (filter: { searchField: string; orderParam: string; sortDirection: string }) => {
-    const allNotificationsJson = await API.get(`${VITE_REST_SERVER_URL}/api/notification/all`, {
+  getAllGeneralNotifications = async (filter: FilterArgs) => {
+    const notificationsJson = await API.get(`${VITE_REST_SERVER_URL}/api/notification/all`, {
       params: {
         searchField: filter.searchField,
-        orderParam: filter.orderParam,
-        sortDirection: filter.sortDirection,
+        sortField: filter.sortField,
       },
     })
 
-    return allNotificationsJson.data.map((notification: Notification) =>
-      Notification.fromJson(notification as NotifProps),
-    )
+    return notificationsJson.data.map((notification: Notification) => new Notification(notification as NotifProps))
   }
 
-  getAllNotificationsByParentId = async (filter: {
-    searchField: string
-    orderParam: string
-    sortDirection: string
-  }) => {
-    const notifsJson = await API.get(`${VITE_REST_SERVER_URL}/api/parent/${authService.getUserId()}/notifications`, {
-      params: {
-        searchField: filter.searchField,
-        orderParam: filter.orderParam,
-        sortDirection: filter.sortDirection,
+  getAllNotificationsByParentId = async (filter: FilterArgs) => {
+    const notificationsJson = await API.get(
+      `${VITE_REST_SERVER_URL}/api/parent/${authService.getUserId()}/notifications`,
+      {
+        params: {
+          searchField: filter.searchField,
+          sortField: filter.sortField,
+        },
       },
-    })
-    console.log(notifsJson)
-    return notifsJson.data.map((notif: NotifProps) => Notification.fromJson(notif))
+    )
+    return notificationsJson.data.map((notification: NotifProps) => new Notification(notification))
   }
 
   createNotification = async (notification: NotifProps) => {
@@ -42,7 +37,7 @@ class NotificationService {
 
   getNotificationsCount = async () => {
     const param: number = 3
-    const notificationsCountJson = await API.get(`api/notification/count`, {params: {userId: param}})
+    const notificationsCountJson = await API.get(`api/notification/count`, { params: { userId: param } })
 
     return notificationsCountJson.data
   }

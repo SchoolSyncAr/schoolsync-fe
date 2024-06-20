@@ -26,8 +26,4 @@ export class Notification {
     this.read = props?.read ?? false
     this.pinned = props?.pinned ?? false
   }
-
-  static fromJson(notifData: NotifProps) {
-    return new Notification(notifData)
-  }
 }

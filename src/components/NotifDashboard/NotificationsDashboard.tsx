@@ -1,16 +1,16 @@
-// src/components/NotifDashboard/NotificationsDashboard.tsx
-import React, { useState, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useState } from 'react'
 import { NotifCard } from 'components/NotifCard/NotifCard'
 import { useOnInit } from 'utils/useOnInit'
 import { NotifProps } from 'models/interfaces/Notification'
 import notificationService from 'services/NotificationService'
-import SearchBar from 'components/Searchbar/Searchbar'
+import { SearchBar } from 'components/Searchbar/Searchbar'
 import './NotificationDashboard.scss'
 import { useNotification } from 'components/hooks/NotificationContext'
 import { PrintError } from 'components/PrintError/PrintError'
 import { authService } from 'services/AuthService'
 import { enqueueSnackbar } from 'notistack'
+import { FilterArgs, emptyFilter } from 'root/src/models/interfaces/types'
+import { SubmitHandler } from 'react-hook-form'
 
 interface NotifDashboardProps {
   deleteButton?: boolean
@@ -19,59 +19,39 @@ interface NotifDashboardProps {
 function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
   const { updateNotifications } = useNotification()
   const [notifications, setNotifications] = useState<NotifProps[]>([])
-  const [params, setParams] = useSearchParams()
+  //const [params, setParams] = useSearchParams()
   const [errorMessage, setErrorMessage] = useState('')
-  const [filter, setFilter] = useState({
-    searchField: params.get('searchField') || '',
-    orderParam: params.get('sortData') || '',
-    sortDirection: params.get('sortDirection') || '',
-  })
+  const [lastFilter, setLastFilter] = useState<FilterArgs>(emptyFilter)
 
-  const getData = async () => {
+  const getData: SubmitHandler<FilterArgs> = async (data) => {
     try {
       const notifs = authService.adminStatus()
-        ? await notificationService.getAllGeneralNotifications(filter)
-        : await notificationService.getAllNotificationsByParentId(filter)
+        ? await notificationService.getAllGeneralNotifications(data)
+        : await notificationService.getAllNotificationsByParentId(data)
       setNotifications(notifs)
       updateNotifications(notifs.filter((notification: NotifProps) => !notification.read).length)
+      setLastFilter(data)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
     }
   }
 
   useOnInit(async () => {
-    getData()
+    getData(emptyFilter)
   })
 
-  useEffect(() => {
-    const newParams = new URLSearchParams()
-    newParams.append('searchField', filter.searchField)
-    newParams.append('orderParam', filter.orderParam)
-    newParams.append('sortDirection', filter.sortDirection)
-    setParams(newParams)
-  }, [filter, setParams])
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = event.target
-    const param = type === 'checkbox' ? checked : value
-    setFilter((prevfilter) => ({
-      ...prevfilter,
-      [name]: param,
-    }))
-  }
-
-  const handleFilterChange = (filterName: string, filterValue: string) => {
-    setFilter((prevfilter) => ({
-      ...prevfilter,
-      [filterName]: filterValue,
-    }))
-  }
+  // useEffect(() => {
+  //   const newParams = new URLSearchParams()
+  //   newParams.append('searchField', filter.searchField)
+  //   newParams.append('orderParam', filter.orderParam)
+  //   newParams.append('sortDirection', filter.sortDirection)
+  //   setParams(newParams)
+  // }, [filter, setParams])
 
   const handlePinned = async (notifId: number) => {
     try {
-      console.log(notifId)
       await notificationService.pinNotification(notifId)
-      getData()
+      getData(lastFilter)
     } catch {
       setErrorMessage('No se pudo pinnear la notificación')
     }
@@ -79,9 +59,8 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
 
   const handleRead = async (notifId: number) => {
     try {
-      console.log(notifId)
       await notificationService.readNotification(notifId)
-      getData()
+      getData(lastFilter)
     } catch {
       setErrorMessage('No se pudo setear como leída la notificación')
     }
@@ -90,7 +69,7 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
   const handleDelete = async (notifId: number) => {
     try {
       await notificationService.deleteById(notifId)
-      getData()
+      getData(lastFilter)
       enqueueSnackbar('Notificación borrada', { variant: 'error' })
     } catch {
       setErrorMessage('error')
@@ -111,12 +90,7 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
 
   return (
     <>
-      <SearchBar
-        handleSearchInit={getData}
-        handleChange={handleChange}
-        filter={filter}
-        handleFilterChange={handleFilterChange}
-      />
+      <SearchBar onSubmit={getData} />
       <div className="notif">
         <div className="notif__grid">{notifList()}</div>
         <PrintError error={errorMessage} />

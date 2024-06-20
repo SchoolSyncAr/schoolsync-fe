@@ -1,109 +1,81 @@
-import React from 'react'
-import Box from '@mui/material/Box'
-import FormControl from '@mui/material/FormControl'
-import InputLabel from '@mui/material/InputLabel'
-import Input from '@mui/material/Input'
-import InputAdornment from '@mui/material/InputAdornment'
-import Button from '@mui/material/Button'
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem'
+import './Searchbar.scss'
+import { FilterArgs, FilterSelector, emptyFilter } from 'root/src/models/interfaces/types'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import SearchIcon from '@mui/icons-material/Search'
+import { Button } from 'components/basic/Button/Button'
+import { useState } from 'react'
 
-interface SearchBarProps {
-  handleSearchInit: () => void
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-  filter: {
-    searchField: string
-    orderParam: string
-    sortDirection: string
-  }
-  handleFilterChange: (filterName: string, filterValue: string) => void
+type SearchBarProps = {
+  onSubmit: SubmitHandler<FilterArgs>
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ handleSearchInit, handleChange, filter, handleFilterChange }) => {
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      handleSearchInit()
-    }
-  }
+export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
+  const [selectDefaultText, setSelectDefaultText] = useState('Ordenar por: ')
+  const [selectedOption, setSelectedOption] = useState<FilterSelector>(FilterSelector.UNDEFINED)
 
-  const handleOrderChange = (event: SelectChangeEvent<string>) => {
-    const value = event.target.value
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<FilterArgs>({
+    defaultValues: {
+      ...emptyFilter,
+    },
+  })
 
-    const mapping: { [key: string]: { orderParam: string; sortDirection: string } } = {
-      datedesc: { orderParam: 'date', sortDirection: 'desc' },
-      dateasc: { orderParam: 'date', sortDirection: 'asc' },
-      weightdesc: { orderParam: 'weight', sortDirection: 'desc' },
-      weightasc: { orderParam: 'weight', sortDirection: 'asc' },
-    }
+  const options: { label: string; value?: FilterSelector }[] = [
+    { label: selectDefaultText, value: FilterSelector.UNDEFINED },
+    { label: 'Más actual', value: FilterSelector.DATE_DESC },
+    { label: 'Más antiguo', value: FilterSelector.DATE_ASC },
+    { label: 'Más importante', value: FilterSelector.WEIGHT_ASC },
+    { label: 'Menos importante', value: FilterSelector.WEIGHT_DESC },
+  ]
 
-    const { orderParam, sortDirection } = mapping[value] || { orderParam: '', sortDirection: '' }
-
-    handleFilterChange('orderParam', orderParam)
-    handleFilterChange('sortDirection', sortDirection)
+  const handleSortChange = (selection: FilterSelector) => {
+    setSelectedOption(selection)
+    selection !== FilterSelector.UNDEFINED
+      ? setSelectDefaultText('Limpiar filtros')
+      : setSelectDefaultText('Ordenar por: ')
   }
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        pb: '1rem',
-        pt: '1rem',
-      }}
-    >
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '1em',
-        }}
-      >
-        <FormControl variant="standard">
-          <InputLabel htmlFor="input-with-icon-adornment">Search:</InputLabel>
-          <Input
-            id="input-with-icon-adornment"
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchRoundedIcon />
-                {/* <NotificationsIcon /> */}
-              </InputAdornment>
-            }
-            type="text"
-            name="searchField"
-            value={filter.searchField}
-            onChange={handleChange}
-            onKeyDown={handleKeyPress}
-            placeholder="Title..."
+    <form className="searchbar shadow shadow--big" onSubmit={handleSubmit(onSubmit)}>
+      <section className="searchbar__inputs">
+        <div className="field__container">
+          <input
+            id="searchfor"
+            className="field field--rounded field--large animated shadow"
+            {...register('searchField')}
+            data-testid="login-username"
+            placeholder="Buscar: "
           />
-        </FormControl>
-        <FormControl variant="standard" sx={{ minWidth: 180 }}>
-          <InputLabel id="sort-order-label">Sort by</InputLabel>
-          <Select
-            labelId="sort-order-label"
-            id="sort-order"
-            value={`${filter.orderParam}${filter.sortDirection}`}
-            onChange={handleOrderChange}
-            label="Sort by"
+        </div>
+
+        <div className="field__container">
+          <select
+            {...register('sortField')}
+            className="field field--select field--rounded animated shadow"
+            onChange={(e) => handleSortChange(e.target.value as FilterSelector)}
+            value={selectedOption}
           >
-            <MenuItem value="datedesc">Date - From Newest to Oldest</MenuItem>
-            <MenuItem value="dateasc">Date - From Oldest to Newest</MenuItem>
-            <MenuItem value="weightdesc">Weight - From Highest to Lowest</MenuItem>
-            <MenuItem value="weightasc">Weight - From Lowest to Highest</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-      <Button
-        size="medium"
-        startIcon={<SearchRoundedIcon />}
-        variant="contained"
-        color="success"
-        onClick={handleSearchInit}
-        onKeyDown={handleKeyPress}
-      >
-        SEARCH
-      </Button>
-    </Box>
+            {options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      </section>
+      <section className="searchbar__action">
+        <Button
+          text={<SearchIcon style={{ fontSize: '1.6em' }} />}
+          className="button--icon"
+          rounded
+          animated
+          data-testid={'search-submit'}
+          disabled={isSubmitting}
+        />
+      </section>
+    </form>
   )
 }
-
-export default SearchBar
