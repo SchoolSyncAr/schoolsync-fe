@@ -35,16 +35,20 @@
     border: 1px solid var(--color-primary-hover);
   }
 
-  &--small {
-    max-width: 5em;
+  &--large {
+    max-width: 15em;
   }
 
   &--medium {
     max-width: 10em;
   }
 
-  &--large {
-    max-width: 15em;
+  &--small {
+    max-width: 5em;
+  }
+
+  &--icon {
+    width: var(--element-height);
   }
 
   &--secondary {

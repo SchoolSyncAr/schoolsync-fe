@@ -1,9 +1,10 @@
 .field {
   height: var(--element-height);
   width: 100%;
-  padding: var(--spacing-small);
+  padding: 0 var(--spacing-small);
 
   font-family: var(--typeface-main);
+  font-size: 1.2em;
 
   border: 1px solid var(--color-primary);
   background-color: var(--color-white);
@@ -31,11 +32,15 @@
     &textarea:focus ~ label,
     textarea:valid ~ label,
     &input:focus ~ label,
-    input:valid ~ label {
+    input:valid ~ label:not(.field__label--fade) {
       transform: translate(-0.4em, -2.4em);
       color: var(--color-white);
       font-size: 0.9em;
       letter-spacing: 0;
+    }
+
+    input:valid ~ label.field__label--fade {
+      display: none;
     }
   }
 
@@ -48,7 +53,15 @@
   }
 
   &--large {
-    max-width: 20vw;
+    min-width: 25rem;
+  }
+
+  &--medium {
+    width: 15rem;
+  }
+
+  &--small {
+    width: 10rem;
   }
 
   &--tall {
@@ -58,6 +71,18 @@
   &--textarea {
     height: 100%;
     min-height: 15em;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 22%;
+    left: 0.6em;
+    z-index: 1000;
+  }
+
+  &--disabled {
+    border-style: dashed;
+    filter: opacity(50%);
   }
 
   &:disabled {
