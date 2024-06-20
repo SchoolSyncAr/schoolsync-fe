@@ -1,11 +1,9 @@
 import './notifications.scss'
-import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useOnInit } from 'utils/useOnInit'
 import { getAllStudents } from '../../services/StudentsService'
 import { Student } from '../../models/Student'
 import AddCardIcon from '@mui/icons-material/AddCard'
-import { Button } from '../basic/Button/Button'
 import { PrintError } from 'components/PrintError/PrintError'
 
 export const SeeAllStudents = () => {
@@ -21,7 +19,6 @@ export const SeeAllStudents = () => {
     }
   })
 
-  const navigate = useNavigate()
   return (
     <article className="notifications">
       <h3 className="notifications__title text--strong">Listado de estudiantes</h3>
@@ -37,9 +34,6 @@ export const SeeAllStudents = () => {
           ))}
           <PrintError error={errorMessage} />
         </ul>
-      </section>
-      <section className="notifications__actions">
-        <Button text={'volver'} onClick={() => navigate('/admin_dashboard')} taller rounded animated />
       </section>
     </article>
   )
