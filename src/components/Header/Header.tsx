@@ -1,31 +1,14 @@
 import { useNavigate } from 'react-router-dom'
-import './Header.css'
-import { useState } from 'react'
-import { useOnInit } from 'utils/useOnInit'
-import { Badge, IconButton } from '@mui/material'
-import NotificationsIcon from '@mui/icons-material/Notifications'
-import notificationService from 'services/NotificationService'
 import { Logout } from '@mui/icons-material'
 import { authService } from 'services/AuthService'
-import { useNotification } from '../hooks/NotificationContext'
 import { Logo } from 'components/Logo/Logo'
-import { PrintError } from 'components/PrintError/PrintError'
+import './Header.css'
+import { IconButton } from '@mui/material'
+import ParentNavbar from 'components/Navbar/ParentNavbar'
+import AdminNavbar from 'components/Navbar/AdminNavbar'
 
 export const Header = () => {
-  const [data, setData] = useState(0)
-  const { notifications, init } = useNotification()
-  const [errorMessage, setErrorMessage] = useState('')
   const navigate = useNavigate()
-
-  useOnInit(async () => {
-    try {
-      const notificationCount = await notificationService.getNotificationsCount()
-      setData(notificationCount)
-    } catch {
-      setErrorMessage('No se pudo obtener info notifications')
-    }
-  })
-
   const handleLogout = () => {
     authService.logout()
     navigate('/login')
@@ -33,20 +16,14 @@ export const Header = () => {
 
   return (
     <header className="main__header">
-      <Logo imgUrl={'/images/logo.png'} linkTo={'/NotificationsDashboard'} alt={'SchoolSync'} />
+      <Logo imgUrl={'/images/logo.png'} linkTo={authService.getUserRole() == 'ADMIN' ? '/admin_dashboard' : '/parent_dashboard'} alt={'SchoolSync'} />
       <div className="nav-links">
-        {authService.getUserRole() != 'ADMIN' && (
-          <IconButton onClick={() => navigate('/notificationsDashboard')}>
-            <Badge badgeContent={init ? data : notifications} color="error">
-              <NotificationsIcon className="nav-links__icon" />
-            </Badge>
-          </IconButton>
-        )}
+        {authService.getUserRole() == 'ADMIN' && AdminNavbar()}
+        {authService.getUserRole() != 'ADMIN' && ParentNavbar()}
         <IconButton onClick={handleLogout}>
           <Logout className="nav-links__icon" />
         </IconButton>
       </div>
-      <PrintError error={errorMessage} />
     </header>
   )
 }

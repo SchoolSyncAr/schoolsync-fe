@@ -1,6 +1,5 @@
 import { SyntheticEvent, useEffect, useState } from 'react'
 import notificationService from 'services/NotificationService'
-import { useNavigate } from 'react-router-dom'
 import { Autocomplete, MenuItem, Select, TextField } from '@mui/material'
 import { Notification } from 'models/Notification'
 import { parentService } from 'services/ParentService'
@@ -36,7 +35,6 @@ function CreateNotification() {
     priority: '',
     recipients: '',
   })
-  const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchData() {
@@ -76,7 +74,7 @@ function CreateNotification() {
     }
 
     if (formState.recipients.length === 0 && formState.recipientGroups.length === 0) {
-      errors['recipients'] = 'Seleccione al menos un padre o grupo'
+      errors['recipients'] = 'Seleccione al menos uno'
       valid = false
     }
 
@@ -172,8 +170,9 @@ function CreateNotification() {
           <div className="new-notif__settings">
             <div className="new-notif__settings-section">
               <div className="new-notif__settings-item">
-                <label className="text text--white text--md text--strong">Prioridad</label>
-                {formErrors['priority'] && <span className="text text--xs text--error">{formErrors['priority']}</span>}
+                <label className="text text--white text--md text--strong">
+                  Prioridad {formErrors['priority'] && <span className="text text--xs text--error">{formErrors['priority']}</span>}
+                </label>
                 <Select
                   value={formState.priority}
                   onChange={weightChangeHandler}
@@ -189,12 +188,9 @@ function CreateNotification() {
               </div>
             </div>
             <div className="new-notif__settings-section">
-              <label>
-                <span className="text text--white text--md text--strong">A quien le llega </span>
-                <span className="text text--xs text--white">(Seleccione 1 o más)</span>
-                {formErrors['recipients'] && (
-                  <div className="text text--xs text--error">{formErrors['recipients']}</div>
-                )}
+              <label> 
+                <span className="text text--white text--md text--strong">A quien le llega {formErrors['recipients'] && <span className="text text--xs text--error">{formErrors['recipients']}</span>}</span>
+                <div className="text text--xs text--white">(Seleccione 1 o más)</div>
               </label>
               <div className="new-notif__settings-item">
                 <label className="text text--white text--strong">Padres:</label>
@@ -240,12 +236,6 @@ function CreateNotification() {
             data-testid="new-notif-submit"
           >
             Crear
-          </button>
-          <button
-            className="button button--primary button--medium button--rounded text--md text--spaced text--upper animated shadow--box"
-            onClick={() => navigate('/admin_dashboard')}
-          >
-            Volver
           </button>
         </section>
       </form>
