@@ -1,11 +1,11 @@
-import { RenderResult, act, render, screen } from '@testing-library/react'
+import { RenderResult, render, screen } from '@testing-library/react'
 // import { userEvent } from '@testing-library/user-event'
-import { describe, it, beforeEach, expect, afterEach, vi } from 'vitest'
+import { describe, it, beforeEach, expect, afterEach} from 'vitest'
 import { Footer } from './Footer'
 import { MemoryRouter } from 'react-router-dom'
 
 describe('Footer Tests', () => {
-  let renderResult
+  let renderResult: RenderResult<typeof import("@testing-library/dom/types/queries"), HTMLElement, HTMLElement>
 
   beforeEach(() => {
     renderResult = render(<MemoryRouter><Footer /></MemoryRouter>)
@@ -37,31 +37,4 @@ describe('Footer Tests', () => {
     const schoolsyncarMailText = screen.getByText(/schoolsyncar@schoolsyncar.com.ar/i)
     expect(schoolsyncarMailText).toBeInTheDocument()
   })
-
-
-
-
-
-
-
-  // it('Should apply correct styles and classes to elements', async () => {
-  //   const footerElement = screen.getByRole('contentinfo')
-
-  //   expect(footerElement).toHaveClass('main__footer')
-
-  //   const socialIcons = screen.getAllByRole('button')
-
-  //   socialIcons.forEach(icon => {
-  //     expect(icon).toHaveClass('icon')
-  //   })
-
-  //   const textElements = screen.getAllByRole('text')
-
-  //   textElements.forEach(text => {
-  //     expect(text).toHaveClass('text')
-  //     expect(text).toHaveClass('text--xs')
-  //     expect(text).toHaveClass('text--white')
-  //     expect(text).toHaveClass('text--light')
-  //   })
-  // })
 })
