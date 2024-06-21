@@ -1,5 +1,4 @@
 import { RenderResult, render, screen } from '@testing-library/react'
-// import { userEvent } from '@testing-library/user-event'
 import { describe, it, beforeEach, expect, afterEach} from 'vitest'
 import { Footer } from './Footer'
 import { MemoryRouter } from 'react-router-dom'

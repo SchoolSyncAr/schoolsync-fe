@@ -20,17 +20,17 @@ function SeeAllParents() {
   })
 
   return (
-    <article className="notifications">
-      <h3 className="notifications__title text--strong">Listado de padres</h3>
-      <section className="notifications__body">
-        <ul className="notifications__body-list shadow">
+    <article className="notifications" data-testid="allparents">
+      <h3 className="notifications__title text--strong" data-testid="allparents-title">Listado de padres</h3>
+      <section className="notifications__body" data-testid="allparents-body">
+        <ul className="notifications__body-list shadow" data-testid="allparents-list">
           {parents.map((parent) => (
-            <div key={parent.id} className="notifications__text">
+            <li key={parent.id} className="notifications__text">
               <span>
                 {parent.lastName}, {parent.firstName}{' '}
               </span>
               <AddCardIcon style={{ color: 'green' }}></AddCardIcon>
-            </div>
+            </li>
           ))}
           <PrintError error={errorMessage} />
         </ul>
