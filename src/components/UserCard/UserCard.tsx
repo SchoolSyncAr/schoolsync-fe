@@ -18,7 +18,7 @@ export const UserCard = ({ user }: UserCardProps) => {
   return(
     <article className="user-card">
       <div className="user-card__name">
-        <div className="text text--md text--white">
+        <div className="text text--strong text--md text--white">
           {firstName} {lastName} 
         </div>
         {isParent(user) && 
