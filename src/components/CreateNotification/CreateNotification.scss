@@ -18,7 +18,7 @@
     height: 100%;
     height: fit-content;
     padding: var(--spacing);
-    gap: var(--spacing-medium);
+    gap: var(--spacing-small);
     border-radius: var(--border-radius);
     background: linear-gradient(110deg, var(--color-primary-hover) 60%, var(--color-secondary) 60%);
   }
@@ -39,14 +39,14 @@
     background: linear-gradient(110deg, var(--color-primary-hover) 60%, var(--color-secondary) 60%);
   }
 
-  &__settings-item {
+  &__field {
     display: flex;
     flex-direction: column;
   }
 }
 
-.custom {
-  height: 200px;
+.custom-textarea {
+  height: 800px;
 }
 
 .control-buttons {
