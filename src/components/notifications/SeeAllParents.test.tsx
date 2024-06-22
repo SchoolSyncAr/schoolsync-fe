@@ -1,12 +1,10 @@
 import SeeAllParents from './seeAllParents'
-import { RenderResult, act, render, screen } from '@testing-library/react'
-import { describe, it, beforeEach, expect, afterEach, vi } from 'vitest'
+import { act, render, screen } from '@testing-library/react'
+import { describe, it, beforeEach, expect, vi } from 'vitest'
 import { parentService } from 'services/ParentService'
 import { Parent } from 'root/src/models/Parent'
 
 describe('SeeAllParents component', () => {
-  let renderResult: RenderResult
-
   const parents = [
     {
       id: 2,
@@ -41,11 +39,28 @@ describe('SeeAllParents component', () => {
     expect(parentComponent).toBeTruthy()
   })
 
-  // it('renders list of parents', async () => {
-  //   const { getByTestId } = render(<SeeAllParents />)
+  it('should render title', () => {
+    const parentComponent = screen.getByTestId('allparents-title') as HTMLDivElement
+    expect(parentComponent).toBeTruthy()
+  })
 
-  //   // Verificar que se renderice al menos un padre en la lista
-  //   const parentList = getByTestId('parent-list')
-  //   expect(parentList.children.length).toBe(parents.length)
-  // })
+  it('should render body', () => {
+    const parentComponent = screen.getByTestId('allparents-body') as HTMLDivElement
+    expect(parentComponent).toBeTruthy()
+  })
+
+  it('should render list', () => {
+    const parentComponent = screen.getByTestId('allparents-list') as HTMLDivElement
+    expect(parentComponent).toBeTruthy()
+  })
+
+  it('should render list with correct length with number', () => {
+    const parentList = screen.getByTestId('allparents-list').children
+    expect(parentList.length).toBe(3)
+  })
+
+  it('should render list with correct length', () => {
+    const parentList = screen.getByTestId('allparents-list').children
+    expect(parentList.length).toBe(parents.length)
+  })
 })
