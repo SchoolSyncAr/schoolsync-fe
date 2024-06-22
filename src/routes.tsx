@@ -6,7 +6,7 @@ import { NotFound } from 'components/NotFound'
 import { ProtectedRoute } from './protectedRoute'
 import { LayoutWrap } from 'components/LayoutWrap'
 import { LoginPage } from 'pages/Login/LoginPage'
-import Children from './components/Children/Children'
+import Children from './components/Dashboards/Children'
 import SeeAllParents from './components/Dashboards/seeAllParents'
 
 export const routes: RouteObject[] = [

@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useOnInit } from 'utils/useOnInit'
 import { getMyChildren } from '../../services/ParentService'
 import { Student } from 'models/Student'
-import { Button } from '../basic/Button/Button'
-import "./Children.scss"
+import { UserCard } from '../UserCard/UserCard'
+import "./Dashboard.scss"
 
 function Children() {
   const [children, setChildren] = useState<Student[]>([])
@@ -19,14 +19,18 @@ function Children() {
     }
   })
 
-  //////Queda un div duplicado para el momento en que la pagina tenga mas contenido 
+  const childrenList = () => {
+    return children.map((child, index) => (
+      <UserCard 
+        user={child}
+        key={index}
+      />
+    ))
+  }
+
   return (
-    <div className="children-dashboard">
-      <div className="children-dashboard__items">
-        {children.map((child) => (
-          <Button key={child.id} text={child.firstName} taller rounded animated />
-        ))}
-      </div>
+    <div className="dashboard">
+      <div className="dashboard__grid">{childrenList()}</div>
     </div>
   )
 }
