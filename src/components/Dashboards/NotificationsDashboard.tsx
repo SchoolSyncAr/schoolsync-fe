@@ -4,7 +4,7 @@ import { useOnInit } from 'utils/useOnInit'
 import { NotifProps } from 'models/interfaces/Notification'
 import notificationService from 'services/NotificationService'
 import { SearchBar } from 'components/Searchbar/Searchbar'
-import './NotificationDashboard.scss'
+import './Dashboard.scss'
 import { useNotification } from 'components/hooks/NotificationContext'
 import { PrintError } from 'components/PrintError/PrintError'
 import { authService } from 'services/AuthService'
@@ -19,7 +19,6 @@ interface NotifDashboardProps {
 function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
   const { updateNotifications } = useNotification()
   const [notifications, setNotifications] = useState<NotifProps[]>([])
-  //const [params, setParams] = useSearchParams()
   const [errorMessage, setErrorMessage] = useState('')
   const [lastFilter, setLastFilter] = useState<FilterArgs>(emptyFilter)
 
@@ -39,14 +38,6 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
   useOnInit(async () => {
     getData(emptyFilter)
   })
-
-  // useEffect(() => {
-  //   const newParams = new URLSearchParams()
-  //   newParams.append('searchField', filter.searchField)
-  //   newParams.append('orderParam', filter.orderParam)
-  //   newParams.append('sortDirection', filter.sortDirection)
-  //   setParams(newParams)
-  // }, [filter, setParams])
 
   const handlePinned = async (notifId: number) => {
     try {
@@ -91,8 +82,8 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
   return (
     <>
       <SearchBar onSubmit={getData} />
-      <div className="notif">
-        <div className="notif__grid">{notifList()}</div>
+      <div className="dashboard">
+        <div className="dashboard__grid">{notifList()}</div>
         <PrintError error={errorMessage} />
       </div>
     </>

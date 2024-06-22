@@ -1,13 +1,13 @@
 import { RouteObject } from 'react-router-dom'
-import NotificationsDashboard from 'components/NotifDashboard/NotificationsDashboard'
+import NotificationsDashboard from 'root/src/components/Dashboards/NotificationsDashboard'
 import CreateNotification from 'components/CreateNotification/CreateNotification'
-import { SeeAllStudents } from 'components/notifications/SeeAllStudents'
-import SeeAllParents from 'components/notifications/seeAllParents'
+import { SeeAllStudents } from 'root/src/components/Dashboards/SeeAllStudents'
 import { NotFound } from 'components/NotFound'
 import { ProtectedRoute } from './protectedRoute'
 import { LayoutWrap } from 'components/LayoutWrap'
 import { LoginPage } from 'pages/Login/LoginPage'
 import Children from './components/Children/Children'
+import SeeAllParents from './components/Dashboards/seeAllParents'
 
 export const routes: RouteObject[] = [
   { path: '', element: <LoginPage /> },
@@ -25,7 +25,7 @@ export const routes: RouteObject[] = [
           { path: 'admin_dashboard', element: <NotificationsDashboard deleteButton={true} /> },
           { path: 'seeAllStudents', element: <SeeAllStudents /> },
           { path: 'seeAllParents', element: <SeeAllParents /> },
-          { path: 'createNotification', element: <CreateNotification /> },
+          { path: 'create_notification', element: <CreateNotification /> },
         ],
       },
     ],

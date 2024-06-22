@@ -4,12 +4,6 @@ import { ParentProps, StudentProps } from 'models/interfaces/User'
 import { Parent } from 'models/Parent'
 import { Student } from 'models/Student'
 import { authService } from './AuthService'
-
-// export const getAllChildrenForAParent = async (parentId: number) => {
-//   console.log("parent service parent id is: " + parentId)
-
-// }
-
 class ParentService {
   getAll = async (): Promise<Parent[]> => {
     const parents = await API.get(`${VITE_REST_SERVER_URL}/api/parent/all`)
