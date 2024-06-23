@@ -1,4 +1,4 @@
-import { StudentProps } from "./interfaces/User"
+import { StudentProps } from './interfaces/User'
 
 export class Student {
   id: number
@@ -6,12 +6,15 @@ export class Student {
   lastName: string
   absences: number
   notifications: number[]
-  
-  constructor( data: StudentProps) {
+
+  constructor(data: StudentProps) {
     this.id = data.id
     this.firstName = data.firstName
     this.lastName = data.lastName
     this.absences = data.absences ?? 0
     this.notifications = data.notifications ?? []
+  }
+  static fromJson(data: StudentProps) {
+    return new Student(data)
   }
 }

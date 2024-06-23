@@ -20,10 +20,12 @@ export const SeeAllStudents = () => {
   })
 
   return (
-    <article className="notifications">
-      <h3 className="notifications__title text--strong">Listado de estudiantes</h3>
-      <section className="notifications__body">
-        <ul className="notifications__body-list shadow">
+    <article className="notifications" data-testid="allstudents">
+      <h3 className="notifications__title text--strong" data-testid="allstudents-title">
+        Listado de estudiantes
+      </h3>
+      <section className="notifications__body" data-testid="allstudents-body">
+        <ul className="notifications__body-list shadow" data-testid="allstudents-list">
           {students.map((student) => (
             <div key={student.id} className="notifications__text">
               <span>

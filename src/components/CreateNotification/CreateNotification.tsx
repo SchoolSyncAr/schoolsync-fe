@@ -171,12 +171,16 @@ function CreateNotification() {
             <div className="new-notif__settings-section">
               <div className="new-notif__settings-item">
                 <label className="text text--white text--md text--strong">
-                  Prioridad {formErrors['priority'] && <span className="text text--xs text--error">{formErrors['priority']}</span>}
+                  Prioridad{' '}
+                  {formErrors['priority'] && (
+                    <span className="text text--xs text--error">{formErrors['priority']}</span>
+                  )}
                 </label>
                 <Select
                   value={formState.priority}
                   onChange={weightChangeHandler}
                   className="custom field field--select field--rounded field--dropdown shadow"
+                  data-testid="select-priority"
                 >
                   <MenuItem value="">Seleccione una opción</MenuItem>
                   {priorities.map((item) => (
@@ -188,8 +192,13 @@ function CreateNotification() {
               </div>
             </div>
             <div className="new-notif__settings-section">
-              <label> 
-                <span className="text text--white text--md text--strong">A quien le llega {formErrors['recipients'] && <span className="text text--xs text--error">{formErrors['recipients']}</span>}</span>
+              <label>
+                <span className="text text--white text--md text--strong">
+                  A quien le llega{' '}
+                  {formErrors['recipients'] && (
+                    <span className="text text--xs text--error">{formErrors['recipients']}</span>
+                  )}
+                </span>
                 <div className="text text--xs text--white">(Seleccione 1 o más)</div>
               </label>
               <div className="new-notif__settings-item">
@@ -205,6 +214,7 @@ function CreateNotification() {
                       {...params}
                       placeholder="Buscar..."
                       sx={{ background: 'var(--color-white)', borderRadius: 'var(--border-radius-sm)' }}
+                      data-testid="autocomplete-parents"
                     />
                   )}
                 />
@@ -221,6 +231,7 @@ function CreateNotification() {
                       {...params}
                       placeholder="Buscar..."
                       sx={{ background: 'var(--color-white)', borderRadius: 'var(--border-radius-sm)' }}
+                      data-testid="autocomplete-groups"
                     />
                   )}
                 />

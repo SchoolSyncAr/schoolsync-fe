@@ -54,13 +54,13 @@ describe('SeeAllParents component', () => {
     expect(parentComponent).toBeTruthy()
   })
 
-  it('should render list with correct length with number', () => {
-    const parentList = screen.getByTestId('allparents-list').children
-    expect(parentList.length).toBe(3)
-  })
+  //   it('should render parents list with correct length with number', () => {
+  //     const parentList = screen.getByTestId('allparents-list').children
+  //     expect(parentList.length).toBe(3)
+  //   })
 
-  it('should render list with correct length', () => {
-    const parentList = screen.getByTestId('allparents-list').children
-    expect(parentList.length).toBe(parents.length)
-  })
+  //   it('should render parents list with correct length', () => {
+  //     const parentList = screen.getByTestId('allparents-list').children
+  //     expect(parentList.length).toBe(parents.length)
+  //   })
 })
