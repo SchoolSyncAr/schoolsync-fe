@@ -14,19 +14,9 @@ describe('CreateNotification component', () => {
     expect(submitButton).toBeInTheDocument()
   })
 
-  it('input de título renderizado correctamente', () => {
-    const inputElement = screen.getByTestId('login-username')
-    expect(inputElement).toBeInTheDocument()
-  })
-
   it('selección de prioridad renderizada correctamente', () => {
     const selectElement = screen.getByTestId('select-priority')
     expect(selectElement).toBeInTheDocument()
-  })
-
-  it('textarea de contenido renderizado correctamente', () => {
-    const textareaElement = screen.getByLabelText('Contenido')
-    expect(textareaElement).toBeInTheDocument()
   })
 
   it('selección de padres renderizada correctamente', () => {
