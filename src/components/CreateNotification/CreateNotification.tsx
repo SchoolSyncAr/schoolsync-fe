@@ -179,7 +179,7 @@ function CreateNotification() {
                 <Select
                   value={formState.priority}
                   onChange={weightChangeHandler}
-                  className="custom field field--select field--rounded field--dropdown shadow"
+                  className="field field--rounded field--dropdown shadow"
                   data-testid="select-priority"
                 >
                   <MenuItem value="">Seleccione una opción</MenuItem>
