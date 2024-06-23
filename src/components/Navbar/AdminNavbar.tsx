@@ -12,7 +12,7 @@ const AdminNavbar = () => {
       <div onClick={() => navigate('/admin_dashboard')} className={`nav-item text text--md text--strong ${getNavItemClass('/admin_dashboard')}`}>
         Notificaciones
       </div>
-      <div onClick={() => navigate('/createNotification')} className={`nav-item text text--md text--strong ${getNavItemClass('/createNotification')}`}>
+      <div onClick={() => navigate('/create_notification')} className={`nav-item text text--md text--strong ${getNavItemClass('/create_notification')}`}>
         Crear
       </div>
       <div onClick={() => navigate('/seeAllStudents')} className={`nav-item text text--md text--strong ${getNavItemClass('/seeAllStudents')}`}>

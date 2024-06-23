@@ -8,6 +8,7 @@ import './CreateNotification.scss'
 import { Parent } from 'models/Parent'
 import { NotifProps } from 'models/interfaces/Notification'
 import { enqueueSnackbar } from 'notistack'
+import { useLocation } from 'react-router-dom'
 
 interface FormState {
   title: string
@@ -18,6 +19,7 @@ interface FormState {
 }
 
 function CreateNotification() {
+  const location = useLocation()
   const [formState, setFormState] = useState<FormState>({
     title: '',
     content: '',
@@ -35,6 +37,12 @@ function CreateNotification() {
     priority: '',
     recipients: '',
   })
+
+  useEffect(() => {
+    if (location.state && location.state.formState) {
+      setFormState(location.state.formState)
+    }
+  }, [location.state])
 
   useEffect(() => {
     async function fetchData() {

@@ -1,8 +1,7 @@
-.notif {
+.dashboard {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: var(--spacing);
   gap: var(--spacing);
 
   &__grid {
@@ -11,25 +10,26 @@
     width: 100%;
     align-items: start;
     justify-content: start;
+    padding: var(--spacing);
     gap: 1em;
     overflow-y: auto;
   }
 }
 
 @media (max-width: 1600px) {
-  .notif__grid {
+  .dashboard__grid {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
 @media (max-width: 1000px) {
-  .notif__grid {
+  .dashboard__grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: 800px) {
-  .notif__grid {
+  .dashboard__grid {
     grid-template-columns: 1fr;
   }
 }
