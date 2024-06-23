@@ -21,7 +21,7 @@ function CreateNotification() {
   const [formState, setFormState] = useState<FormState>({
     title: '',
     content: '',
-    priority: '',
+    priority: "default",
     recipients: [],
     recipientGroups: [],
   })
@@ -68,7 +68,7 @@ function CreateNotification() {
       valid = false
     }
 
-    if (!formState.priority) {
+    if (formState.priority == "default") {
       errors['priority'] = 'Seleccione una prioridad'
       valid = false
     }
@@ -132,7 +132,7 @@ function CreateNotification() {
   }
 
   function clearAll() {
-    setFormState({ ...formState, title: '', content: '', priority: '', recipients: [], recipientGroups: [] })
+    setFormState({ ...formState, title: '', content: '', priority: "default", recipients: [], recipientGroups: [] })
   }
 
   return (
@@ -141,35 +141,59 @@ function CreateNotification() {
         <section className="new-notif__form-body">
           <div onSubmit={createNewNotificationEventHandler} className="new-notif__text">
             <div className="text text--xl text--strong text--white">Crear Notificacion</div>
-            <div className="field__container">
+            <div className="new-notif__field">
+              <label className="text text--white text--strong">
+                Titulo {formErrors['title'] && <span className="text text--xs text--error">{formErrors['title']}</span>}
+              </label>
+              <TextField 
+                id="outlined-basic" 
+                value={formState.title}
+                onChange={titleInputHandler}
+                className='field field--rounded field--dropdown shadow'
+                autoFocus
+              />
+            </div>  
+            <div className="new-notif__field">
+              <label className="text text--white text--strong">
+                Contenido {formErrors['content'] && <span className="text text--xs text--error">{formErrors['content']}</span>}
+              </label>
+              <TextField 
+                id="outlined-basic" 
+                value={formState.content} 
+                onChange={contentInputHandler}
+                className='field field--textarea field--rounded field--dropdown shadow'
+                multiline
+                rows={8}
+              />
+            </div>              
+            {/* <div className="field__container">
               <input
                 id="newNotifTitle"
                 className="field field--rounded animated shadow"
                 onChange={titleInputHandler}
                 value={formState.title}
                 autoFocus={true}
-                data-testid="login-username"
               />
               <label className="field__label text" htmlFor="newNotifTitle">
                 Titulo {formErrors['title'] && <span className="text text--xs text--error">{formErrors['title']}</span>}
               </label>
-            </div>
-            <div className="field__container">
+            </div> */}
+            {/* <div className="field__container">
               <textarea
                 id="newNotifContent"
+                className="field field--textarea field--rounded animated shadow"
                 onChange={contentInputHandler}
                 value={formState.content}
-                className="field field--textarea field--rounded animated shadow"
               />
               <label className="field__label--textarea text" htmlFor="newNotifContent">
                 Contenido{' '}
                 {formErrors['content'] && <span className="text text--xs text--error">{formErrors['content']}</span>}
               </label>
-            </div>
+            </div> */}
           </div>
           <div className="new-notif__settings">
             <div className="new-notif__settings-section">
-              <div className="new-notif__settings-item">
+              <div className="new-notif__field">
                 <label className="text text--white text--md text--strong">
                   Prioridad{' '}
                   {formErrors['priority'] && (
@@ -182,12 +206,12 @@ function CreateNotification() {
                   className="field field--rounded field--dropdown shadow"
                   data-testid="select-priority"
                 >
-                  <MenuItem value="">Seleccione una opción</MenuItem>
+                  <MenuItem value="default" className='text--light'>Seleccione una opción</MenuItem>
                   {priorities.map((item) => (
                     <MenuItem key={item} value={item}>
                       {item}
                     </MenuItem>
-                  ))}
+                  ))} 
                 </Select>
               </div>
             </div>
@@ -201,7 +225,7 @@ function CreateNotification() {
                 </span>
                 <div className="text text--xs text--white">(Seleccione 1 o más)</div>
               </label>
-              <div className="new-notif__settings-item">
+              <div className="new-notif__field">
                 <label className="text text--white text--strong">Padres:</label>
                 <Autocomplete
                   multiple
@@ -219,7 +243,7 @@ function CreateNotification() {
                   )}
                 />
               </div>
-              <div className="new-notif__settings-item">
+              <div className="new-notif__field">
                 <label className="text text--white text--strong">Grupos:</label>
                 <Autocomplete
                   multiple
