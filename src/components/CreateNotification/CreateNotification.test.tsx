@@ -1,8 +1,14 @@
 import { act, render, screen } from '@testing-library/react'
-import { describe, it, beforeEach, expect } from 'vitest'
+import { describe, it, beforeEach, expect, vi } from 'vitest'
 import CreateNotification from './CreateNotification'
+import { parentService } from 'root/src/services/ParentService'
+import notificationService from 'root/src/services/NotificationService'
 
 describe('CreateNotification component', () => {
+  vi.spyOn(parentService, 'getAll').mockReturnValue(Promise.resolve([]))
+  vi.spyOn(notificationService, 'getGroups').mockReturnValue(Promise.resolve([]))
+  vi.spyOn(notificationService, 'getPriorities').mockReturnValue(Promise.resolve([]))
+
   beforeEach(async () => {
     await act(() => {
       render(<CreateNotification />)
