@@ -1,9 +1,9 @@
-import './Searchbar.scss'
-import { FilterArgs, FilterSelector, emptyFilter } from 'root/src/models/interfaces/types'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import React from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button } from 'components/basic/Button/Button'
 import { useState } from 'react'
+import { FilterArgs, FilterSelector, emptyFilter } from 'root/src/models/interfaces/types'
 
 type SearchBarProps = {
   onSubmit: SubmitHandler<FilterArgs>
@@ -39,14 +39,14 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
   }
 
   return (
-    <form className="searchbar shadow shadow--big" onSubmit={handleSubmit(onSubmit)}>
+    <form className="searchbar shadow shadow--big" onSubmit={handleSubmit(onSubmit)} data-testid="searchbar">
       <section className="searchbar__inputs">
         <div className="field__container">
           <input
             id="searchfor"
             className="field field--rounded field--large animated shadow"
             {...register('searchField')}
-            data-testid="login-username"
+            data-testid="search-field"
             placeholder="Buscar: "
           />
         </div>
@@ -57,6 +57,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
             className="field field--select field--rounded animated shadow"
             onChange={(e) => handleSortChange(e.target.value as FilterSelector)}
             value={selectedOption}
+            data-testid="sort-field"
           >
             {options.map((option, index) => (
               <option key={index} value={option.value}>
@@ -72,7 +73,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
           className="button--icon"
           rounded
           animated
-          data-testid={'search-submit'}
+          data-testid="search-submit"
           disabled={isSubmitting}
         />
       </section>
