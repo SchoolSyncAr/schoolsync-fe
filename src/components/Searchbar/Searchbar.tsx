@@ -138,8 +138,16 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
               name="read"
               control={control}
               render={({ field }) => (
-                <ToggleButton value="check" selected={field.value} onChange={() => handleReadChange(!field.value)}>
-                  {field.value ? <MarkChatReadIcon /> : <MarkChatUnreadIcon />}
+                <ToggleButton
+                  value="check"
+                  selected={field.value}
+                  onChange={() => {
+                    const newValue = !field.value
+                    handleReadChange(newValue)
+                    field.onChange(newValue)
+                  }}
+                >
+                  {read ? <MarkChatReadIcon /> : <MarkChatUnreadIcon />}
                 </ToggleButton>
               )}
             />
