@@ -1,10 +1,10 @@
 import './notifications.scss'
 import { useState } from 'react'
 import { useOnInit } from 'utils/useOnInit'
-import { getAllStudents } from '../../services/StudentsService'
 import { Student } from '../../models/Student'
 import AddCardIcon from '@mui/icons-material/AddCard'
 import { PrintError } from 'components/PrintError/PrintError'
+import { studentService } from 'root/src/services/StudentsService'
 
 export const SeeAllStudents = () => {
   const [students, setStudents] = useState<Student[]>([])
@@ -12,7 +12,7 @@ export const SeeAllStudents = () => {
 
   useOnInit(async () => {
     try {
-      const studentData = await getAllStudents()
+      const studentData = await studentService.getAll()
       setStudents(studentData)
     } catch {
       setErrorMessage('No se pudo obtener info notifications')
