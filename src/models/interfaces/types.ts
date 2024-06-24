@@ -6,7 +6,7 @@ export type LoginArgs = {
 export type FilterArgs = {
   searchField: string
   sortField: FilterSelector
-  children: string
+  /* children: string */
   read: boolean
 }
 
@@ -21,7 +21,7 @@ export enum FilterSelector {
 export const emptyFilter: FilterArgs = {
   searchField: '',
   sortField: FilterSelector.UNDEFINED,
-  children: '',
+  /* children: '', */
   read: false,
 }
 

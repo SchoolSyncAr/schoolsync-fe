@@ -114,4 +114,9 @@
     z-index: 1000;
     cursor: pointer;
   }
+
+  &__tooltip {
+    top: 17%;
+    right: 0.3em;
+  }
 }

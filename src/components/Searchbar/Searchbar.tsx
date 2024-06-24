@@ -4,13 +4,14 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button } from 'components/basic/Button/Button'
 import { useState } from 'react'
-import { StudentProps } from 'root/src/models/interfaces/User'
+/* import { StudentProps } from 'root/src/models/interfaces/User'
 import { useOnInit } from 'root/src/utils/useOnInit'
 import { PrintError } from '../PrintError/PrintError'
-import { getMyChildren } from 'root/src/services/ParentService'
-import { ToggleButton } from '@mui/material'
+import { getMyChildren } from 'root/src/services/ParentService' */
+import { ToggleButton, Tooltip } from '@mui/material'
 import MarkChatUnreadIcon from '@mui/icons-material/MarkChatUnread'
 import MarkChatReadIcon from '@mui/icons-material/MarkChatRead'
+import InfoIcon from '@mui/icons-material/Info'
 import { authService } from 'root/src/services/AuthService'
 
 type SearchBarProps = {
@@ -19,12 +20,12 @@ type SearchBarProps = {
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
   const [selectDefaultText, setSelectDefaultText] = useState('Ordenar por: ')
-  const [selectDefaultTextChildren, setSelectDefaultTextChildren] = useState('Seleccionar Hijo: ')
+  /* const [selectDefaultTextChildren, setSelectDefaultTextChildren] = useState('Seleccionar Hijo: ') */
   const [selectedOption, setSelectedOption] = useState<FilterSelector>(FilterSelector.UNDEFINED)
-  const [selectedChild, setSelectedChild] = useState('')
-  const [children, setChildren] = useState<StudentProps[]>([])
+  /* const [selectedChild, setSelectedChild] = useState('') */
+  /* const [children, setChildren] = useState<StudentProps[]>([]) */
   const [read, setRead] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  /* const [errorMessage, setErrorMessage] = useState('') */
 
   const {
     control,
@@ -38,7 +39,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
     },
   })
 
-  useOnInit(async () => {
+  /* useOnInit(async () => {
     try {
       const childrenData = await getMyChildren()
       setChildren(childrenData)
@@ -46,7 +47,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
       errorMessage
       setErrorMessage('No se pudo obtener info children')
     }
-  })
+  }) */
 
   const options: { label: string; value?: FilterSelector }[] = [
     { label: selectDefaultText, value: FilterSelector.UNDEFINED },
@@ -63,12 +64,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
       : setSelectDefaultText('Ordenar por: ')
   }
 
-  const handleChildrenChange = (selection: string) => {
+  /* const handleChildrenChange = (selection: string) => {
     setSelectedChild(selection)
     selection !== ''
       ? setSelectDefaultTextChildren('Limpiar filtros')
       : setSelectDefaultTextChildren('Seleccionar Hijo: ')
-  }
+  } */
 
   const handleReadChange = (value: boolean) => {
     setRead(value)
@@ -86,6 +87,13 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
             data-testid="login-username"
             placeholder="Buscar: "
           />
+          <Tooltip
+            className="field__eye-icon field__tooltip"
+            title="Puedes utilizar las etiquetas 'autor:', 'titulo:' o 'contenido:' para especificar el/los campos de búsqueda"
+            leaveDelay={500}
+          >
+            <InfoIcon fontSize="large" color="disabled" />
+          </Tooltip>
         </div>
 
         <div className="field__container">
@@ -103,7 +111,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
           </select>
         </div>
 
-        {!authService.adminStatus() ? (
+        {/* {!authService.adminStatus() ? (
           <div className="field__container">
             <select
               {...register('children')}
@@ -122,7 +130,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
           </div>
         ) : (
           <></>
-        )}
+        )} */}
 
         {!authService.adminStatus() ? (
           <div className="checkbox checkbox--rounded animated shadow">

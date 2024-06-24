@@ -24,7 +24,7 @@ class NotificationService {
         params: {
           searchField: filter.searchField,
           sortField: filter.sortField,
-          children: filter.children,
+          /* children: filter.children, */
           read: filter.read
         },
       },
