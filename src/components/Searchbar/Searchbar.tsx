@@ -46,7 +46,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
             id="searchfor"
             className="field field--rounded field--large animated shadow"
             {...register('searchField')}
-            data-testid="search-field"
+            data-testid="login-username"
             placeholder="Buscar: "
           />
         </div>

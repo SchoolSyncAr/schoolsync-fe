@@ -20,7 +20,7 @@ describe('SearchBar Component', () => {
 
   it('updates searchField value correctly', async () => {
     render(<SearchBar onSubmit={() => {}} />)
-    const searchInputElement = screen.getByTestId('search-field') as HTMLInputElement
+    const searchInputElement = screen.getByTestId('login-username') as HTMLInputElement
 
     fireEvent.change(searchInputElement, { target: { value: 'test query' } })
 
