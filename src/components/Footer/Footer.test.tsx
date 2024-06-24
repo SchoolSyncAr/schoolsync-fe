@@ -1,13 +1,18 @@
 import { RenderResult, render, screen } from '@testing-library/react'
-import { describe, it, beforeEach, expect, afterEach} from 'vitest'
+import { describe, it, beforeEach, expect, afterEach } from 'vitest'
 import { Footer } from './Footer'
 import { MemoryRouter } from 'react-router-dom'
+// import
 
 describe('Footer Tests', () => {
-  let renderResult: RenderResult<typeof import("@testing-library/dom/types/queries"), HTMLElement, HTMLElement>
+  let renderResult: RenderResult<typeof import('@testing-library/dom/types/queries'), HTMLElement, HTMLElement>
 
   beforeEach(() => {
-    renderResult = render(<MemoryRouter><Footer /></MemoryRouter>)
+    renderResult = render(
+      <MemoryRouter>
+        <Footer />
+      </MemoryRouter>,
+    )
   })
 
   afterEach(() => {
@@ -15,7 +20,6 @@ describe('Footer Tests', () => {
   })
 
   it('Should render all social media icons and links correctly', async () => {
-
     const facebookLink = screen.getByTestId('facebook-link')
     const whatsappLink = screen.getByTestId('whatsapp-link')
     const twitterLink = screen.getByTestId('twitter-link')
