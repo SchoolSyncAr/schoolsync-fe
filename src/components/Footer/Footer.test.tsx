@@ -2,7 +2,6 @@ import { RenderResult, render, screen } from '@testing-library/react'
 import { describe, it, beforeEach, expect, afterEach } from 'vitest'
 import { Footer } from './Footer'
 import { MemoryRouter } from 'react-router-dom'
-// import
 
 describe('Footer Tests', () => {
   let renderResult: RenderResult<typeof import('@testing-library/dom/types/queries'), HTMLElement, HTMLElement>
