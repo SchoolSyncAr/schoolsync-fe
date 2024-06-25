@@ -77,7 +77,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
   }
 
   return (
-    <form className="searchbar shadow shadow--big" onSubmit={handleSubmit(onSubmit)}>
+    <form className="searchbar shadow shadow--big" onSubmit={handleSubmit(onSubmit)} data-testid="searchbar">
       <section className="searchbar__inputs">
         <div className="field__container">
           <input
@@ -102,6 +102,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
             className="field field--select field--rounded animated shadow"
             onChange={(e) => handleSortChange(e.target.value as FilterSelector)}
             value={selectedOption}
+            data-testid="sort-field"
           >
             {options.map((option, index) => (
               <option key={index} value={option.value}>
@@ -162,7 +163,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
           className="button--icon"
           rounded
           animated
-          data-testid={'search-submit'}
+          data-testid="search-submit"
           disabled={isSubmitting}
         />
       </section>
