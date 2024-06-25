@@ -1,4 +1,4 @@
-import { getAllStudents } from 'root/src/services/StudentsService'
+import { studentService } from 'root/src/services/StudentsService'
 import { Student } from 'root/src/models/Student'
 import { UserCard } from '../UserCard/UserCard'
 import { useOnInit } from 'utils/useOnInit'
@@ -11,7 +11,7 @@ export const SeeAllStudents = () => {
 
   useOnInit(async () => {
     try {
-      const studentData = await getAllStudents()
+      const studentData = await studentService.getAll()
       setStudents(studentData)
     } catch {
       errorMessage
@@ -20,12 +20,7 @@ export const SeeAllStudents = () => {
   })
 
   const studentList = () => {
-    return students.map((student, index) => (
-      <UserCard 
-        user={student}
-        key={index}
-      />
-    ))
+    return students.map((student, index) => <UserCard user={student} key={index} />)
   }
 
   return (
