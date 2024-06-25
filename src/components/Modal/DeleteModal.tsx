@@ -1,5 +1,6 @@
 import { Dialog, DialogActions, DialogTitle } from '@mui/material'
 import './Modal.scss'
+import { Button } from 'components/basic/Button/Button'
 
 type ModalDelete = {
   isOpen: boolean
@@ -20,21 +21,17 @@ export const ModalDelete = (props: ModalDelete) => {
         <p className="text text--xl text--stronger">{title}</p>
       </DialogTitle>
       <DialogActions className="modalito__actions">
-        <button
-          className="button button--secondary button--tall button--rounded animated shadow shadow--box"
-          onClick={handleClose}
-        >
-          Cancelar
-        </button>
-        <button
-          className="button button--primary button--tall button--rounded animated shadow shadow--box"
+        <Button variant={'secondary'} text={'Cancelar'} onClick={handleClose} rounded taller animated />
+        <Button
+          text={'Eliminar'}
           onClick={() => {
             handleClose()
             onSubmit()
           }}
-        >
-          Eliminar
-        </button>
+          rounded
+          taller
+          animated
+        />
       </DialogActions>
     </Dialog>
   )

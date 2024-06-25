@@ -48,6 +48,10 @@
     height: 56px;
   }
 
+  &--nopad {
+    padding: 0;
+  }
+
   &--rounded {
     border-radius: var(--border-radius-sm);
   }

@@ -1,10 +1,7 @@
 .modalito {
   .MuiDialog-paper {
-    /* height: minmax(30vh, 100%);
-    max-height: 50vh; */
     padding: 20px;
-    border-radius: var(--border-radius-sm);
-    border: 2.5px solid var(--color-primary);
+    border-radius: var(--border-radius);
   }
 
   &__form {
@@ -13,9 +10,18 @@
 
   &__actions {
     width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 1em;
   }
 
   &__header {
     gap: var(--padding-xs);
+    p {
+      color: var(--color-primary);
+      font-family: var(--typeface-main);
+      font-weight: 800;
+    }
   }
 }

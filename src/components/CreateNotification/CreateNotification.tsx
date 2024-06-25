@@ -157,7 +157,7 @@ function CreateNotification() {
                 id="outlined-basic"
                 value={formState.title}
                 onChange={titleInputHandler}
-                className="field field--rounded field--dropdown shadow"
+                className="field field--nopad field--rounded field--dropdown shadow"
                 autoFocus
               />
             </div>
@@ -170,35 +170,11 @@ function CreateNotification() {
                 id="outlined-basic"
                 value={formState.content}
                 onChange={contentInputHandler}
-                className="field field--textarea field--rounded field--dropdown shadow"
+                className="field field--nopad field--textarea field--rounded field--dropdown shadow"
                 multiline
                 rows={8}
               />
             </div>
-            {/* <div className="field__container">
-              <input
-                id="newNotifTitle"
-                className="field field--rounded animated shadow"
-                onChange={titleInputHandler}
-                value={formState.title}
-                autoFocus={true}
-              />
-              <label className="field__label text" htmlFor="newNotifTitle">
-                Titulo {formErrors['title'] && <span className="text text--xs text--error">{formErrors['title']}</span>}
-              </label>
-            </div> */}
-            {/* <div className="field__container">
-              <textarea
-                id="newNotifContent"
-                className="field field--textarea field--rounded animated shadow"
-                onChange={contentInputHandler}
-                value={formState.content}
-              />
-              <label className="field__label--textarea text" htmlFor="newNotifContent">
-                Contenido{' '}
-                {formErrors['content'] && <span className="text text--xs text--error">{formErrors['content']}</span>}
-              </label>
-            </div> */}
           </div>
           <div className="new-notif__settings">
             <div className="new-notif__settings-section">
@@ -277,7 +253,6 @@ function CreateNotification() {
         <section className="control-buttons">
           <button
             className="button button--tertiary button--tall button--rounded text--md text--spaced text--upper animated shadow--box"
-            // disabled={!isDirty || !isValid || isSubmitting}
             type="submit"
             data-testid="new-notif-submit"
           >

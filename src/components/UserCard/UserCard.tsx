@@ -62,15 +62,11 @@ export const UserCard = ({ user }: UserCardProps) => {
       )}
       <div className="user-card__info">
         <div className="text text--xs text--white">
-          <IconButton style={{ padding: '0 0.3em 0 0' }}>
-            <EmailIcon style={{ color: 'var(--color-white)' }} />
-          </IconButton>
+          <EmailIcon style={{ padding: '0 0.3em 0 0', color: 'var(--color-white)' }} />
           {email}
         </div>
         <div className="text text--xs text--white">
-          <IconButton style={{ padding: '0 0.3em 0 0' }}>
-            <PhoneIcon style={{ color: 'var(--color-white)' }} />
-          </IconButton>
+          <PhoneIcon style={{ padding: '0 0.3em 0 0', color: 'var(--color-white)' }} />
           {phoneNumber}
         </div>
       </div>
