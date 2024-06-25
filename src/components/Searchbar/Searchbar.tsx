@@ -1,9 +1,9 @@
-import React from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import './Searchbar.scss'
+import { FilterArgs, FilterSelector, emptyFilter } from 'root/src/models/interfaces/types'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button } from 'components/basic/Button/Button'
 import { useState } from 'react'
-import { FilterArgs, FilterSelector, emptyFilter } from 'root/src/models/interfaces/types'
 
 type SearchBarProps = {
   onSubmit: SubmitHandler<FilterArgs>
