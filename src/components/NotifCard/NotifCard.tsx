@@ -9,17 +9,27 @@ import MarkChatReadIcon from '@mui/icons-material/MarkChatRead'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Button } from 'components/basic/Button/Button'
 import './NotifCard.scss'
+import { ModalDelete } from '../Modal/DeleteModal'
 
 interface NotifCardProps {
   notifProps: NotifProps
   deleteButton?: boolean
-  handleDelete?: (notifId: number) => void
+  handleDelete?: () => void
   handlePinned?: (notifId: number) => void
   handleRead?: (notifId: number) => void
+  testNumber: number
 }
 
-export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned, handleRead }: NotifCardProps) => {
+export const NotifCard = ({
+  notifProps,
+  deleteButton,
+  handleDelete,
+  handlePinned,
+  handleRead,
+  testNumber = 0,
+}: NotifCardProps) => {
   const [modalOpen, setModalOpen] = useState(false)
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false)
   const contentRef = useRef<HTMLDivElement>(null)
   const { title, content, weight, date, pinned, read } = notifProps
 
@@ -38,8 +48,11 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
 
   return (
     <>
-      <article className={`notif-card ${weight} ${read ? 'read-true' : ''}`}>
-        <section className="notif-card__title">
+      <article
+        className={`notif-card ${weight} ${read ? 'read-true' : ''}`}
+        data-testid={`notification-card${testNumber}`}
+      >
+        <section className="notif-card__title" data-testid={`notification-title${testNumber}`}>
           {title}
           {!deleteButton ? (
             <div className="notif-card__actions">
@@ -67,21 +80,23 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
             </div>
           ) : null}
           {deleteButton && handleDelete && (
-            <IconButton onClick={() => handleDelete(notifProps.id)}>
+            <IconButton onClick={() => setDeleteModalOpen(true)} data-testid={`notification-delete${testNumber}`}>
               <DeleteIcon style={{ fontSize: '1.3em', color: 'var(--color-white)' }} />
             </IconButton>
           )}
         </section>
 
-        <section className="notif-card__body" ref={contentRef}>
+        <section className="notif-card__body" ref={contentRef} data-testid={`notification-content${testNumber}`}>
           {content}
         </section>
-        <section className="notif-card__date">{formattedDate}</section>
+        <section className="notif-card__date" data-testid={`notification-date${testNumber}`}>
+          {formattedDate}
+        </section>
         <section className="notif-card__button">
           <Button variant="secondary" text="Ver Más" onClick={handleToggleModal} animated rounded />
         </section>
       </article>
-      <Modal open={modalOpen} onClose={handleToggleModal}>
+      <Modal open={modalOpen} onClose={handleToggleModal} data-testid={`notification-modal${testNumber}`}>
         <article className={`notif-card notif-modal ${weight}`}>
           <IconButton style={{ position: 'absolute', top: '0.5em', right: '0.5em' }} onClick={handleToggleModal}>
             <CloseIcon />
@@ -92,6 +107,13 @@ export const NotifCard = ({ notifProps, deleteButton, handleDelete, handlePinned
           </section>
         </article>
       </Modal>
+      {handleDelete && (
+        <ModalDelete
+          isOpen={deleteModalOpen}
+          handleClose={() => setDeleteModalOpen(false)}
+          onSubmit={() => handleDelete()}
+        />
+      )}
     </>
   )
 }

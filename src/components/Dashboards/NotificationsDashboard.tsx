@@ -72,9 +72,11 @@ function NotificationsDashboard({ deleteButton = false }: NotifDashboardProps) {
       <NotifCard
         key={index}
         notifProps={data}
+        deleteButton={deleteButton}
+        handleDelete={deleteButton ? () => handleDelete(data.id) : undefined}
         handlePinned={handlePinned}
         handleRead={handleRead}
-        {...(deleteButton ? { deleteButton, handleDelete } : {})}
+        testNumber={index}
       />
     ))
   }
