@@ -1,0 +1,13 @@
+.checkbox {
+  height: var(--element-height);
+
+  font-family: var(--typeface-main);
+  font-size: 1.2em;
+
+  border: 1px solid var(--color-primary);
+  background-color: var(--color-white);
+
+  &--rounded {
+    border-radius: var(--border-radius-sm);
+  }
+}
