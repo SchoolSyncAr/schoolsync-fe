@@ -6,7 +6,7 @@ export interface NotifProps {
   sender?: number
   scope?: string
   recipientGroups?: string[]
-  recipients?: number[]
+  receivers?: number[]
   date?: string
   read?: boolean
   pinned?: boolean

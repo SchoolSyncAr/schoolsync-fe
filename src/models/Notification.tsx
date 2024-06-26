@@ -8,7 +8,7 @@ export class Notification {
   sender: number
   scope: string
   recipientGroups: string[]
-  recipients: number[]
+  receivers: number[]
   date: string
   read: boolean
   pinned: boolean
@@ -21,7 +21,7 @@ export class Notification {
     this.sender = props?.sender ?? 0
     this.scope = props?.scope ?? ''
     this.recipientGroups = props?.recipientGroups ?? []
-    this.recipients = props?.recipients ?? []
+    this.receivers = props?.receivers ?? []
     this.date = props?.date ?? ''
     this.read = props?.read ?? false
     this.pinned = props?.pinned ?? false

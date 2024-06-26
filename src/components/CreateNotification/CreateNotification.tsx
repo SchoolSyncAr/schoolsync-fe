@@ -126,7 +126,7 @@ function CreateNotification() {
       weight: formState.priority,
       sender: Number(authService.getUserId()),
       recipientGroups: formState.recipientGroups,
-      recipients: formState.recipients.map((parent) => parent.id),
+      receivers: formState.recipients.map((parent) => parent.id),
     })
 
     try {
