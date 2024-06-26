@@ -1,10 +1,13 @@
+import { Student } from './Student'
 import { ParentProps } from './interfaces/User'
 
 export class Parent {
   id: number
   firstName: string
   lastName: string
-  isFatherOf?: number[]
+  email: string
+  phoneNumber: string
+  children: Student[] = []
   notifications?: number[]
   notificationGroups?: string[]
 
@@ -12,7 +15,9 @@ export class Parent {
     this.id = props?.id ?? 0
     this.firstName = props?.firstName ?? ''
     this.lastName = props?.lastName ?? ''
-    this.isFatherOf = props?.isFatherOf ?? []
+    this.email = props?.email ?? ''
+    this.phoneNumber = props?.phoneNumber ?? ''
+    this.children = props?.children ?? []
     this.notifications = props?.notifications ?? []
     this.notificationGroups = props?.notificationGroups ?? []
   }

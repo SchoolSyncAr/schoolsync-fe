@@ -1,43 +1,34 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { LoginPage } from 'pages/Login/LoginPage'
-import NotificationsDashboard from 'components/NotifDashboard/NotificationsDashboard'
+import { RouteObject } from 'react-router-dom'
+import NotificationsDashboard from 'root/src/components/Dashboards/NotificationsDashboard'
 import CreateNotification from 'components/CreateNotification/CreateNotification'
-import ParentDashboard from 'components/ParentDashboard'
-import AdminDashboard from 'components/AdminDashboard'
-import { SeeAllStudents } from 'components/notifications/SeeAllStudents'
-import SeeAllParents from 'components/notifications/seeAllParents'
-import Children from 'components/Children'
-import NotFound from 'components/NotFound'
-import ProtectedRoute from 'protectedRoute'
-import { NotificationProvider } from 'components/hooks/NotificationContext'
+import { SeeAllStudents } from 'root/src/components/Dashboards/SeeAllStudents'
+import { NotFound } from 'components/NotFound'
+import { ProtectedRoute } from './protectedRoute'
 import { LayoutWrap } from 'components/LayoutWrap'
+import { LoginPage } from 'pages/Login/LoginPage'
+import Children from './components/Dashboards/Children'
+import SeeAllParents from './components/Dashboards/seeAllParents'
 
-export const MyRoutes = () => (
-  <Routes>
-    <Route path="" element={<LoginPage />} />
-    <Route path="/login" element={<LoginPage />} />
-    <Route path="/" element={<ProtectedRoute />}>
-      <Route path="/" element={<LayoutWrap />}>
-        <Route path="parentDashboard" element={<ParentDashboard />} />
-        <Route path="notificationsDashboard" element={<NotificationsDashboard />} />
-        <Route path="children" element={<Children />} />
-        <Route path="adminDashboard" element={<AdminDashboard />} />
-        <Route path="deleteNotification" element={<NotificationsDashboard deleteButton={true} />} />
-        <Route path="seeAllStudents" element={<SeeAllStudents />} />
-        <Route path="seeAllParents" element={<SeeAllParents />} />
-        <Route path="createNotification" element={<CreateNotification />} />
-      </Route>
-    </Route>
-    <Route path="*" element={<NotFound />} />
-  </Routes>
-)
-
-export const SchoolSyncRouter = () => {
-  return (
-    <NotificationProvider>
-      <Router >
-        <MyRoutes />
-      </Router>
-    </NotificationProvider>
-  )
-}
+export const routes: RouteObject[] = [
+  { path: '', element: <LoginPage /> },
+  { path: 'login', element: <LoginPage /> },
+  {
+    path: '/',
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: '/',
+        element: <LayoutWrap />,
+        children: [
+          { path: 'parent_dashboard', element: <NotificationsDashboard /> },
+          { path: 'children', element: <Children /> },
+          { path: 'admin_dashboard', element: <NotificationsDashboard deleteButton={true} /> },
+          { path: 'seeAllStudents', element: <SeeAllStudents /> },
+          { path: 'seeAllParents', element: <SeeAllParents /> },
+          { path: 'create_notification', element: <CreateNotification /> },
+        ],
+      },
+    ],
+  },
+  { path: '*', element: <NotFound /> },
+]

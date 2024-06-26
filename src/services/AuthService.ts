@@ -1,6 +1,6 @@
-import { LoginArgs } from 'models/interfaces/types'
-import api from 'api/axios.tsx'
+import API from 'api/axios'
 import { jwtDecode } from 'jwt-decode'
+import { LoginArgs } from 'models/interfaces/types'
 
 interface DecodedTokenArgs {
   userId: string
@@ -10,21 +10,19 @@ interface DecodedTokenArgs {
 
 const AuthService = () => {
   const login = async (credentials: LoginArgs) => {
-    try {
-      const response = await api.post('/api/auth', credentials)
-      const token = response.data.accessToken
+    const response = await API.post('/api/auth', credentials)
+    const token = response.data.accessToken
+    setStorage(token)
+    return token
+  }
 
-      const decodedToken: DecodedTokenArgs = jwtDecode(token)
+  const setStorage = (token: string) => {
+    const decodedToken: DecodedTokenArgs = jwtDecode(token)
 
-      sessionStorage.setItem('token', token)
-      sessionStorage.setItem('role', decodedToken.role)
-      sessionStorage.setItem('userId', decodedToken.userId)
-      sessionStorage.setItem('tokenExpiration', decodedToken.exp.toString())
-
-      return token
-    } catch (error) {
-      throw new Error('Error en la autenticación. Por favor, verifica tus credenciales.')
-    }
+    sessionStorage.setItem('token', token)
+    sessionStorage.setItem('role', decodedToken.role)
+    sessionStorage.setItem('userId', decodedToken.userId)
+    sessionStorage.setItem('tokenExpiration', decodedToken.exp.toString())
   }
 
   const getUserToken = () => {
@@ -57,7 +55,7 @@ const AuthService = () => {
     sessionStorage.removeItem('tokenExpiration')
   }
 
-  const adminStatus = () => getUserRole() == "ADMIN"
+  const adminStatus = () => getUserRole() == 'ADMIN'
 
   return {
     login,
@@ -67,7 +65,8 @@ const AuthService = () => {
     getUserId,
     getTokenExpiration,
     logout,
-    adminStatus
+    adminStatus,
+    setStorage,
   }
 }
 

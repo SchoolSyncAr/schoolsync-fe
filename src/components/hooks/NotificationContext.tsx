@@ -1,17 +1,13 @@
-// src/hooks/NotificationContext.tsx
 import React, { createContext, useState, useContext, ReactNode } from 'react'
-import { NotifProps } from 'models/interfaces/Notification'
 
-// Definir la interfaz para el contexto
 interface NotificationContextProps {
-  notifications: NotifProps[]
-  updateNotifications: (newNotifications: NotifProps[]) => void
+  notifications: number
+  init: boolean
+  updateNotifications: (newNotifications: number) => void
 }
 
-// Crear el contexto con un valor inicial vacío
 const NotificationContext = createContext<NotificationContextProps | undefined>(undefined)
 
-// Hook para usar el contexto
 export const useNotification = () => {
   const context = useContext(NotificationContext)
   if (!context) {
@@ -20,21 +16,21 @@ export const useNotification = () => {
   return context
 }
 
-// Proveedor del contexto
 interface NotificationProviderProps {
-  children: ReactNode // Especificar que children puede ser cualquier nodo React
+  children: ReactNode
 }
 
 export const NotificationProvider: React.FC<NotificationProviderProps> = ({ children }) => {
-  const [notifications, setNotifications] = useState<NotifProps[]>([])
+  const [notifications, setNotifications] = useState(0)
+  const [init, setInit] = useState(true)
 
-  // Función para actualizar las notificaciones
-  const updateNotifications = (newNotifications: NotifProps[]) => {
+  const updateNotifications = (newNotifications: number) => {
     setNotifications(newNotifications)
+    setInit(false)
   }
 
   return (
-    <NotificationContext.Provider value={{ notifications, updateNotifications }}>
+    <NotificationContext.Provider value={{ notifications, init, updateNotifications }}>
       {children}
     </NotificationContext.Provider>
   )

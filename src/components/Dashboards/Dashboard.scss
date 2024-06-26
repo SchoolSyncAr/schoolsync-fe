@@ -1,0 +1,35 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: var(--spacing);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 100%;
+    align-items: start;
+    justify-content: start;
+    padding: var(--spacing);
+    gap: 1em;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 1600px) {
+  .dashboard__grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 1000px) {
+  .dashboard__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .dashboard__grid {
+    grid-template-columns: 1fr;
+  }
+}

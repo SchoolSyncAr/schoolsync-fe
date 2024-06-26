@@ -1,0 +1,1 @@
+export const { VITE_REST_SERVER_URL, VITE_USER_KEY_STORAGE, VITE_ENVIROMENT } = import.meta.env

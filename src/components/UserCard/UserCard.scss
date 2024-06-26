@@ -1,0 +1,26 @@
+.user-card {
+  display: flex;
+  flex-direction: column;
+  height: 10em;
+  background: linear-gradient(110deg, var(--color-primary-hover) 85%, var(--color-secondary) 60%);
+  box-shadow: 0rem 0.4rem 0.7rem rgba(0, 0, 0, 0.3);
+  justify-content: space-between;
+  padding: 1em;
+  border-radius: var(--border-radius);
+  position: relative;
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__name {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__users {
+    display: flex;
+  }
+}
