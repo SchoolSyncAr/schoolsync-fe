@@ -6,7 +6,7 @@
   <br/>
 </div>
 
-[![codecov](https://codecov.io/gh/SchoolSyncAr/schoolsync-fe/branch/dev/graph/badge.svg?token=R4MGY3ZLBF)](https://codecov.io/gh/SchoolSyncAr/schoolsync-fe)
+[![codecov](https://codecov.io/gh/SchoolSyncAr/schoolsync-fe/branch/main/graph/badge.svg?token=R4MGY3ZLBF)](https://codecov.io/gh/SchoolSyncAr/schoolsync-fe)
 
 ## Descripción del Proyecto
 
